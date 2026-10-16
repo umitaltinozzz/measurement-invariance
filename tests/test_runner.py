@@ -337,6 +337,7 @@ class TestManifest:
             ("model", "other"),
             ("prompt_variant", "guided"),
             ("max_tokens", 4096),
+            ("provider_constraints", {"context_length": 8192}),
         ):
             assert manifest_for(tmp_path, cfg, **{field: value}).fingerprint != base.fingerprint
 

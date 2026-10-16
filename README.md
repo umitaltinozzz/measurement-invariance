@@ -175,10 +175,10 @@ Three invariants:
 
 Every run writes an immutable `RunManifest` beside its results: dataset and
 config SHAs, resolved model id, sampling settings, git commit (or `null`, honestly,
-outside a repo) and package versions. Its `fingerprint` excludes the timestamp, so
-the same configuration re-runs to the same fingerprint; a *different*
-configuration writing into the same file raises rather than merging two
-experiments.
+outside a repo), package versions, and provider-specific constraints. Its
+`fingerprint` excludes invocation id and timestamp, so a resumed configuration
+matches the existing run; a *different* configuration writing into the same
+file raises rather than merging two experiments.
 
 `OllamaProvider` connects to a local Ollama server at
 `http://localhost:11434/v1` without an API key. When
