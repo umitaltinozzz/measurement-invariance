@@ -1,0 +1,30 @@
+{"case_id": "competence-rr-000", "random_seed": 20260831700000, "skill": "reference_range", "analyte": "Analyte-X17", "result": 0.0, "reference_range": [0.0, 150.0], "expected_classification": "within", "boundary_kind": "at_lower"}
+{"case_id": "competence-rr-001", "random_seed": 20260831700001, "skill": "reference_range", "analyte": "Marker-Q4", "result": 100.0, "reference_range": [0.0, 100.0], "expected_classification": "within", "boundary_kind": "at_upper"}
+{"case_id": "competence-rr-002", "random_seed": 20260831700002, "skill": "reference_range", "analyte": "Index-B9", "result": 6.07, "reference_range": [-20.0, 20.0], "expected_classification": "within", "boundary_kind": "none"}
+{"case_id": "competence-rr-003", "random_seed": 20260831700003, "skill": "reference_range", "analyte": "Compound-R2", "result": 2.16, "reference_range": [0.5, 3.5], "expected_classification": "within", "boundary_kind": "none"}
+{"case_id": "competence-rr-004", "random_seed": 20260831700004, "skill": "reference_range", "analyte": "Analyte-K33", "result": 10.36, "reference_range": [10.0, 12.0], "expected_classification": "within", "boundary_kind": "none"}
+{"case_id": "competence-rr-005", "random_seed": 20260831700005, "skill": "reference_range", "analyte": "Marker-T8", "result": -101.8, "reference_range": [-100.0, -10.0], "expected_classification": "below", "boundary_kind": "just_below"}
+{"case_id": "competence-rr-006", "random_seed": 20260831700006, "skill": "reference_range", "analyte": "Index-M5", "result": -1.14, "reference_range": [0.0, 1.0], "expected_classification": "below", "boundary_kind": "none"}
+{"case_id": "competence-rr-007", "random_seed": 20260831700007, "skill": "reference_range", "analyte": "Compound-Z6", "result": 32.65, "reference_range": [35.5, 42.25], "expected_classification": "below", "boundary_kind": "none"}
+{"case_id": "competence-rr-008", "random_seed": 20260831700008, "skill": "reference_range", "analyte": "Analyte-P41", "result": -11.62, "reference_range": [-5.5, 5.5], "expected_classification": "below", "boundary_kind": "none"}
+{"case_id": "competence-rr-009", "random_seed": 20260831700009, "skill": "reference_range", "analyte": "Marker-L12", "result": -153.5, "reference_range": [200.0, 950.0], "expected_classification": "below", "boundary_kind": "none"}
+{"case_id": "competence-rr-010", "random_seed": 20260831700010, "skill": "reference_range", "analyte": "Index-D7", "result": 9.92, "reference_range": [1.25, 9.75], "expected_classification": "above", "boundary_kind": "just_above"}
+{"case_id": "competence-rr-011", "random_seed": 20260831700011, "skill": "reference_range", "analyte": "Compound-V3", "result": 0.3, "reference_range": [-1.0, 0.0], "expected_classification": "above", "boundary_kind": "none"}
+{"case_id": "competence-rr-012", "random_seed": 20260831700012, "skill": "reference_range", "analyte": "Analyte-N28", "result": 63.16, "reference_range": [60.0, 62.5], "expected_classification": "above", "boundary_kind": "none"}
+{"case_id": "competence-rr-013", "random_seed": 20260831700013, "skill": "reference_range", "analyte": "Marker-H15", "result": 0.1387, "reference_range": [0.01, 0.09], "expected_classification": "above", "boundary_kind": "none"}
+{"case_id": "competence-rr-014", "random_seed": 20260831700014, "skill": "reference_range", "analyte": "Index-W22", "result": 1500.3, "reference_range": [-250.0, 500.0], "expected_classification": "above", "boundary_kind": "none"}
+{"case_id": "competence-af-015", "random_seed": 20260831700015, "skill": "affine_inversion", "a": 1.2, "b": 0.0, "y": 60.0, "expected_x": 50.0}
+{"case_id": "competence-af-016", "random_seed": 20260831700016, "skill": "affine_inversion", "a": 2.0, "b": 5.0, "y": 29.0, "expected_x": 12.0}
+{"case_id": "competence-af-017", "random_seed": 20260831700017, "skill": "affine_inversion", "a": 0.8333, "b": -5.0, "y": -11.6664, "expected_x": -8.0}
+{"case_id": "competence-af-018", "random_seed": 20260831700018, "skill": "affine_inversion", "a": 0.75, "b": 12.5, "y": 87.5, "expected_x": 100.0}
+{"case_id": "competence-af-019", "random_seed": 20260831700019, "skill": "affine_inversion", "a": 1.45, "b": -3.25, "y": 1.1, "expected_x": 3.0}
+{"case_id": "competence-af-020", "random_seed": 20260831700020, "skill": "affine_inversion", "a": 3.2, "b": 100.0, "y": 220.0, "expected_x": 37.5}
+{"case_id": "competence-af-021", "random_seed": 20260831700021, "skill": "affine_inversion", "a": 0.5, "b": -40.0, "y": -46.125, "expected_x": -12.25}
+{"case_id": "competence-af-022", "random_seed": 20260831700022, "skill": "affine_inversion", "a": 2.5, "b": 0.75, "y": 2.0, "expected_x": 0.5}
+{"case_id": "competence-af-023", "random_seed": 20260831700023, "skill": "affine_inversion", "a": 1.05, "b": -0.5, "y": 262.0, "expected_x": 250.0}
+{"case_id": "competence-af-024", "random_seed": 20260831700024, "skill": "affine_inversion", "a": 4.0, "b": 250.0, "y": 278.5, "expected_x": 7.125}
+{"case_id": "competence-af-025", "random_seed": 20260831700025, "skill": "affine_inversion", "a": 0.6, "b": 0.0, "y": -36.0, "expected_x": -60.0}
+{"case_id": "competence-af-026", "random_seed": 20260831700026, "skill": "affine_inversion", "a": 1.75, "b": 5.0, "y": 6.75, "expected_x": 1.0}
+{"case_id": "competence-af-027", "random_seed": 20260831700027, "skill": "affine_inversion", "a": 1.2, "b": -5.0, "y": 55.0, "expected_x": 50.0}
+{"case_id": "competence-af-028", "random_seed": 20260831700028, "skill": "affine_inversion", "a": 2.0, "b": 12.5, "y": 36.5, "expected_x": 12.0}
+{"case_id": "competence-af-029", "random_seed": 20260831700029, "skill": "affine_inversion", "a": 0.8333, "b": -3.25, "y": -9.9164, "expected_x": -8.0}
