@@ -1,0 +1,6 @@
+model                                 | overall | ref_rng | affine | invalid | qualified | blocking
+---------------------------------------------------------------------------------------------------
+gemma2:9b-instruct-q4_K_M             |  66.7%  |  93.3% |  40.0% |   n/a   |        no | overall_competence_accuracy=0.667 < 0.9; affine_inversion_accuracy=0.400 < 0.85
+llama3.1:8b-instruct-q4_K_M           |  56.7%  |  80.0% |  33.3% |   n/a   |        no | overall_competence_accuracy=0.567 < 0.9; reference_range_accuracy=0.800 < 0.85; affine_inversion_accuracy=0.333 < 0.85
+mistral-nemo:12b-instruct-2407-q4_K_M |  60.0%  | 100.0% |  20.0% |   n/a   |        no | overall_competence_accuracy=0.600 < 0.9; affine_inversion_accuracy=0.200 < 0.85
+qwen2.5:14b-instruct-q4_K_M           |  80.0%  | 100.0% |  60.0% |   n/a   |        no | overall_competence_accuracy=0.800 < 0.9; affine_inversion_accuracy=0.600 < 0.85

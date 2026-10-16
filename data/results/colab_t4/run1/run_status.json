@@ -1,0 +1,228 @@
+{
+  "code_agent_arm": {
+    "reason": "execution_enabled is false; generated code was not executed",
+    "status": "ran_static_only"
+  },
+  "runs": [
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    }
+  ]
+}

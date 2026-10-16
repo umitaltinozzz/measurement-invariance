@@ -1,0 +1,2845 @@
+{
+  "code_agent": [
+    {
+      "anti_patterns": {},
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 40,
+        "value": 1.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 40,
+      "provenance_levels": {
+        "0": 40
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 4
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 35,
+        "value": 0.875
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 35,
+      "provenance_levels": {
+        "0": 39,
+        "2": 1
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 19,
+        "raw_summary_comparison": 20
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 0,
+      "provenance_levels": {
+        "0": 39,
+        "2": 1
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 1,
+          "value": 0.025
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 6,
+        "raw_summary_comparison": 15
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 1,
+      "provenance_levels": {
+        "0": 20,
+        "2": 20
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      }
+    }
+  ],
+  "competence": [
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 6,
+          "value": 0.4
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 6,
+          "value": 0.4
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 20,
+          "value": 0.6666666666666666
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 20,
+          "value": 0.6666666666666666
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.667 < 0.9",
+        "affine_inversion_accuracy=0.400 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 14,
+          "value": 0.9333333333333333
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 14,
+          "value": 0.9333333333333333
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 5,
+          "value": 0.3333333333333333
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 5,
+          "value": 0.3333333333333333
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 17,
+          "value": 0.5666666666666667
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 17,
+          "value": 0.5666666666666667
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.567 < 0.9",
+        "reference_range_accuracy=0.800 < 0.85",
+        "affine_inversion_accuracy=0.333 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 12,
+          "value": 0.8
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 12,
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 3,
+          "value": 0.2
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 3,
+          "value": 0.2
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 18,
+          "value": 0.6
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 18,
+          "value": 0.6
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.600 < 0.9",
+        "affine_inversion_accuracy=0.200 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 9,
+          "value": 0.6
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 9,
+          "value": 0.6
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 24,
+          "value": 0.8
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 24,
+          "value": 0.8
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.800 < 0.9",
+        "affine_inversion_accuracy=0.600 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    }
+  ],
+  "config_path": "configs/pilot_colab_t4.yaml",
+  "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+  "continuation": {
+    "basis": "valid_only",
+    "criteria": {
+      "competence_overall_min": 0.9,
+      "competence_per_skill_min": 0.85,
+      "max_invalid_response_rate": 0.05,
+      "provenance_retention_trigger": 0.6,
+      "spurious_trend_rate_trigger": 0.25
+    },
+    "per_model": {
+      "gemma2:9b-instruct-q4_K_M": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.667 < 0.9",
+          "affine_inversion_accuracy=0.400 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.0,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.8666666666666667
+      },
+      "llama3.1:8b-instruct-q4_K_M": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.567 < 0.9",
+          "reference_range_accuracy=0.800 < 0.85",
+          "affine_inversion_accuracy=0.333 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.025,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 1.0
+      },
+      "mistral-nemo:12b-instruct-2407-q4_K_M": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.600 < 0.9",
+          "affine_inversion_accuracy=0.200 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.025,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.6
+      },
+      "qwen2.5:14b-instruct-q4_K_M": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.800 < 0.9",
+          "affine_inversion_accuracy=0.600 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.5,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.26666666666666666
+      }
+    },
+    "project_continue": false
+  },
+  "direct_cell_metrics": [
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 13,
+          "value": 0.52
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 13,
+          "value": 0.52
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 20,
+          "value": 0.8
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 20,
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 23,
+          "value": 0.92
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 23,
+          "value": 0.92
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 9,
+          "value": 0.36
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 15,
+          "value": 0.6
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 15,
+          "value": 0.6
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 6,
+          "value": 0.24
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 6,
+          "value": 0.24
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    }
+  ],
+  "environment": {
+    "code_execution_enabled": false,
+    "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+    "gpu_nvidia_smi": "Tesla T4, 15360 MiB, 7.5",
+    "model_digests": {
+      "gemma2:9b-instruct-q4_K_M": {
+        "capabilities": [
+          "completion"
+        ],
+        "details": {
+          "context_length": 8192,
+          "embedding_length": 3584,
+          "families": [
+            "gemma2"
+          ],
+          "family": "gemma2",
+          "format": "gguf",
+          "parameter_size": "9.2B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "modified_at": "2026-10-16T13:30:30.518095683Z",
+        "name": "gemma2:9b-instruct-q4_K_M",
+        "size": 5761067555
+      },
+      "llama3.1:8b-instruct-q4_K_M": {
+        "capabilities": [
+          "completion",
+          "tools"
+        ],
+        "details": {
+          "context_length": 131072,
+          "embedding_length": 4096,
+          "families": [
+            "llama"
+          ],
+          "family": "llama",
+          "format": "gguf",
+          "parameter_size": "8.0B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "modified_at": "2026-10-16T13:29:30.076381576Z",
+        "name": "llama3.1:8b-instruct-q4_K_M",
+        "size": 4920753328
+      },
+      "mistral-nemo:12b-instruct-2407-q4_K_M": {
+        "capabilities": [
+          "completion",
+          "tools"
+        ],
+        "details": {
+          "context_length": 1024000,
+          "embedding_length": 5120,
+          "families": [
+            "llama"
+          ],
+          "family": "llama",
+          "format": "gguf",
+          "parameter_size": "12.2B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "modified_at": "2026-10-16T13:31:51.523413409Z",
+        "name": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "size": 7477217229
+      },
+      "qwen2.5:14b-instruct-q4_K_M": {
+        "capabilities": [
+          "completion",
+          "tools"
+        ],
+        "details": {
+          "context_length": 32768,
+          "embedding_length": 5120,
+          "families": [
+            "qwen2"
+          ],
+          "family": "qwen2",
+          "format": "gguf",
+          "parameter_size": "14.8B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "modified_at": "2026-10-16T13:28:35.874154312Z",
+        "name": "qwen2.5:14b-instruct-q4_K_M",
+        "size": 8988124069
+      }
+    },
+    "model_tags": [
+      "qwen2.5:14b-instruct-q4_K_M",
+      "llama3.1:8b-instruct-q4_K_M",
+      "gemma2:9b-instruct-q4_K_M",
+      "mistral-nemo:12b-instruct-2407-q4_K_M"
+    ],
+    "ollama_context_length": 8192,
+    "ollama_max_loaded_models": 1,
+    "ollama_version": "ollama version is 0.40.5",
+    "project_package_sha256": "ae5855ca5127a0d6c759b5ad7df0cd355500b6ced43bb4be23b3f742d9edd14a",
+    "results_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/results",
+    "started_at_utc": "2026-10-16T13:31:51.899882+00:00"
+  },
+  "manifest_verification": [
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T15:00:11.621955+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "46251bb0ddbaeed485f989e23a7e67c88408a369ee8cd46219fa1933d177785d",
+      "manifest": "code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:50:11.049820+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "8cec5b07c191841b8b4874697a5d66cc38bc594dbe1e3d6b16c0c1f0d18e23ba",
+      "manifest": "code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T15:09:26.474908+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "05dfee19f5f3e8f8470613ab1522c88adee79fa3bbc378ceb8a4bfb7a9e2b3d7",
+      "manifest": "code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:37:10.765274+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "01f5963316a136be6f668f4749ae12ee834e411f68716de22f3fe7148bcab151",
+      "manifest": "code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T12:36:24.122416+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "1dfa9e14138cfd67f74fdb41aad49673a1eb2dde503ddd7209f32bf3050d699a",
+      "manifest": "competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T12:34:08.981112+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "043a917d97a20113ea4c886b848c5e09984ba6435913056f6ccb0058a98762d4",
+      "manifest": "competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T12:38:54.114925+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "c46526c787e1ff21cf23267d04a56595e079c8219bd5b81234dc481861e6a4d1",
+      "manifest": "competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T12:30:39.015194+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "4c755172d28db6ccb59a0111b0d0217af9dd890d57062053a98412e7c4a8d76b",
+      "manifest": "competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:11:25.526376+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "48ec27a9522e4360b0f3dfc100069c324370edbfd23e362d3f99eeb797efad89",
+      "manifest": "direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T13:58:55.089908+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "2f2e09824b2ce54335f50a9a9179aeabae28d5952804a62169a27a7bc98709c2",
+      "manifest": "direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:25:25.534886+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "6d866928c05ada1223cec7dca3d86f16213eff6d80bf6892c754f5a1ac78f040",
+      "manifest": "direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T13:42:54.753046+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "5f373968351051abe4b1c5dfb29a398c1df46c219f5641871788a93a77369b86",
+      "manifest": "direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:04:40.233092+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "acbe167f70784ab8c0e793e46c2c0c32e5bfc6f2c101cff2b6721004dfea244f",
+      "manifest": "direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T13:52:39.679769+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "cdf3f62070d22d3677b88a1c78922920087b16729542b5816b21c11147fdcd96",
+      "manifest": "direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:18:40.309679+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "ca1ac30062c9c6e602693033bb0582b1ec6ffbc84b54bbcc730f29a55ddcf8d4",
+      "manifest": "direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T13:32:54.333283+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "d991c152a7f96c907ac6853fed83ae372cc73b364db06e4513f70bddbf80c578",
+      "manifest": "direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:57:11.605097+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "5e36bfb77d4e5b97624592b8ef3d88d252f6f5c716a7503840bf816608c5557d",
+      "manifest": "paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "c20bec88025f3aefa420efd64dca0ee4abc8e36078d6b74b0f660cdcbd5d1982",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:47:40.942287+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "08073dac28f2afbd218d40e79e1db0d9a487dec5186befa4ac922faa13aacb68",
+      "manifest": "paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T15:06:11.393416+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "e860f92bd989080215c9ac460384b119e4ca84690dce5128d6005707a10b0e1c",
+      "manifest": "paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "daf6737417121831e572a9c482e92a221ee0c33537f35f1f857c7b4f7191df55",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4.yaml",
+      "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+      "created_at": "2026-10-16T14:32:55.652653+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "34bdc6a3ed619f7ca9ff2b9285b98521487bad1c8b5ac9e9698a88dfaa2e8adf",
+      "manifest": "paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434/v1",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    }
+  ],
+  "paired_metrics": [
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 2,
+        "value": 0.1
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 30,
+        "value": 0.75
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 30,
+        "numerator": 8,
+        "value": 0.26666666666666666
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 24,
+        "value": 0.6
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 24,
+        "numerator": 2,
+        "value": 0.08333333333333333
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma2:9b-instruct-q4_K_M",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 22,
+        "both_wrong": 8,
+        "code_only_correct": 8,
+        "direct_only_correct": 2
+      },
+      "provenance_deployment_gap": {
+        "denominator": 24,
+        "numerator": 24,
+        "value": 1.0
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 11,
+        "value": 0.275
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 11,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 21,
+        "value": 0.525
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 21,
+        "numerator": 10,
+        "value": 0.47619047619047616
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 1,
+        "value": 0.025
+      },
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 11,
+        "both_wrong": 19,
+        "direct_only_correct": 10
+      },
+      "provenance_deployment_gap": {
+        "denominator": 21,
+        "numerator": 21,
+        "value": 1.0
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 15,
+        "value": 0.375
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 15,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 27,
+        "value": 0.675
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 27,
+        "numerator": 12,
+        "value": 0.4444444444444444
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 1,
+        "value": 0.025
+      },
+      "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 15,
+        "both_wrong": 13,
+        "direct_only_correct": 12
+      },
+      "provenance_deployment_gap": {
+        "denominator": 27,
+        "numerator": 27,
+        "value": 1.0
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 12,
+        "value": 0.6
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 25,
+        "value": 0.625
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 25,
+        "numerator": 11,
+        "value": 0.44
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 26,
+        "value": 0.65
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 26,
+        "numerator": 12,
+        "value": 0.46153846153846156
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 20,
+        "value": 0.5
+      },
+      "model": "qwen2.5:14b-instruct-q4_K_M",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 14,
+        "both_wrong": 3,
+        "code_only_correct": 11,
+        "direct_only_correct": 12
+      },
+      "provenance_deployment_gap": {
+        "denominator": 26,
+        "numerator": 9,
+        "value": 0.34615384615384615
+      }
+    }
+  ],
+  "results_dir": "/content/drive/MyDrive/measurement_invariance_colab_t4/results",
+  "run_status": {
+    "code_agent_arm": {
+      "reason": "execution_enabled is false; generated code was not executed",
+      "status": "ran_static_only"
+    },
+    "runs": [
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/qwen2.5-14b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/llama3.1-8b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/gemma2-9b-instruct-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/competence/mistral-nemo-12b-instruct-2407-q4_K_M__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/qwen2.5-14b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/llama3.1-8b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/gemma2-9b-instruct-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/direct_guided/mistral-nemo-12b-instruct-2407-q4_K_M__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/qwen2.5-14b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen2.5:14b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/qwen2.5-14b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/llama3.1-8b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "llama3.1:8b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/llama3.1-8b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/gemma2-9b-instruct-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma2:9b-instruct-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/gemma2-9b-instruct-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/paired_direct_natural/mistral-nemo-12b-instruct-2407-q4_K_M__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-nemo:12b-instruct-2407-q4_K_M",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/results/code_agent/mistral-nemo-12b-instruct-2407-q4_K_M__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      }
+    ]
+  }
+}
