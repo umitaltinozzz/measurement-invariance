@@ -60,6 +60,21 @@ class TestStrictParsing:
         assert r.ok and r.trend is TrendResponse.STABLE
         assert r.measurement_change_detected is None
 
+    def test_qwen_think_block_is_removed_before_json_parsing(self):
+        r = parse_response(
+            '<think>Let me reason through this.</think>{"trend": "stable", "reason": "flat"}',
+            PromptVariant.NATURAL,
+        )
+        assert r.ok and r.trend is TrendResponse.STABLE
+
+    def test_gpt_oss_harmony_parses_only_the_final_channel(self):
+        r = parse_response(
+            '<|channel|>analysis {"trend":"increase","reason":"private reasoning"}'
+            '<|channel|>final {"trend":"stable","reason":"flat"}<|return|>',
+            PromptVariant.NATURAL,
+        )
+        assert r.ok and r.trend is TrendResponse.STABLE
+
     def test_valid_guided_response_parses(self):
         r = parse_response(
             '{"trend": "increase", "measurement_change_detected": true, "reason": "x"}',

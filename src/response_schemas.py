@@ -19,6 +19,7 @@ runner (constrained decoding / structured outputs), not here.
 from __future__ import annotations
 
 import json
+import re
 from enum import Enum
 from typing import Any, Optional, Union
 
@@ -105,7 +106,16 @@ def parse_response(raw_text: str, variant: PromptVariant) -> ParseResult:
 
     if raw_text is None:
         return ParseResult(ok=False, variant=variant, error="empty response")
-    text = raw_text.strip()
+    # Reasoning models may still wrap an answer in an explicit think block or
+    # emit a Harmony channel transcript. Only the final channel is a response.
+    text = raw_text
+    if "<|channel|>" in text:
+        final = re.search(r"<\|channel\|>final\s*(.*)", text, flags=re.DOTALL)
+        if final is None:
+            return ParseResult(ok=False, variant=variant, error="missing final channel")
+        text = final.group(1)
+        text = re.split(r"<\|(?!channel\|)[^|]+\|>", text, maxsplit=1)[0]
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
     if not text:
         return ParseResult(ok=False, variant=variant, error="empty response")
 

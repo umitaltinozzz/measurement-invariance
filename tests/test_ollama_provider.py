@@ -14,14 +14,14 @@ def test_ollama_needs_no_api_key_and_sends_no_authorization(monkeypatch):
     monkeypatch.delenv("OLLAMA_API_KEY", raising=False)
     provider = OllamaProvider()
     assert provider.api_key is None
-    assert provider.base_url == "http://localhost:11434/v1"
+    assert provider.base_url == "http://localhost:11434"
     assert "Authorization" not in provider._headers()
 
 
 def test_base_url_can_be_overridden_without_auth(monkeypatch):
     monkeypatch.setenv("OLLAMA_BASE_URL", "http://ollama:11434/v1/")
     provider = OllamaProvider()
-    assert provider.base_url == "http://ollama:11434/v1"
+    assert provider.base_url == "http://ollama:11434"
     assert "Authorization" not in provider._headers()
 
 
@@ -32,7 +32,7 @@ def test_inference_settings_are_exposed_for_the_manifest(monkeypatch):
     monkeypatch.setenv("OLLAMA_MODEL_DIGEST", "sha256:abc")
     provider = OllamaProvider()
     assert provider.routing_constraints == {
-        "base_url": "http://localhost:11434/v1",
+        "base_url": "http://localhost:11434",
         "authentication": "none",
         "context_length": 8192,
         "max_loaded_models": 1,
@@ -49,15 +49,11 @@ def test_registered_and_json_schema_payload_is_sent():
     def fake_post(payload):
         sent.append(payload)
         body = {
-            "id": "chatcmpl-local",
             "model": "llama3.1:8b-instruct-q4_K_M",
-            "choices": [
-                {
-                    "message": {"content": '{"trend":"stable","reason":"r"}'},
-                    "finish_reason": "stop",
-                }
-            ],
-            "usage": {"prompt_tokens": 10, "completion_tokens": 8},
+            "message": {"content": '{"trend":"stable","reason":"r"}'},
+            "done_reason": "stop",
+            "prompt_eval_count": 10,
+            "eval_count": 8,
         }
         return 200, json.dumps(body)
 
@@ -71,14 +67,8 @@ def test_registered_and_json_schema_payload_is_sent():
     )
     result = provider.generate(request)
 
-    assert sent[0]["response_format"] == {
-        "type": "json_schema",
-        "json_schema": {
-            "name": "response",
-            "strict": True,
-            "schema": NATURAL_RESPONSE_SCHEMA,
-        },
-    }
+    assert sent[0]["think"] is False
+    assert sent[0]["format"] == NATURAL_RESPONSE_SCHEMA
     assert result.provider == "ollama"
     assert result.structured_output_used is True
     assert result.resolved_model_id == "llama3.1:8b-instruct-q4_K_M"
@@ -90,9 +80,8 @@ def test_structured_output_is_not_claimed_without_a_schema():
         200,
         json.dumps(
             {
-                "choices": [
-                    {"message": {"content": "{}"}, "finish_reason": "stop"}
-                ]
+                "message": {"content": "{}"},
+                "done_reason": "stop",
             }
         ),
     )
