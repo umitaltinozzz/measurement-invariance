@@ -180,8 +180,13 @@ the same configuration re-runs to the same fingerprint; a *different*
 configuration writing into the same file raises rather than merging two
 experiments.
 
-No paid provider is registered. `ReplayProvider` and `ScriptedProvider` exercise
-the whole runner offline, failures included.
+`OllamaProvider` connects to a local Ollama server at
+`http://localhost:11434/v1` without an API key. When
+`runner.structured_output: true`, the trial builder attaches the same strict
+response schemas used by the graders; Ollama receives them as JSON Schema
+`response_format`. The `openrouter` and `vercel` providers remain available when
+explicitly selected. `ReplayProvider` and `ScriptedProvider` exercise the whole
+runner offline, failures included.
 
 ## The paired dataset
 
@@ -368,6 +373,19 @@ first four with their ground truth. The dataset is a pure function of
 ```bash
 python -m pytest -q
 ```
+
+## Colab T4 pilot
+
+`configs/pilot_colab_t4.yaml` enables structured JSON Schema output and otherwise
+keeps the pre-registered pilot settings. Runtime metadata records the T4 details;
+the manifests record Ollama version, model digests, and the explicit 8K context
+setting. `colab/run_pilot_t4.ipynb` installs
+Ollama in a Colab runtime, pulls four Q4_K_M instruction models, and writes
+runner JSONL plus manifests to Drive after each logical trial. Run the notebook
+with a T4 GPU runtime. It processes competence first, both direct variants next,
+then the paired direct/code arms if code execution is disabled in the config.
+Generated code is graded statically and is not executed. `src.analyze_results`
+verifies manifest SHAs and computes metrics and the existing continuation rule.
 
 `tests/test_generator.py` checks the cell invariants, seed determinism, the
 measurement-grid balance, that noise never touches ground truth, that cell 2 never

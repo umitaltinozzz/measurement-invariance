@@ -322,6 +322,12 @@ class TestManifest:
         assert a.created_at != b.created_at
         assert a.fingerprint == b.fingerprint
 
+    def test_fingerprint_ignores_a_new_invocation_id_for_resume(self, tmp_path, cfg):
+        a = manifest_for(tmp_path, cfg, run_id="first-invocation")
+        b = manifest_for(tmp_path, cfg, run_id="resumed-invocation")
+        assert a.run_id != b.run_id
+        assert a.fingerprint == b.fingerprint
+
     def test_fingerprint_changes_with_anything_that_matters(self, tmp_path, cfg):
         base = manifest_for(tmp_path, cfg)
         for field, value in (
@@ -424,7 +430,7 @@ class TestProviders:
 
     def test_registry_lists_the_expected_providers(self):
         assert set(available_providers()) == {
-            "replay", "scripted", "callable", "openrouter", "vercel"
+            "replay", "scripted", "callable", "openrouter", "ollama", "vercel"
         }
 
     def test_registry_rejects_an_unknown_provider(self):

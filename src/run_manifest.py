@@ -7,9 +7,9 @@ results, and a manifest that already exists may not be silently overwritten with
 different content -- appending to a result file under changed conditions would
 mix two experiments into one denominator.
 
-The manifest's ``fingerprint`` excludes the timestamp, so re-running the same
-configuration produces a byte-identical fingerprint while still recording when
-each run happened.
+The manifest's ``fingerprint`` excludes its invocation id and timestamp, so
+resuming the same configuration produces the same fingerprint while retaining
+the original run id and recording when the run began.
 """
 
 from __future__ import annotations
@@ -23,10 +23,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
-#: Fields deliberately excluded from the reproducibility fingerprint.
-_NON_IDENTIFYING = ("created_at",)
+#: Fields deliberately excluded from the reproducibility fingerprint. A fresh
+#: invocation has a fresh run id, but a resume is the same experiment.
+_NON_IDENTIFYING = ("created_at", "run_id")
 
 
 def sha256_file(path: str | Path) -> str:
@@ -121,6 +122,9 @@ class RunManifest(BaseModel):
     structured_output: bool
     max_transport_retries: int
 
+    #: Provider-specific pins such as a local model digest or gateway route.
+    provider_constraints: Dict[str, Any] = Field(default_factory=dict)
+
     git_commit: Optional[str] = None
     git_dirty: Optional[bool] = None
     package_versions: Dict[str, str]
@@ -129,10 +133,10 @@ class RunManifest(BaseModel):
 
     @property
     def fingerprint(self) -> str:
-        """Hash of everything except the timestamp.
+        """Hash of experiment conditions, excluding invocation metadata.
 
-        Two runs of the same configuration share a fingerprint; anything that
-        would change the meaning of the results changes it.
+        Two runs of the same configuration share a fingerprint; a different
+        invocation id or timestamp does not change the meaning of the results.
         """
         payload = {
             k: v for k, v in self.model_dump(mode="json").items() if k not in _NON_IDENTIFYING
@@ -165,6 +169,7 @@ def build_manifest(
     max_transport_retries: int,
     competence_dataset_path: str | Path | None = None,
     requested_model_id: Optional[str] = None,
+    provider_constraints: Optional[Dict[str, Any]] = None,
     repo_root: str | Path | None = None,
     now: Optional[datetime] = None,
 ) -> RunManifest:
@@ -187,6 +192,7 @@ def build_manifest(
         seed=seed,
         structured_output=structured_output,
         max_transport_retries=max_transport_retries,
+        provider_constraints=dict(provider_constraints or {}),
         git_commit=git_commit_hash(repo_root),
         git_dirty=git_is_dirty(repo_root),
         package_versions=package_versions(),

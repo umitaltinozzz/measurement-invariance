@@ -10,10 +10,10 @@ case answered in both arms is two logical trials that never collide. That is the
 whole point of the paired design at the plumbing level: same cases, same dataset
 identity, separate trials.
 
-``--provider openrouter`` reads the key from OPENROUTER_API_KEY (or a gitignored
-.env). The offline ``replay`` / ``scripted`` backends stay available for testing.
-Adding another backend is a registration in ``src/models/registry.py`` and changes
-nothing here.
+``--provider ollama`` calls a local Ollama server without an API key. The
+``openrouter`` provider reads its key only when explicitly selected; offline
+``replay`` / ``scripted`` backends stay available for testing. Adding another
+backend is a registration in ``src/models/registry.py`` and changes nothing here.
 """
 
 from __future__ import annotations
@@ -30,9 +30,14 @@ from .models.base import GenerationRequest
 from .models.registry import available_providers, create_provider
 from .paired_dataset import DEFAULT_PATH as PAIRED_PATH
 from .prompts import PromptVariant, build_direct_prompt
-from .run_manifest import build_manifest, sha256_file
-from .runner import Arm, Runner, TrialPlan, new_run_id
+from .run_manifest import build_manifest, manifest_path_for, read_manifest, sha256_file
+from .runner import Arm, Runner, TrialPlan, new_run_id, result_path_for
 from .schemas import BenchmarkCase
+from .structured_schemas import (
+    CODE_AGENT_RESPONSE_SCHEMA,
+    competence_response_schema,
+    direct_response_schema,
+)
 
 DATASETS = {
     "pilot": "data/generated/pilot_cases.jsonl",
@@ -49,7 +54,13 @@ ARMS_BY_DATASET = {
 
 
 def _request(
-    system: str, user: str, cfg: PilotConfig, model: str, *, max_tokens: int | None = None
+    system: str,
+    user: str,
+    cfg: PilotConfig,
+    model: str,
+    *,
+    max_tokens: int | None = None,
+    response_schema: Optional[Dict] = None,
 ) -> GenerationRequest:
     return GenerationRequest(
         model=model,
@@ -59,6 +70,7 @@ def _request(
         max_tokens=max_tokens or cfg.runner.max_tokens,
         seed=cfg.runner.seed,
         structured_output=cfg.runner.structured_output,
+        response_schema=response_schema,
     )
 
 
@@ -74,7 +86,13 @@ def build_direct_plans(
         plans.append(
             TrialPlan(
                 case_id=case.case_id,
-                request=_request(prompt.system, prompt.user, cfg, model),
+                request=_request(
+                    prompt.system,
+                    prompt.user,
+                    cfg,
+                    model,
+                    response_schema=direct_response_schema(variant),
+                ),
                 prompt_variant=PromptVariant(variant).value,
             )
         )
@@ -93,6 +111,7 @@ def build_code_plans(
                 request=_request(
                     task.system, task.user, cfg, model,
                     max_tokens=cfg.runner.max_tokens_code_agent,
+                    response_schema=CODE_AGENT_RESPONSE_SCHEMA,
                 ),
                 prompt_variant=None,
             )
@@ -107,7 +126,13 @@ def build_competence_plans(cases: Sequence, cfg: PilotConfig, model: str) -> Lis
         plans.append(
             TrialPlan(
                 case_id=case.case_id,
-                request=_request(prompt.system, prompt.user, cfg, model),
+                request=_request(
+                    prompt.system,
+                    prompt.user,
+                    cfg,
+                    model,
+                    response_schema=competence_response_schema(prompt.skill),
+                ),
                 prompt_variant=None,
             )
         )
@@ -119,6 +144,26 @@ def load_dataset(name: str, path: Optional[str] = None):
     if name == "competence":
         return read_competence_jsonl(resolved), resolved
     return read_jsonl(resolved), resolved
+
+
+def _run_id_for_resume(
+    results_dir: str | Path,
+    model: str,
+    arm: str,
+    dataset_sha256: str,
+    *,
+    resume: bool,
+) -> str:
+    """Keep the immutable manifest identity when continuing an existing run.
+
+    The runner resumes by trial key, while the manifest must retain its original
+    run id so a fresh CLI process after a disconnect still matches that manifest.
+    """
+    result_path = result_path_for(results_dir, model, arm, dataset_sha256)
+    manifest_path = manifest_path_for(result_path)
+    if resume and manifest_path.exists():
+        return read_manifest(manifest_path).run_id
+    return new_run_id()
 
 
 def build_plans(
@@ -154,7 +199,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--provider",
         default="replay",
-        help=f"registered providers: {available_providers()} (no paid provider yet)",
+        help=f"registered providers: {available_providers()}",
     )
     parser.add_argument("--recordings", default=None, help="JSONL for the replay provider")
     parser.add_argument("--results-dir", default="data/results")
@@ -187,8 +232,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         provider = create_provider(args.provider)
 
     plans = build_plans(args.dataset, cases, cfg, args.model, args.arm, args.variant)
+    dataset_sha256 = sha256_file(dataset_path)
     manifest = build_manifest(
-        run_id=new_run_id(),
+        run_id=_run_id_for_resume(
+            args.results_dir,
+            args.model,
+            args.arm,
+            dataset_sha256,
+            resume=not args.no_resume,
+        ),
         arm=args.arm,
         prompt_variant=args.variant,
         provider=getattr(provider, "name", args.provider),
@@ -209,13 +261,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         seed=cfg.runner.seed,
         structured_output=cfg.runner.structured_output,
         max_transport_retries=cfg.runner.max_transport_retries,
+        provider_constraints=getattr(provider, "routing_constraints", {}),
     )
     runner = Runner(provider, cfg.runner)
     _, summary = runner.run(
         plans,
         model=args.model,
         arm=args.arm,
-        dataset_sha256=sha256_file(dataset_path),
+        dataset_sha256=dataset_sha256,
         manifest=manifest,
         results_dir=args.results_dir,
         resume=not args.no_resume,

@@ -11,6 +11,7 @@ from .base import (
 from .registry import available_providers, create_provider, register_provider
 from .openai_compatible import OpenAICompatibleProvider, load_dotenv
 from .openrouter import OpenRouterProvider
+from .ollama import OllamaProvider
 from .replay import CallableProvider, ReplayProvider, ScriptedProvider
 from .vercel import VercelAIGatewayProvider
 
@@ -26,6 +27,7 @@ __all__ = [
     "register_provider",
     "OpenAICompatibleProvider",
     "OpenRouterProvider",
+    "OllamaProvider",
     "VercelAIGatewayProvider",
     "load_dotenv",
     "CallableProvider",

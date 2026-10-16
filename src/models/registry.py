@@ -37,6 +37,7 @@ def available_providers() -> List[str]:
 
 def _register_builtin() -> None:
     from .openrouter import OpenRouterProvider
+    from .ollama import OllamaProvider
     from .replay import CallableProvider, ReplayProvider, ScriptedProvider
     from .vercel import VercelAIGatewayProvider
 
@@ -45,6 +46,7 @@ def _register_builtin() -> None:
         ("scripted", ScriptedProvider),
         ("callable", CallableProvider),
         ("openrouter", OpenRouterProvider),
+        ("ollama", OllamaProvider),
         ("vercel", VercelAIGatewayProvider),
     ):
         if name not in _FACTORIES:
