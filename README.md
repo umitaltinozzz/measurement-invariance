@@ -1,4 +1,6 @@
-﻿# #108b â€” Measurement-Function Invariance in LLM Agents
+# #108b — Measurement-Function Invariance in LLM Agents
+
+> **Pilot status:** The Colab T4 pilot is complete; no model passed the competence gate. See [PILOT_RESULTS.md](PILOT_RESULTS.md) for results.
 
 Pilot benchmark infrastructure. Full research design lives in [proje.md](proje.md);
 this README covers only what the code does.
@@ -15,7 +17,7 @@ If the measurement function changes while the latent state does not, the observe
 value moves although the world did not:
 
 ```
-Î”y â‰  0  â‡  Î”x â‰  0
+Δy ≠ 0  ⇏  Δx ≠ 0
 ```
 
 **Does an LLM agent mistake a change in the instrument for a change in the world?**
@@ -24,25 +26,25 @@ The benchmark tests two things at once: *sensitivity* to real world changes and
 *invariance* to instrument-induced ones. Measuring only one of them is scoreable
 by a degenerate policy.
 
-## 2Ã—2 design
+## 2×2 design
 
 | Cell | Latent state `x` | Measurement function `f` | Correct answer |
 |------|------------------|--------------------------|----------------|
 | 1 | same | same | no change |
-| **2** | **same** | **changed** | **no change â€” main condition** |
+| **2** | **same** | **changed** | **no change — main condition** |
 | 3 | changed | same | detect the real change |
 | 4 | changed | changed | recover the latent change through `f` |
 
 ### What each cell measures
 
-* **Cell 2 â€” the main condition.** Invariance to an instrument change.
-* **Cell 1 â€” noise control.** Punishes reading noise as signal.
-* **Cell 3 â€” over-abstention control, *not* a reasoning-capability measure.** With
+* **Cell 2 — the main condition.** Invariance to an instrument change.
+* **Cell 1 — noise control.** Punishes reading noise as signal.
+* **Cell 3 — over-abstention control, *not* a reasoning-capability measure.** With
   the measurement function held fixed, the real change is plainly visible in the
   raw series: a provenance-blind reader gets 25/25 right. What cell 3 detects is a
   model applying skepticism it has no reason to apply. Read the Miss Rate there as
   "did blanket skepticism cost it a real detection", never as "can it detect change".
-* **Cell 4 â€” latent recovery.** Requires inverting the measurement function.
+* **Cell 4 — latent recovery.** Requires inverting the measurement function.
   Scored only at L1; see *Where latent recovery is undefined* below.
 
 ### Why cell 2 is the main condition
@@ -54,7 +56,7 @@ ignores provenance must be wrong there, and can be right everywhere else. That i
 what makes it diagnostic.
 
 Cell 2 alone is not scoreable, though: answering "not comparable" to everything
-scores perfectly. **Cells 1 and 3 are mandatory controls** â€” cell 3 punishes
+scores perfectly. **Cells 1 and 3 are mandatory controls** — cell 3 punishes
 blanket skepticism, cell 1 punishes reading noise as signal. Results must always
 be reported as Spurious Trend Rate *and* Miss Rate together.
 
@@ -83,8 +85,8 @@ provenance flag. Both cue provenance-checking, so it measures the **capability
 ceiling** rather than deployed behaviour.
 
 The gap between them is the interesting quantity: high on `guided`, low on
-`natural` means the capability is present but not deployed â€” the same
-dissociation proje.md Â§8 predicts between prose and code.
+`natural` means the capability is present but not deployed — the same
+dissociation proje.md §8 predicts between prose and code.
 
 ## Grading
 
@@ -93,8 +95,8 @@ dissociation proje.md Â§8 predicts between prose and code.
 `correct_stable`, `correct_change`, `correct_abstention`, `spurious_trend`,
 `missed_change`, `wrong_direction`, `over_abstention`, `invalid_response`.
 
-No LLM judge; `reason` text is stored but never scored. Parsing is strict â€”
-exact JSON, no fences, no extra keys, no `"true"` â†’ `True` coercion. An
+No LLM judge; `reason` text is stored but never scored. Parsing is strict —
+exact JSON, no fences, no extra keys, no `"true"` → `True` coercion. An
 unparseable completion becomes `invalid_response` and is **never** folded into a
 wrong-trend class, because a lenient parser is itself a measurement function
 standing between the model and the reported number.
@@ -108,8 +110,8 @@ abstention_warranted = measurement_function_change
                        and (not true_world_change or salience is L2)
 ```
 
-Cell 1 â†’ over-abstention (and flagged as blanket skepticism). Cell 2 â†’ warranted.
-Cell 3 â†’ over-abstention. Cell 4 L1 â†’ over-abstention. Cell 4 L2 â†’ warranted.
+Cell 1 → over-abstention (and flagged as blanket skepticism). Cell 2 → warranted.
+Cell 3 → over-abstention. Cell 4 L1 → over-abstention. Cell 4 L2 → warranted.
 
 ### Where latent recovery is undefined
 
@@ -126,17 +128,17 @@ Over-Abstention Rate, Invalid Response Rate, Measurement Change Detection Rate
 `model`, `cell`, `salience_level`, `prompt_variant`.
 
 Every rate is a `Rate` carrying its own numerator and denominator, and an empty
-denominator yields `None`, never `0.0` â€” "nothing was collected" and "everything
+denominator yields `None`, never `0.0` — "nothing was collected" and "everything
 was wrong" are different facts. There is deliberately no single headline score:
-per proje.md Â§12 a model can ace Spurious Trend Rate alone by answering "not
+per proje.md §12 a model can ace Spurious Trend Rate alone by answering "not
 comparable" to everything, so it must always be read next to Miss Rate.
 
 ### Invalid responses stay in the headline
 
 Every critical metric is a `DualRate` with two denominators:
 
-* `valid_only` â€” only completions that parsed. "When it answered, what was it like?"
-* `all_trials` â€” every completion the model was given, unparseable ones in the
+* `valid_only` — only completions that parsed. "When it answered, what was it like?"
+* `all_trials` — every completion the model was given, unparseable ones in the
   denominator and never in the numerator. "What did asking actually get us?"
 
 **`valid_only` is the behavioural metric and the one the continuation decision
@@ -145,7 +147,7 @@ formatting failures into a Spurious Trend Rate makes the number partly a
 statement about output formatting.
 
 The defence against a model improving its score by declining to answer is a
-separate gate, not a diluted denominator: a model Ã— condition slice whose
+separate gate, not a diluted denominator: a model × condition slice whose
 `invalid_response_rate` exceeds `continuation_criteria.max_invalid_response_rate`
 (0.05) is **not eligible** for the decision, and is re-run once with structured
 output. `all_trials` remains computed and reported as the conservative
@@ -164,7 +166,7 @@ all live in `src/runner.py`, so they are identical across backends.
 Three invariants:
 
 * **One logical trial is one row.** The key is
-  `(case_id, model, arm, prompt_variant)`. Transport retries â€” timeout, 429, 5xx â€”
+  `(case_id, model, arm, prompt_variant)`. Transport retries — timeout, 429, 5xx —
   stay inside that row with exponential backoff and increment `attempts`. They
   never produce a second row.
 * **Content failures are not retried.** A completion that comes back and does not
@@ -190,12 +192,12 @@ runner offline, failures included.
 
 ## The paired dataset
 
-`data/generated/paired_agent_cases.jsonl` â€” 40 cases (cells 2 and 3, L1, 20 each)
+`data/generated/paired_agent_cases.jsonl` — 40 cases (cells 2 and 3, L1, 20 each)
 answered by **both** the direct-natural arm and the code-agent arm, under the same
 `case_id`, with byte-identical numbers, provenance, switch point and ground truth.
 Only the presentation differs: a table inside the prompt, or a CSV.
 
-proje.md Â§8's prose-vs-code dissociation is a *within-case* claim. Run on two
+proje.md §8's prose-vs-code dissociation is a *within-case* claim. Run on two
 different case sets, any gap between the arms is confounded with whatever differs
 between those sets. Pairing removes that.
 
@@ -206,22 +208,22 @@ python -m src.paired_dataset --config configs/pilot.yaml \
 
 Generated on its own seed namespace, so no paired case shares a seed or an id with
 the pilot dataset. `src/paired_metrics.py` computes the comparison, and it computes
-it **only over genuine pairs** â€” a case answered in one arm and not the other is
+it **only over genuine pairs** — a case answered in one arm and not the other is
 reported in `unpaired_direct` / `unpaired_code` and never enters a denominator.
 
 | Metric | Denominator |
 |---|---|
 | Direct / Code Accuracy | all pairs |
-| Directâ†’Code Failure Rate | pairs right in prose |
-| Codeâ†’Direct Failure Rate | pairs right in code |
+| Direct→Code Failure Rate | pairs right in prose |
+| Code→Direct Failure Rate | pairs right in code |
 | Provenance Deployment Gap | pairs right in prose (code level < 2) |
 | Effective Provenance Use Rate | all pairs (code level == 2) |
 
 plus the four-way matrix (`both_correct`, `direct_only_correct`,
 `code_only_correct`, `both_wrong`) and the cell-conditional transitions
-(cell 2 spuriousâ†”correct, cell 3 missâ†”correct).
+(cell 2 spurious↔correct, cell 3 miss↔correct).
 
-Invalid completions count as **wrong, not absent** â€” otherwise a model could
+Invalid completions count as **wrong, not absent** — otherwise a model could
 improve a conditional rate by garbling output. `n_direct_invalid` /
 `n_code_invalid` are reported so formatting can still be told from reasoning.
 
@@ -236,30 +238,30 @@ python -m src.run_pilot --dataset paired --arm direct --variant natural --model 
 python -m src.run_pilot --dataset paired --arm code                     --model M ...
 ```
 
-Same `dataset_sha256`, and the resume key includes the arm â€” so one case answered
+Same `dataset_sha256`, and the resume key includes the arm — so one case answered
 in both arms is two logical trials that never collide.
 
 ## Code-agent arm
 
-`src/code_agent.py` â€” the code arm's cases come from the paired dataset above. The
+`src/code_agent.py` — the code arm's cases come from the paired dataset above. The
 CSV is embedded in the prompt (a provider call carries only text, and embedding
 keeps the two arms' information identical); `csv_text` is still returned separately
 so a sandbox can write the same bytes to disk.
 
-Provenance use is annotated from the **AST**, not by substring search â€”
+Provenance use is annotated from the **AST**, not by substring search —
 `df.groupby("sensor_version")` and `df.drop(columns=["sensor_version"])` contain
 the same substring and are the two answers the metric exists to separate:
 
 | Level | Meaning |
 |---|---|
 | 0 | no provenance column appears in the code |
-| 1 | referenced â€” read, printed or dropped, but it never reaches the analysis |
-| 2 | used â€” drives a groupby, filter, comparison, transformation or branch |
+| 1 | referenced — read, printed or dropped, but it never reaches the analysis |
+| 2 | used — drives a groupby, filter, comparison, transformation or branch |
 
-`Provenance Retention Rate` counts level â‰¥ 1 (the kill-criterion metric);
+`Provenance Retention Rate` counts level ≥ 1 (the kill-criterion metric);
 `Effective Provenance Use Rate` counts level == 2. Reporting only the first would
-let "printed the column, then ran `pct_change` on raw values" count as retention â€”
-which is precisely the proje.md Â§8 failure mode.
+let "printed the column, then ran `pct_change` on raw values" count as retention —
+which is precisely the proje.md §8 failure mode.
 
 Anti-patterns detected: `raw_pct_change_on_reading`, `raw_diff_on_reading`,
 `raw_summary_comparison`, `provenance_columns_dropped`,
@@ -270,7 +272,7 @@ Anti-patterns detected: `raw_pct_change_on_reading`, `raw_diff_on_reading`,
 where the classifier is least trustworthy. No number here is a final scientific
 label; it is a screen that says which transcripts a human should read.
 
-`src/sandbox.py` â€” execution is **off by default**, and the local
+`src/sandbox.py` — execution is **off by default**, and the local
 `SubprocessSandbox` refuses to construct without an explicit acknowledgement that
 it is process isolation, not a security boundary. Grading is fully static, so the
 arm can be scored without running a line of generated code.
@@ -291,7 +293,7 @@ project_continue = direct_trigger OR code_trigger   (OR-ed across models)
 unparseable completion is 6.7% and already exceeds the 0.05 gate. At this n the
 gate is effectively "zero parse failures, or re-run with structured output".
 
-## Competence pre-test (proje.md Â§7)
+## Competence pre-test (proje.md §7)
 
 `overall_min` in the config must equal `continuation_criteria.competence_min`; a
 validator enforces that so the two cannot drift apart.
@@ -310,8 +312,8 @@ only; gains overlap the pilot's `1.2` and `2.0` but are wide enough that the two
 cannot be memorised into a pass. Numeric answers are compared with a tolerance of
 `max(1e-6, |expected| * 1e-4)`, never as strings.
 
-The prompts share no vocabulary with the main benchmark â€” no instruments,
-calibration, sensors, provenance, trends or comparability â€” because a pre-test
+The prompts share no vocabulary with the main benchmark — no instruments,
+calibration, sensors, provenance, trends or comparability — because a pre-test
 that primed the model to think about instrument changes would leave open the
 exact confound it exists to close. A test asserts the absence of that vocabulary.
 
@@ -325,7 +327,7 @@ qualified = overall           >= competence.overall_min      (0.90)
 
 read on the `all_trials` basis, so a model cannot qualify by declining to answer.
 A model that fails is not *competence-qualified*, and its L1 invariance results
-cannot be read as a measurement-invariance failure â€” they may be a plain
+cannot be read as a measurement-invariance failure — they may be a plain
 capability failure.
 
 **Known non-binding threshold.** With a 15/15 split, `overall >= 0.90` allows at
@@ -345,11 +347,11 @@ change can quietly move the threshold after the fact.
 * salience: **L1** (structured provenance columns) and **L2** (provenance embedded
   in a compound device id). L0 and L3 are deliberately not generated.
 * 30 timesteps, ~5% Gaussian measurement noise, randomised mid-series switch point
-* no latent process noise â€” the latent state is piecewise constant
+* no latent process noise — the latent state is piecewise constant
 * measurement direction, gain and offset assigned as a **balanced factorial**, not
   sampled-and-filtered, so none of the three is predictable from another
 * gains `1.2` and `2.0` only; `1.05` and `10.0` are excluded (see `configs/pilot.yaml`)
-* direct prompting arms only â€” no LLM calls and no code-agent arm yet
+* direct prompting arms only — no LLM calls and no code-agent arm yet
 
 ## Install
 
@@ -393,8 +395,12 @@ contains a real latent trend, and that neither prompt variant leaks the answer o
 varies its wording across cells.
 
 `tests/test_metrics.py` drives the whole pipeline with synthetic responses of known
-error rates â€” including fixtures built to produce 0%, 25%, 50% and 100% Spurious
-Trend Rate â€” so the arithmetic is validated before any API budget is spent.
+error rates — including fixtures built to produce 0%, 25%, 50% and 100% Spurious
+Trend Rate — so the arithmetic is validated before any API budget is spent.
+
+## Reproduce
+
+Open [`colab/run_pilot_t4.ipynb`](colab/run_pilot_t4.ipynb) in Google Colab and select a T4 GPU runtime to reproduce the pilot. The notebook installs Ollama, runs the configured arms, and saves runner outputs and manifests. Generated code is graded statically; execution is disabled by default.
 
 ## Layout
 

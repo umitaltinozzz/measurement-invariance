@@ -15,8 +15,12 @@ env/
 # Model outputs and analysis products are regenerated, never hand-edited.
 data/results/*
 !data/results/.gitkeep
+!data/results/colab_t4/
+data/results/colab_t4/*
+!data/results/colab_t4/run1/
 
 # The generated dataset IS committed: it is fully determined by
 # configs/pilot.yaml + master_seed, and the pre-registered pilot must run on a
 # frozen dataset. Uncomment only if the file becomes too large to version.
 # data/generated/*.jsonl
+.task-prompt.md
