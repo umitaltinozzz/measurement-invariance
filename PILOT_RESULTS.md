@@ -49,8 +49,7 @@ Spurious Trend Rate (STR), valid-only, 25 trials per cell. Cell 1 is the noise c
 | gemma4:12b | 45.0% (18/40) | 60.0% (12/20) | 0.0% (0/20) | 5.0% (2/40) | 0.0% (0/40) |
 | mistral-small3.2:24b | 50.0% (20/40) | 75.0% (15/20) | 5.0% (1/20) | 0.0% (0/40) | 0.0% (0/40) |
 
-gpt-oss's syntax errors are genuine: the decoded code contains literal `
-` text (see `DIAGNOSIS.md`), so its code-arm values rest on the 18 rows that parse.
+gpt-oss's syntax errors are genuine: the decoded code contains literal `\n` text (see `DIAGNOSIS.md`), so its code-arm values rest on the 18 rows that parse.
 
 ### Continuation verdict
 
