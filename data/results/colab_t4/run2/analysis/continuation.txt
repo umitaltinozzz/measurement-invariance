@@ -1,0 +1,10 @@
+basis: valid_only   STR>= 0.25   PRR<= 0.6   invalid<= 0.05
+model                | eligible | inval_ok | spurious(n)  | direct | PRR(n)      | code | triggers
+--------------------------------------------------------------------------------------------------
+gemma4:12b           |       NO |      yes | 100.0% ( 15) |      - | 45.0% ( 40) |    - | -
+gpt-oss:20b          |      yes |      yes | 66.7% ( 15) |    YES | 22.9% ( 35) |    - | YES
+mistral-small3.2:24b |       NO |      yes | 80.0% ( 15) |      - | 50.0% ( 40) |    - | -
+qwen3:14b            |       NO |      yes |  0.0% ( 15) |      - | 47.5% ( 40) |    - | -
+
+project_continue = True   (triggered by: gpt-oss:20b)
+structured-output re-run needed for: gpt-oss:20b/code

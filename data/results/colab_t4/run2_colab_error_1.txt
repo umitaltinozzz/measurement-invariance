@@ -1,0 +1,39 @@
+﻿[Colab output — competence stage, Run 2]
+[qwen3:14b / competence / —] 30/30 rows already on Drive
+  rows persisted: 30/30
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/content/measurement-invariance/src/run_pilot.py", line 288, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/content/measurement-invariance/src/run_pilot.py", line 267, in main
+    _, summary = runner.run(
+                 ~~~~~~~~~~^
+        plans,
+        ^^^^^^
+    ...<5 lines>...
+        resume=not args.no_resume,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/content/measurement-invariance/src/runner.py", line 239, in run
+    manifest_path = write_manifest(manifest, path)
+  File "/content/measurement-invariance/src/run_manifest.py", line 222, in write_manifest
+    raise ManifestConflict(
+src.run_manifest.ManifestConflict: qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json already describes a different run; differing fields: ['provider_constraints']. Results for a changed configuration belong in a new file.
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+/tmp/ipykernel_10541/3735061754.py in <cell line: 0>()
+     67
+     68 for model_id in MODEL_IDS:
+---> 69     run_arm(model_id, 'competence', 'competence', None, 'competence')
+
+/tmp/ipykernel_10541/3735061754.py in run_arm(model_id, dataset, arm, variant, output_name)
+     55         print(output.strip())
+     56     if process.returncode != 0:
+---> 57         raise RuntimeError(f'Runner failed for {model_id} / {arm} / {variant}: {process.returncode}')
+     58     completed = result_line_count(result_path)
+     59     item = {
+
+RuntimeError: Runner failed for qwen3:14b / competence / None: 1

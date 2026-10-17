@@ -1,0 +1,47 @@
+gemma4:12b
+  provenance_retention_rate      : 45.0% (18/40)   (level >= 1)
+  effective_provenance_use_rate  : 45.0% (18/40)   (level == 2)
+  spurious_trend_rate            : 60.0% (12/20)
+  miss_rate                      : 0.0% (0/20)
+  correct_rate                   : 70.0% (28/40)
+  invalid_response_rate          : 0.0% (0/40)
+  code_syntax_error_rate         : 5.0% (2/40)
+  provenance levels              : L0=22, L2=18
+  anti-patterns                  : raw_summary_comparison=1
+  needs_human_review             : 2
+
+gpt-oss:20b
+  provenance_retention_rate      : 22.9% (8/35)   (level >= 1)
+  effective_provenance_use_rate  : 22.9% (8/35)   (level == 2)
+  spurious_trend_rate            : 23.5% (4/17)
+  miss_rate                      : 0.0% (0/18)
+  correct_rate                   : 88.6% (31/35)
+  invalid_response_rate          : 12.5% (5/40)
+  code_syntax_error_rate         : 51.4% (18/35)
+  provenance levels              : L0=27, L2=8
+  anti-patterns                  : none
+  needs_human_review             : 18
+
+mistral-small3.2:24b
+  provenance_retention_rate      : 50.0% (20/40)   (level >= 1)
+  effective_provenance_use_rate  : 50.0% (20/40)   (level == 2)
+  spurious_trend_rate            : 75.0% (15/20)
+  miss_rate                      : 5.0% (1/20)
+  correct_rate                   : 60.0% (24/40)
+  invalid_response_rate          : 0.0% (0/40)
+  code_syntax_error_rate         : 0.0% (0/40)
+  provenance levels              : L0=20, L2=20
+  anti-patterns                  : raw_diff_on_reading=1, raw_summary_comparison=1
+  needs_human_review             : 1
+
+qwen3:14b
+  provenance_retention_rate      : 47.5% (19/40)   (level >= 1)
+  effective_provenance_use_rate  : 47.5% (19/40)   (level == 2)
+  spurious_trend_rate            : 100.0% (20/20)
+  miss_rate                      : 5.0% (1/20)
+  correct_rate                   : 15.0% (6/40)
+  invalid_response_rate          : 0.0% (0/40)
+  code_syntax_error_rate         : 0.0% (0/40)
+  provenance levels              : L0=21, L2=19
+  anti-patterns                  : raw_diff_on_reading=1, raw_summary_comparison=18
+  needs_human_review             : 1

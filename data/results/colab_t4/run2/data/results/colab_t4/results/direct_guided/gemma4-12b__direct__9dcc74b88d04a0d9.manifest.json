@@ -1,0 +1,36 @@
+{
+  "arm": "direct",
+  "competence_dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+  "config_path": "configs/pilot_colab_t4_run2.yaml",
+  "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+  "created_at": "2026-10-16T19:06:54.077335+00:00",
+  "dataset_path": "data/generated/pilot_cases.jsonl",
+  "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+  "git_commit": null,
+  "git_dirty": null,
+  "max_tokens": 1024,
+  "max_transport_retries": 4,
+  "model": "gemma4:12b",
+  "package_versions": {
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "pydantic": "2.13.5",
+    "pytest": "8.4.2",
+    "python": "3.13.15",
+    "yaml": "6.0.3"
+  },
+  "prompt_variant": "guided",
+  "provider": "ollama",
+  "provider_constraints": {
+    "authentication": "none",
+    "base_url": "http://localhost:11434",
+    "context_length": 8192,
+    "max_loaded_models": 1,
+    "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+    "server_version": "ollama version is 0.40.5"
+  },
+  "requested_model_id": "gemma4:12b",
+  "run_id": "3d8b70aa88014d71",
+  "seed": 20260824,
+  "structured_output": true,
+  "temperature": 0.0
+}

@@ -1,0 +1,2839 @@
+{
+  "code_agent": [
+    {
+      "anti_patterns": {
+        "raw_summary_comparison": 1
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 2,
+        "value": 0.05
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma4:12b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 2,
+      "provenance_levels": {
+        "0": 22,
+        "2": 18
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        }
+      }
+    },
+    {
+      "anti_patterns": {},
+      "code_syntax_error_rate": {
+        "denominator": 35,
+        "numerator": 18,
+        "value": 0.5142857142857142
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 8,
+          "value": 0.2
+        },
+        "valid_only": {
+          "denominator": 35,
+          "numerator": 8,
+          "value": 0.22857142857142856
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 5,
+        "value": 0.125
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 40,
+      "n_valid": 35,
+      "needs_human_review": 18,
+      "provenance_levels": {
+        "0": 27,
+        "2": 8
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 8,
+          "value": 0.2
+        },
+        "valid_only": {
+          "denominator": 35,
+          "numerator": 8,
+          "value": 0.22857142857142856
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 1,
+        "raw_summary_comparison": 1
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 1,
+      "provenance_levels": {
+        "0": 20,
+        "2": 20
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 1,
+        "raw_summary_comparison": 18
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen3:14b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 1,
+      "provenance_levels": {
+        "0": 21,
+        "2": 19
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        }
+      }
+    }
+  ],
+  "competence": [
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 10,
+          "value": 0.6666666666666666
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 10,
+          "value": 0.6666666666666666
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma4:12b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 25,
+          "value": 0.8333333333333334
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 25,
+          "value": 0.8333333333333334
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.833 < 0.9",
+        "affine_inversion_accuracy=0.667 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 30,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 30,
+          "value": 1.0
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [],
+      "qualification_warnings": [],
+      "qualified": true,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 7,
+          "value": 0.4666666666666667
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 7,
+          "value": 0.4666666666666667
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 22,
+          "value": 0.7333333333333333
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 22,
+          "value": 0.7333333333333333
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.733 < 0.9",
+        "affine_inversion_accuracy=0.467 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 11,
+          "value": 0.7333333333333333
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 11,
+          "value": 0.7333333333333333
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen3:14b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 26,
+          "value": 0.8666666666666667
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 26,
+          "value": 0.8666666666666667
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.867 < 0.9",
+        "affine_inversion_accuracy=0.733 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    }
+  ],
+  "config_path": "configs/pilot_colab_t4_run2.yaml",
+  "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+  "continuation": {
+    "basis": "valid_only",
+    "criteria": {
+      "competence_overall_min": 0.9,
+      "competence_per_skill_min": 0.85,
+      "max_invalid_response_rate": 0.05,
+      "provenance_retention_trigger": 0.6,
+      "spurious_trend_rate_trigger": 0.25
+    },
+    "per_model": {
+      "gemma4:12b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.833 < 0.9",
+          "affine_inversion_accuracy=0.667 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "gemma4:12b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.45,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 1.0
+      },
+      "gpt-oss:20b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": false,
+          "invalid_response_rate": 0.125,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": true,
+          "reason": "invalid_response_rate=0.125 exceeds 0.05"
+        },
+        "code_trigger": false,
+        "competence_failures": [],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": true,
+        "eligible": true,
+        "model": "gpt-oss:20b",
+        "notes": [],
+        "provenance_retention_n": 35,
+        "provenance_retention_rate": 0.22857142857142856,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.6666666666666666
+      },
+      "mistral-small3.2:24b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.733 < 0.9",
+          "affine_inversion_accuracy=0.467 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "mistral-small3.2:24b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.5,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.8
+      },
+      "qwen3:14b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.867 < 0.9",
+          "affine_inversion_accuracy=0.733 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "qwen3:14b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.475,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.0
+      }
+    },
+    "project_continue": true
+  },
+  "direct_cell_metrics": [
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 3,
+        "value": 0.12
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 22,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 22,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 25,
+        "value": 1.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 0,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 10,
+        "value": 0.4
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 15,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 2,
+          "value": 0.13333333333333333
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 1,
+        "value": 0.04
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 24,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 24,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 9,
+        "value": 0.36
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 16,
+          "numerator": 4,
+          "value": 0.25
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 16,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 4,
+        "value": 0.16
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 21,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 21,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 1,
+        "value": 0.04
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 24,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 24,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    }
+  ],
+  "environment": {
+    "code_execution_enabled": false,
+    "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+    "gpu_nvidia_smi": "Tesla T4, 15360 MiB, 7.5",
+    "model_digests": {
+      "gemma4:12b": {
+        "capabilities": [
+          "completion",
+          "vision",
+          "audio",
+          "tools",
+          "thinking"
+        ],
+        "details": {
+          "context_length": 262144,
+          "embedding_length": 3840,
+          "families": [
+            "gemma4"
+          ],
+          "family": "gemma4",
+          "format": "gguf",
+          "parameter_size": "11.9B",
+          "parent_model": "imatrix-20260927-12b/model-q4_K_M.gguf",
+          "quantization_level": "Q4_K_M",
+          "runner": "llamacpp"
+        },
+        "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "model": "gemma4:12b",
+        "modified_at": "2026-10-16T16:10:19Z",
+        "name": "gemma4:12b",
+        "size": 8021618941
+      },
+      "gpt-oss:20b": {
+        "capabilities": [
+          "completion",
+          "tools",
+          "thinking"
+        ],
+        "details": {
+          "context_length": 131072,
+          "embedding_length": 2880,
+          "families": [
+            "gpt-oss"
+          ],
+          "family": "gpt-oss",
+          "format": "gguf",
+          "parameter_size": "20.9B",
+          "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+          "quantization_level": "MXFP4",
+          "runner": "llamacpp"
+        },
+        "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "model": "gpt-oss:20b",
+        "modified_at": "2026-10-16T16:25:08Z",
+        "name": "gpt-oss:20b",
+        "size": 13793441566
+      },
+      "mistral-small3.2:24b": {
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools"
+        ],
+        "details": {
+          "context_length": 131072,
+          "embedding_length": 5120,
+          "families": [
+            "mistral3"
+          ],
+          "family": "mistral3",
+          "format": "gguf",
+          "parameter_size": "24.0B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "model": "mistral-small3.2:24b",
+        "modified_at": "2026-10-16T16:17:22Z",
+        "name": "mistral-small3.2:24b",
+        "size": 15177384862
+      },
+      "qwen3:14b": {
+        "capabilities": [
+          "completion",
+          "tools",
+          "thinking"
+        ],
+        "details": {
+          "context_length": 40960,
+          "embedding_length": 5120,
+          "families": [
+            "qwen3"
+          ],
+          "family": "qwen3",
+          "format": "gguf",
+          "parameter_size": "14.8B",
+          "parent_model": "",
+          "quantization_level": "Q4_K_M",
+          "runner": "ggml"
+        },
+        "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "model": "qwen3:14b",
+        "modified_at": "2026-10-16T16:05:55Z",
+        "name": "qwen3:14b",
+        "size": 9276198565
+      }
+    },
+    "model_tags": [
+      "qwen3:14b",
+      "gemma4:12b",
+      "mistral-small3.2:24b",
+      "gpt-oss:20b"
+    ],
+    "ollama_context_length": 8192,
+    "ollama_max_loaded_models": 1,
+    "ollama_version": "ollama version is 0.40.5",
+    "project_package_sha256": "ae5855ca5127a0d6c759b5ad7df0cd355500b6ced43bb4be23b3f742d9edd14a",
+    "results_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results",
+    "started_at_utc": "2026-10-16T20:56:24.514206+00:00"
+  },
+  "manifest_verification": [
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:11:26.886061+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "8c1aa4d4e6b7fbccfc34b14cdc0a1e32d8d9acabaf241ef953f9e561b3743257",
+      "manifest": "code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-17T01:06:28.611924+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "b9a1db76689c084f3db13dbe6f2c0c9dac4aaa6386ccac520d72d982c582646f",
+      "manifest": "code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:44:12.224889+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "7545d297b80224e6dd2329634f5b6b3af96b2eea453e9671d6cd5cef34410781",
+      "manifest": "code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:55:25.524555+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "c92d2f03ad538f5a8fa486c9e8c0a7b09af600efbed0a2a4e25904f474527d58",
+      "manifest": "code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:31:09.624952+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "4a0b5976232a1d44775f6adbbe57e4598f42d0c397fcc30792f89f7b38060506",
+      "manifest": "competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:54:13.978991+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "196ebb7eafa7083433f56663109cb5bb520a31e1c53b814f93ac0f2c69cee327",
+      "manifest": "competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:36:10.001959+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "188d69038cf93c87ff8e8c9fe772f7b3ff52cfd8739e094060f6d7539f7727bd",
+      "manifest": "competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:25:09.754803+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "2f96ed86a85dff21e90efe2cd9d6be9167be605ee1ad60e7337d17d7c969259d",
+      "manifest": "competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T19:06:54.077335+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "916b3ee51efc8e6c7d3a9423ba44fee00bd1d190e6aeb62fe7c281e3b5251cdf",
+      "manifest": "direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:18:40.182104+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "cf2b77200e4d371f9c4eb5bd2ecf104644b3edac9ab401f9cfa726c20e157a85",
+      "manifest": "direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T20:15:41.846172+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 1,
+      "fingerprint": "1e5d991afb4a2f56b0a8a0233553741eb2e56d125da8e196475ed0234bdf28a9",
+      "manifest": "direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:21:00.355602+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "a362bca10a7386f1137d148c8b081d7de88386f65fd56e73d9b3c17733b2b6a2",
+      "manifest": "direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:32:30.198678+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 28,
+      "fingerprint": "ff54e07006e47bcf3eacbfe5b989a6095bb749af8bc7ff941698c14cc8bcdc4e",
+      "manifest": "direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T21:55:10.113688+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "86826d9e08a2a4aad69bc345be002f6fbf4443ecafc1fd87e3d8c35d9d323a6d",
+      "manifest": "direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T19:20:40.802274+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "72339f0b72ccf864e78fecb17f8fb9c9d8dc0b3f13afb044c52468f7c541cc28",
+      "manifest": "direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:08:29.837638+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "bc25d10dd20bd7ec67e31910e3340ec17ab9f6d26c1ead6a830a4506b4784f03",
+      "manifest": "direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:04:25.744004+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "713124faf3909d169ca5e074af1607543e275e3ef11ab18d1a33132d6dcbb619",
+      "manifest": "paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-17T00:54:28.674162+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "a024779254b62cca7f3b227b46946b38a196c131ea034863905a834961d0394c",
+      "manifest": "paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:20:11.178827+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "4d209183ab1629d4d48df0ba64391bd479e3212eb21a8e923e60cc32a5045701",
+      "manifest": "paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:49:25.813396+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "01047552dadb71d280771d9dae1bb07a20a7a72c2a764be2942c6ca167988e80",
+      "manifest": "paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40
+    }
+  ],
+  "paired_metrics": [
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 28,
+        "value": 0.7
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 28,
+        "numerator": 8,
+        "value": 0.2857142857142857
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 20,
+        "value": 0.5
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 18,
+        "value": 0.45
+      },
+      "model": "gemma4:12b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 20,
+        "both_wrong": 12,
+        "code_only_correct": 8
+      },
+      "provenance_deployment_gap": {
+        "denominator": 20,
+        "numerator": 20,
+        "value": 1.0
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 31,
+        "value": 0.775
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 31,
+        "numerator": 10,
+        "value": 0.3225806451612903
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 25,
+        "value": 0.625
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 25,
+        "numerator": 4,
+        "value": 0.16
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 8,
+        "value": 0.2
+      },
+      "model": "gpt-oss:20b",
+      "n_code_invalid": 5,
+      "n_direct_invalid": 1,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 21,
+        "both_wrong": 5,
+        "code_only_correct": 10,
+        "direct_only_correct": 4
+      },
+      "provenance_deployment_gap": {
+        "denominator": 25,
+        "numerator": 22,
+        "value": 0.88
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 2,
+        "value": 0.1
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 4,
+        "value": 0.2
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 24,
+        "value": 0.6
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 24,
+        "numerator": 4,
+        "value": 0.16666666666666666
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 23,
+        "value": 0.575
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 23,
+        "numerator": 3,
+        "value": 0.13043478260869565
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 20,
+        "value": 0.5
+      },
+      "model": "mistral-small3.2:24b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 20,
+        "both_wrong": 13,
+        "code_only_correct": 4,
+        "direct_only_correct": 3
+      },
+      "provenance_deployment_gap": {
+        "denominator": 23,
+        "numerator": 20,
+        "value": 0.8695652173913043
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 20,
+        "value": 1.0
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 6,
+        "value": 0.15
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 6,
+        "numerator": 3,
+        "value": 0.5
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 30,
+        "value": 0.75
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 30,
+        "numerator": 27,
+        "value": 0.9
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 19,
+        "value": 0.475
+      },
+      "model": "qwen3:14b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 3,
+        "both_wrong": 7,
+        "code_only_correct": 3,
+        "direct_only_correct": 27
+      },
+      "provenance_deployment_gap": {
+        "denominator": 30,
+        "numerator": 11,
+        "value": 0.36666666666666664
+      }
+    }
+  ],
+  "results_dir": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results",
+  "run_status": {
+    "code_agent_arm": {
+      "reason": "execution_enabled is false; generated code was not executed",
+      "status": "ran_static_only"
+    },
+    "runs": [
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      }
+    ]
+  }
+}

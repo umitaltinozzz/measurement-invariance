@@ -1,0 +1,6 @@
+model                | overall | ref_rng | affine | invalid | qualified | blocking
+----------------------------------------------------------------------------------
+gemma4:12b           |  83.3%  | 100.0% |  66.7% |   n/a   |        no | overall_competence_accuracy=0.833 < 0.9; affine_inversion_accuracy=0.667 < 0.85
+gpt-oss:20b          | 100.0%  | 100.0% | 100.0% |   n/a   |       YES | -
+mistral-small3.2:24b |  73.3%  | 100.0% |  46.7% |   n/a   |        no | overall_competence_accuracy=0.733 < 0.9; affine_inversion_accuracy=0.467 < 0.85
+qwen3:14b            |  86.7%  | 100.0% |  73.3% |   n/a   |        no | overall_competence_accuracy=0.867 < 0.9; affine_inversion_accuracy=0.733 < 0.85

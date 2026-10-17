@@ -1,0 +1,228 @@
+{
+  "code_agent_arm": {
+    "reason": "execution_enabled is false; generated code was not executed",
+    "status": "ran_static_only"
+  },
+  "runs": [
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "qwen3:14b",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "gemma4:12b",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "mistral-small3.2:24b",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "competence",
+      "dataset": "competence",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "model": "gpt-oss:20b",
+      "planned": 30,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "result_rows": 30,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "qwen3:14b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "qwen3:14b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gemma4:12b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gemma4:12b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "direct",
+      "dataset": "pilot",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "result_rows": 100,
+      "status": "complete",
+      "variant": "guided"
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "qwen3:14b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "qwen3:14b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "gemma4:12b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "gemma4:12b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    },
+    {
+      "arm": "direct",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": "natural"
+    },
+    {
+      "arm": "code-agent",
+      "dataset": "paired",
+      "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+      "result_rows": 40,
+      "status": "complete",
+      "variant": null
+    }
+  ]
+}
