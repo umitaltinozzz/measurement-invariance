@@ -1,9 +1,77 @@
 # #108b — Measurement-Function Invariance in LLM Agents
 
-> **Pilot status:** The Colab T4 pilot is complete; no model passed the competence gate. See [PILOT_RESULTS.md](PILOT_RESULTS.md) for results.
+> **Pilot status:** Run 2 (four current open models, Colab T4 + 59 rows re-run on an A100) is complete. One model, `gpt-oss:20b`, passed the competence gate and the pre-registered continuation rule is met (`project_continue = True`). Run 1 (older models) passed nobody. Full tables: [PILOT_RESULTS.md](PILOT_RESULTS.md).
 
-Pilot benchmark infrastructure. Full research design lives in [proje.md](proje.md);
-this README covers only what the code does.
+Pilot benchmark infrastructure. Full research design lives in [proje.md](proje.md).
+
+## The pilot in plain words
+
+The questions below are the ones a non-specialist actually asks when they first see this project. The answers use run 2 (the reference result); every number links back to [PILOT_RESULTS.md](PILOT_RESULTS.md).
+
+### If one reading says 8/10 and a later one says 4/5, did anything change?
+
+No: both are 80%. Only the scale changed. This project asks the same question about sensors: a factory replaces a temperature sensor, the new one reads 2 °C higher, and the room's real temperature has not moved. A careful analyst says "the instrument changed, not the room". The benchmark checks whether an LLM says the same.
+
+```mermaid
+flowchart LR
+    W["Real world x<br/>(room temperature)"] -->|"measured by f"| Y["Reading y"]
+    S["Sensor swap<br/>f1 → f2"] -.->|"shifts y,<br/>not x"| Y
+    Y --> M{"LLM: did the<br/>value change?"}
+    M -->|"yes, it rose"| Bad["Spurious trend<br/>(wrong in cell 2)"]
+    M -->|"no, the sensor changed"| Good["Correct"]
+```
+
+### Do the models fall for it?
+
+Mostly yes, and the noise-only control shows which falls are real. Each model sees cell 1 (nothing changed, only noise) and cell 2 (only the sensor changed). A model that is fooled *by the sensor change* jumps from low in cell 1 to high in cell 2.
+
+![Cell 1 vs cell 2 spurious trend rate per model](docs/figures/run2_noise_vs_measurement.png)
+
+- **Gemma 4 12B** (16% → 100%) and **Mistral Small 3.2 24B** (8% → 84%) are clearly fooled by the sensor change, and a warning in the prompt does not help them (84% / 88% with the guided prompt).
+- **gpt-oss 20B** looks fooled at 76%, but it also reports a trend in 68% of pure-noise cases. Most of its error is reading noise as signal, not a sensor-specific failure. Warned about possible instrument changes, it drops to 4-8%.
+- **Qwen 3 14B** is not fooled when answering directly (0-4%).
+- When the change is real (cells 3 and 4), models almost never miss it (0-16%). The failure is seeing change that is not there, not missing change that is.
+
+### Why does the same model behave differently when it writes code?
+
+Because the code it writes throws the sensor information away. In the code-agent arm the model writes a Python analysis instead of answering. Only 20-50% of the generated programs keep track of which sensor each reading came from.
+
+![Direct answers vs code agent per model](docs/figures/run2_direct_vs_code.png)
+
+Qwen 3 is the sharpest case: 0% spurious trend when answering directly, 100% when it writes code for the same kind of task. (The direct bar is cell 2 of the main dataset; the code bars come from the separate 40-case paired dataset.)
+
+### Which industries does this matter for?
+
+Any setting where sensors are swapped, recalibrated or re-firmwared while an automated system keeps reading the series:
+
+| Sector | What changes | What a fooled model does |
+|---|---|---|
+| Manufacturing, predictive maintenance | A vibration or temperature sensor is replaced | Flags a healthy machine as degrading, or excuses a real fault as "just the new sensor" |
+| Healthcare and labs | A lab analyser or test kit changes | Reads a calibration shift as the patient getting worse |
+| Energy and utilities | A meter or transformer probe is replaced | Reports a consumption trend that never happened |
+| Agriculture | A soil-moisture sensor brand changes | Irrigates on a fake drought |
+| Environmental monitoring | An air-quality station is upgraded | Publishes a pollution increase that is an instrument artefact |
+
+### Why not just use a bigger model?
+
+Because the model often has to run on the device. Edge boards such as an NVIDIA Jetson Orin Nano (8 GB) fit roughly 3-8B-parameter quantized models, and the small models are exactly the ones that did worst: none of run 1's 8-14B models passed the competence gate. You cannot put a frontier model behind every sensor.
+
+What helps instead:
+
+1. **Ship provenance with every reading**: sensor ID, firmware, calibration date and unit, so the model has something to reason about.
+2. **A few lines of rules before the model**: never compare readings across a sensor change without a conversion.
+3. **Test the on-device model before deployment**: this benchmark measures exactly whether a given small model makes this mistake.
+
+### What does the pilot not show?
+
+It covers four quantized open models on one generated benchmark. It does not say how frontier models behave, and the code-agent arm graded code statically without executing it. The full study is designed to answer those questions.
+
+### Kısa Türkçe özet
+
+- **Soru:** Sensör değişince okunan değer kayar ama gerçek değer değişmez (8/10 ile 4/5 gibi: ikisi de %80). Model bunu gerçek bir değişim sanıyor mu?
+- **Cevap:** Gemma 4 ve Mistral Small 3.2 büyük ölçüde sanıyor (%84-100) ve uyarı da işe yaramıyor. gpt-oss'un yüksek oranı çoğunlukla gürültüyü trend sanmasından geliyor; uyarınca %4-8'e iniyor. Qwen 3 doğrudan sorulunca kanmıyor ama kod yazınca her seferinde kanıyor.
+- **Neden önemli:** Fabrikada, hastanede, enerji şebekesinde sensörler değişir. Cihazın üstünde (ör. Jetson Orin Nano) ancak küçük modeller çalışır ve tuzağa en çok onlar düşüyor.
+- **Ne yapılmalı:** Her ölçümle birlikte sensör kimliğini taşı, modelden önce basit bir kural koy, cihaza konacak modeli bu benchmark ile test et.
 
 ## Research question
 
