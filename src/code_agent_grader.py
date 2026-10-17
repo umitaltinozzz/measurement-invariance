@@ -82,6 +82,9 @@ class CodeAnalysis(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     parse_ok: bool
+    classifier_version: str = "v1"
+    correction_detected: bool = False
+    correction_kinds: List[str] = Field(default_factory=list)
     syntax_error: Optional[str] = None
 
     referenced_columns: List[str] = Field(default_factory=list)
@@ -361,6 +364,11 @@ class GradedCodeAgentResponse(BaseModel):
     execution_stderr: str = ""
     execution_ok: Optional[bool] = None
     execution_answer: Optional[str] = None
+    answer_source: str = "declared"
+    declared_answer: Optional[TrendResponse] = None
+    declared_response_class: Optional[ResponseClass] = None
+    executed_response_class: Optional[ResponseClass] = None
+    declared_executed_agree: Optional[bool] = None
 
     @property
     def provenance_level(self) -> Optional[int]:
@@ -411,11 +419,18 @@ def grade_code_agent_response(
     provenance_columns: Sequence[str],
     dataset_columns: Sequence[str],
     execution: Optional[ExecutionResult] = None,
+    *,
+    protocol_version: str = "v1",
+    answer_source: str = "declared",
 ) -> GradedCodeAgentResponse:
     if record.case_id != case.case_id:
         raise ValueError(f"record is for {record.case_id}, not {case.case_id}")
 
-    parsed = parse_code_agent_response(record.raw_text)
+    if protocol_version == "v2":
+        from .correction_classifier import parse_code_response_v2
+        parsed = parse_code_response_v2(record.raw_text)
+    else:
+        parsed = parse_code_agent_response(record.raw_text)
     common: Dict[str, Any] = dict(
         case_id=case.case_id,
         model=record.model,
@@ -434,8 +449,26 @@ def grade_code_agent_response(
         )
 
     response = parsed.response
-    analysis = analyze_code(response.code, provenance_columns)
-    response_class = _classify_answer(case, response.answer)
+    if protocol_version == "v2":
+        from .correction_classifier import analyze_correction
+        analysis = analyze_correction(response.code, provenance_columns)
+    else:
+        analysis = analyze_code(response.code, provenance_columns)
+    declared_class = _classify_answer(case, response.answer)
+    execution_answer = None
+    executed_class = ResponseClass.INVALID_RESPONSE
+    if execution and execution.ok:
+        try:
+            # Strict run-3 output protocol: exactly one object, no debug lines.
+            payload = json.loads(execution.stdout)
+            if isinstance(payload, dict) and set(payload) == {"answer"}:
+                execution_answer = TrendResponse(payload["answer"])
+                executed_class = _classify_answer(case, execution_answer)
+        except (ValueError, TypeError):
+            pass
+    if answer_source not in ("declared", "executed"):
+        raise ValueError("unknown answer source")
+    response_class = executed_class if answer_source == "executed" else declared_class
 
     return GradedCodeAgentResponse(
         **common,
@@ -446,14 +479,20 @@ def grade_code_agent_response(
             ResponseClass.CORRECT_CHANGE,
             ResponseClass.CORRECT_ABSTENTION,
         ),
-        final_answer=response.answer,
+        final_answer=execution_answer if answer_source == "executed" else response.answer,
+        answer_source=answer_source,
+        declared_answer=response.answer,
+        declared_response_class=declared_class,
+        executed_response_class=executed_class if execution else None,
+        declared_executed_agree=(response.answer == execution_answer) if execution_answer else None,
         generated_code=response.code,
         reason=response.reason,
         analysis=analysis,
         execution_stdout=execution.stdout if execution else "",
         execution_stderr=execution.stderr if execution else "",
         execution_ok=execution.ok if execution else None,
-        execution_answer=_answer_from_stdout(execution.stdout) if execution else None,
+        execution_answer=(execution_answer.value if execution_answer else None)
+        if protocol_version == "v2" else (_answer_from_stdout(execution.stdout) if execution else None),
     )
 
 

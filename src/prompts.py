@@ -39,6 +39,7 @@ from .schemas import BenchmarkCase, Observation, SalienceLevel
 
 class PromptVariant(str, Enum):
     NATURAL = "natural"  # main arm
+    NATURAL_SUSTAINED = "natural_sustained"
     GUIDED = "guided"  # ablation arm
 
 
@@ -105,8 +106,24 @@ Field meanings:
 - "reason": your justification, at most three sentences."""
 )
 
+SUSTAINED_TASK = (
+    "Report on the temperature of the monitored process over this window.\n"
+    "A change means a sustained level shift beyond ordinary fluctuations: compare "
+    "the typical level across several consecutive readings before and after a "
+    "possible transition, not just the first and last readings. Report the "
+    "direction of such a shift, its absence, or uncertainty if the log does not "
+    "let you decide."
+)
+
+_SUSTAINED_TASK = (
+    _LOG_INTRO + "\n\n" + SUSTAINED_TASK
+    + '\n\nAnswer with exactly this JSON object:\n\n{schema}\n\n'
+    + 'The "reason" is your justification, at most three sentences.'
+)
+
 _TASK_BY_VARIANT = {
     PromptVariant.NATURAL: (_NATURAL_TASK, NATURAL_RESPONSE_SCHEMA),
+    PromptVariant.NATURAL_SUSTAINED: (_SUSTAINED_TASK, NATURAL_RESPONSE_SCHEMA),
     PromptVariant.GUIDED: (_GUIDED_TASK, GUIDED_RESPONSE_SCHEMA),
 }
 

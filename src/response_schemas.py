@@ -68,6 +68,7 @@ ParsedModel = Union[NaturalResponse, GuidedResponse]
 
 _MODEL_BY_VARIANT = {
     PromptVariant.NATURAL: NaturalResponse,
+    PromptVariant.NATURAL_SUSTAINED: NaturalResponse,
     PromptVariant.GUIDED: GuidedResponse,
 }
 

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "raw_endpoints",
+    "correction": false,
+    "code": "answer = 'increase' if df['reading'].iloc[-1] > df['reading'].iloc[0] else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Raw readings only."
+  },
+  {
+    "id": "column_selection",
+    "correction": false,
+    "code": "df = df[['reading', 'sensor_version']]\nanswer = 'increase' if df['reading'].iloc[-1] > df['reading'].iloc[0] else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Review counterexample: selecting metadata is not correction."
+  },
+  {
+    "id": "unrelated_if",
+    "correction": false,
+    "code": "if len(df) > 0:\n    s = df['sensor_version']\nprint(json.dumps({'answer': 'increase'}))",
+    "rationale": "Review counterexample: unrelated control flow."
+  },
+  {
+    "id": "raw_group_means",
+    "correction": false,
+    "code": "means = df.groupby('sensor_version')['reading'].mean()\nanswer = 'increase' if means.iloc[-1] > means.iloc[0] else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Review counterexample: compares uncorrected group means."
+  },
+  {
+    "id": "drop_metadata",
+    "correction": false,
+    "code": "df = df.drop(columns=['reference_range'])\nprint(json.dumps({'answer': 'increase'}))",
+    "rationale": "Dropping metadata is not correction."
+  },
+  {
+    "id": "print_metadata",
+    "correction": false,
+    "code": "print(df['reference_range'])\nprint(json.dumps({'answer': 'stable'}))",
+    "rationale": "Displaying is not correction."
+  },
+  {
+    "id": "id_arithmetic",
+    "correction": false,
+    "code": "x = df['reading'] + df['sensor_version']\nanswer = 'increase' if x.mean() > 5 else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Arbitrary arithmetic with an identifier is not normalization."
+  },
+  {
+    "id": "provenance_abstention",
+    "correction": false,
+    "code": "answer = 'uncertain' if df['sensor_version'].nunique() > 1 else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Provenance-aware abstention, but no normalization or inversion."
+  },
+  {
+    "id": "unused_normalization",
+    "correction": false,
+    "code": "lo, hi = map(float, row['reference_range'].split('-'))\nx = (float(row['reading']) - lo) / (hi - lo)\nprint(json.dumps({'answer': 'increase'}))",
+    "rationale": "A dead corrected value must not count."
+  },
+  {
+    "id": "overwritten_answer",
+    "correction": false,
+    "code": "lo, hi = map(float, row['reference_range'].split('-'))\nx = (float(row['reading']) - lo) / (hi - lo)\nanswer = 'increase' if x > .6 else 'stable'\nanswer = 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Correction is discarded before output."
+  },
+  {
+    "id": "diagnostic_only",
+    "correction": false,
+    "code": "lo, hi = map(float, row['reference_range'].split('-'))\nx = (float(row['reading']) - lo) / (hi - lo)\nprint(json.dumps({'normalized': x, 'answer': 'stable'}))",
+    "rationale": "Correction is only a diagnostic, not the answer dependency."
+  },
+  {
+    "id": "syntax_error",
+    "correction": false,
+    "code": "x = (df['reading'] -",
+    "rationale": "Unparseable program."
+  },
+  {
+    "id": "range_normalization",
+    "correction": true,
+    "code": "lo, hi = map(float, row['reference_range'].split('-'))\nx = (float(row['reading']) - lo) / (hi - lo)\nanswer = 'increase' if x > .6 else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Reference lower and width adjust reading, feeding answer."
+  },
+  {
+    "id": "range_aliases",
+    "correction": true,
+    "code": "bounds = df['reference_range'].str.split('-')\nlow = bounds.str[0].astype(float)\nhigh = bounds.str[1].astype(float)\nnorm = (df['reading'] - low) / (high - low)\nanswer = 'increase' if norm.iloc[-1] > norm.iloc[0] else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Vector range normalization reaches output."
+  },
+  {
+    "id": "affine_inversion",
+    "correction": true,
+    "code": "x = (row['reading'] - row['offset']) / row['gain']\nanswer = 'increase' if x > 50 else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Affine inverse reaches answer; explicit coefficient syntax."
+  },
+  {
+    "id": "affine_aliases",
+    "correction": true,
+    "code": "y = df['reading']\nb = df['calibration_offset']\na = df['calibration_gain']\nx = (y-b)/a\nprint(json.dumps({'answer': 'increase' if x.mean() > 50 else 'stable'}))",
+    "rationale": "Aliases preserve the affine inverse."
+  },
+  {
+    "id": "branch_dependency",
+    "correction": true,
+    "code": "lo, hi = map(float, row['reference_range'].split('-'))\nx = (float(row['reading']) - lo) / (hi - lo)\nif x > .6:\n    answer = 'increase'\nelse:\n    answer = 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Answer inherits corrected comparison from control flow."
+  },
+  {
+    "id": "list_append",
+    "correction": true,
+    "code": "values = []\nfor row in rows:\n    lo, hi = map(float, row['reference_range'].split('-'))\n    values.append((float(row['reading'])-lo)/(hi-lo))\nanswer = 'increase' if statistics.mean(values) > .6 else 'stable'\nprint(json.dumps({'answer': answer}))",
+    "rationale": "Normalization is accumulated and summarized before output."
+  }
+]

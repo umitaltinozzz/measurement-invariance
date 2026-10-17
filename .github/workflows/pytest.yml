@@ -18,5 +18,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -r requirements-lock.txt
       - run: python -m pytest -q
+
+  sandbox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements-lock.txt
+      - run: docker build -t mi-run3-sandbox:1 sandbox
+      - run: python -m pytest tests/test_run3_execution.py
+        env:
+          MI_RUN_SANDBOX_TESTS: "1"

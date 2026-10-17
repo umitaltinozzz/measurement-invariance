@@ -19,10 +19,10 @@ import argparse
 import json
 import random
 from pathlib import Path
-from typing import Any, Dict, List, NamedTuple, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Literal, NamedTuple, Optional, Sequence, Tuple
 
 import yaml
-from pydantic import BaseModel, ConfigDict, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .schemas import (
     CELL_SPEC,
@@ -69,6 +69,12 @@ class ContinuationCriteria(BaseModel):
     """
 
     model_config = ConfigDict(frozen=True)
+
+    rule_version: Literal["rule_v1", "rule_v2"] = "rule_v1"
+    direct_variant: Literal["natural", "natural_sustained", "guided"] = "natural_sustained"
+    direct_salience: SalienceLevel = SalienceLevel.L1
+    max_abstention_rate: float = Field(default=0.50, ge=0, le=1)
+    min_cases_per_cell: int = Field(default=50, ge=1)
 
     competence_overall_min: float
     competence_per_skill_min: float
@@ -195,11 +201,48 @@ class CodeAgentConfig(BaseModel):
     #: not a security boundary, and model-written code should run in a container.
     execution_enabled: bool = False
     execution_timeout_seconds: float = 20.0
+    protocol_version: Literal["v1", "v2"] = "v1"
+    answer_source: Literal["declared", "executed"] = "declared"
+    sandbox_image: str = "mi-run3-sandbox:1"
+    memory_mb: int = Field(default=512, ge=64)
+    cpu_seconds: int = Field(default=10, ge=1)
+    pids_limit: int = Field(default=32, ge=8)
 
     @model_validator(mode="after")
     def _has_provenance_columns(self) -> "CodeAgentConfig":
         if not self.provenance_columns:
             raise ValueError("provenance_columns must not be empty")
+        if self.execution_timeout_seconds <= 0:
+            raise ValueError("execution timeout must be positive")
+        if self.answer_source == "executed" and not self.execution_enabled:
+            raise ValueError("executed answers require execution_enabled")
+        return self
+
+
+class ModelSettings(BaseModel):
+    """Explicit per-model inference conditions; old configs use runner defaults."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+    provider: Literal["ollama", "openrouter"]
+    provider_only: Optional[str] = None
+    temperature: Optional[float] = 0.0
+    send_seed: bool = True
+    think: bool | Literal["low", "medium", "high"] | None = None
+    reasoning: Optional[Dict[str, Any]] = None
+    max_tokens: int = Field(ge=1)
+    max_tokens_code_agent: int = Field(ge=1)
+    context_length: int = Field(default=65536, ge=1)
+    input_usd_per_million: float = Field(default=0, ge=0)
+    output_usd_per_million: float = Field(default=0, ge=0)
+    tokens_per_second: float = Field(default=20, gt=0)
+    request_timeout_seconds: float = Field(default=3600, gt=0)
+
+    @model_validator(mode="after")
+    def _budget(self):
+        if self.max_tokens_code_agent < self.max_tokens:
+            raise ValueError("code token cap must be at least direct cap")
+        if self.context_length < self.max_tokens_code_agent + 4096:
+            raise ValueError("context must leave at least 4096 input tokens")
         return self
 
 
@@ -221,6 +264,9 @@ class RunnerConfig(BaseModel):
     backoff_initial_seconds: float = 1.0
     backoff_multiplier: float = 2.0
     backoff_max_seconds: float = 30.0
+    retry_provider_failures_on_resume: bool = False
+    max_provider_resume_attempts: int = Field(default=2, ge=0)
+    reject_capped_slices: bool = False
 
     @model_validator(mode="after")
     def _retry_settings_are_sane(self) -> "RunnerConfig":
@@ -266,6 +312,29 @@ class PilotConfig(BaseModel):
     paired: PairedDatasetConfig
     code_agent: CodeAgentConfig
     runner: RunnerConfig
+    models: Dict[str, ModelSettings] = Field(default_factory=dict)
+    repeats: int = Field(default=1, ge=1)
+
+    @model_validator(mode="after")
+    def _run3_conditions(self):
+        if self.continuation_criteria.rule_version != "rule_v2":
+            return self
+        if not self.models:
+            raise ValueError("rule_v2 requires explicit per-model settings")
+        for name, setting in self.models.items():
+            if setting.provider == "ollama" and setting.think is None:
+                raise ValueError("Ollama reasoning must be explicit")
+            if name.startswith("gpt-oss") and setting.think not in ("low", "medium", "high"):
+                raise ValueError("gpt-oss requires a named reasoning level")
+            if name.startswith("qwen3") and type(setting.think) is not bool:
+                raise ValueError("qwen3 requires an explicit boolean think setting")
+            if setting.provider == "openrouter" and setting.reasoning is None:
+                raise ValueError("OpenRouter reasoning must be explicit")
+            if setting.provider == "openrouter" and not setting.provider_only:
+                raise ValueError("OpenRouter upstream must be pinned")
+        if self.code_agent.protocol_version != "v2":
+            raise ValueError("rule_v2 requires code protocol v2")
+        return self
 
     @model_validator(mode="after")
     def _competence_floors_match_the_continuation_criteria(self) -> "PilotConfig":

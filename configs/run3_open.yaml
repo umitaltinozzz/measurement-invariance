@@ -1,0 +1,125 @@
+# Run 3: freeze with docs/preregistration_run3.md before any collection.
+master_seed: 2026101703
+domain: industrial_sensor
+n_per_cell: 100
+n_timesteps: 30
+noise_level: 0.05
+switch_min_frac: 0.3
+switch_max_frac: 0.7
+salience_weights:
+  L1: 50
+  L2: 50
+latent_base_range:
+- 40.0
+- 60.0
+latent_rel_delta_range:
+- 0.15
+- 0.4
+measurement_gains:
+- 1.2
+- 2.0
+measurement_offsets:
+- -2.0
+- 0.0
+- 2.0
+min_observed_shift_ratio: 0.1
+continuation_criteria:
+  competence_overall_min: 0.9
+  competence_per_skill_min: 0.85
+  max_invalid_response_rate: 0.05
+  spurious_trend_rate_trigger: 0.25
+  provenance_retention_trigger: 0.6
+  rule_version: rule_v2
+  direct_variant: natural_sustained
+  direct_salience: L1
+  min_cases_per_cell: 50
+  max_abstention_rate: 0.5
+competence:
+  overall_min: 0.9
+  per_skill_min: 0.85
+  max_invalid_response_rate: 0.05
+  cases_per_model: 60
+paired:
+  cells:
+  - 2
+  - 3
+  salience_level: L1
+  cases_per_cell: 50
+  case_id_prefix: run3-paired
+code_agent:
+  provenance_columns:
+  - sensor_version
+  - calibration_version
+  - reference_range
+  execution_enabled: true
+  execution_timeout_seconds: 20
+  protocol_version: v2
+  answer_source: executed
+  sandbox_image: mi-run3-sandbox:1
+  memory_mb: 512
+  cpu_seconds: 10
+  pids_limit: 32
+runner:
+  temperature: 0.0
+  max_tokens: 8192
+  max_tokens_code_agent: 16384
+  seed: 2026101703
+  structured_output: true
+  max_transport_retries: 4
+  backoff_initial_seconds: 1.0
+  backoff_multiplier: 2.0
+  backoff_max_seconds: 30.0
+  retry_provider_failures_on_resume: true
+  max_provider_resume_attempts: 2
+  reject_capped_slices: true
+repeats: 3
+case_id_prefix: run3
+models:
+  qwen3:14b:
+    provider: ollama
+    temperature: 0.0
+    send_seed: true
+    think: true
+    reasoning: null
+    max_tokens: 8192
+    max_tokens_code_agent: 16384
+    context_length: 65536
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    tokens_per_second: 20
+  gemma4:12b:
+    provider: ollama
+    temperature: 0.0
+    send_seed: true
+    think: false
+    reasoning: null
+    max_tokens: 8192
+    max_tokens_code_agent: 16384
+    context_length: 65536
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    tokens_per_second: 20
+  mistral-small3.2:24b:
+    provider: ollama
+    temperature: 0.0
+    send_seed: true
+    think: false
+    reasoning: null
+    max_tokens: 8192
+    max_tokens_code_agent: 16384
+    context_length: 65536
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    tokens_per_second: 20
+  gpt-oss:20b:
+    provider: ollama
+    temperature: 0.0
+    send_seed: true
+    think: medium
+    reasoning: null
+    max_tokens: 8192
+    max_tokens_code_agent: 16384
+    context_length: 65536
+    input_usd_per_million: 0
+    output_usd_per_million: 0
+    tokens_per_second: 20

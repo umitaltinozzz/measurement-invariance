@@ -26,7 +26,7 @@ the model with a measurement of how many attempts we were willing to buy.
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Protocol, runtime_checkable
+from typing import Any, Dict, List, Literal, Optional, Protocol, runtime_checkable
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -60,10 +60,13 @@ class GenerationRequest(BaseModel):
     #: provider that cannot honour it must leave ``structured_output_used`` False
     #: rather than silently ignoring the request.
     response_schema: Optional[Dict[str, Any]] = None
-    temperature: float = 0.0
+    temperature: Optional[float] = 0.0
     max_tokens: int = 1024
     seed: Optional[int] = None
     structured_output: bool = False
+    think: bool | Literal["low", "medium", "high"] | None = None
+    reasoning: Optional[Dict[str, Any]] = None
+    context_length: Optional[int] = None
 
     @property
     def prompt_fingerprint(self) -> str:
@@ -104,6 +107,8 @@ class RawModelResult(BaseModel):
     resolved_model_id: str
 
     raw_text: str
+    thinking: Optional[str] = None
+    reasoning_details: Optional[List[Dict[str, Any]]] = None
     structured_output_used: bool
 
     input_tokens: Optional[int] = None

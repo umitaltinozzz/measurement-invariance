@@ -42,6 +42,7 @@ from .models.base import (
     TransportErrorRecord,
 )
 from .run_manifest import RunManifest, write_manifest
+from .sandbox import ExecutionResult
 
 _UNSAFE = re.compile(r"[^A-Za-z0-9._-]+")
 
@@ -100,6 +101,7 @@ class TrialRecord(BaseModel):
     #: that came back and failed to parse, which lands in ``result``.
     failure: Optional[str] = None
     failure_kind: Optional[str] = None
+    execution: Optional[ExecutionResult] = None
 
     @property
     def key(self) -> TrialKey:
@@ -145,6 +147,7 @@ class TrialPlan(BaseModel):
     case_id: str
     request: GenerationRequest
     prompt_variant: Optional[str] = None
+    execution_files: Optional[Dict[str, str]] = None
 
 
 def _sleep_noop(_seconds: float) -> None:
@@ -161,12 +164,18 @@ class Runner:
         config: RunnerConfig,
         *,
         sleep: Callable[[float], None] = _sleep_noop,
+        sandbox=None,
+        execution_timeout: float = 20.0,
+        code_protocol: str = "v1",
     ):
         self.provider = provider
         self.config = config
         self._sleep = sleep
         self.provider_calls = 0
         self.transport_retries = 0
+        self.sandbox = sandbox
+        self.execution_timeout = execution_timeout
+        self.code_protocol = code_protocol
 
     # ------------------------------------------------------------------ retry
     def _backoff_seconds(self, attempt: int) -> float:
@@ -238,7 +247,29 @@ class Runner:
         )
         manifest_path = write_manifest(manifest, path)
 
+        if self.config.reject_capped_slices and not resume and path.exists():
+            raise ValueError("run 3 cannot append a fresh invocation to existing results; use resume")
+
         existing = load_results(path, expected_dataset_sha256=dataset_sha256) if resume else []
+        if self.config.reject_capped_slices and any(r.result and r.result.truncated for r in existing):
+            raise ValueError("capped slice: archive it and rerun the WHOLE slice in stage-1; never replace selected rows")
+        if self.config.retry_provider_failures_on_resume:
+            from collections import Counter
+            audit = path.with_suffix(".provider_failures.jsonl")
+            prior = Counter(r.key.as_tuple() for r in load_results(audit, expected_dataset_sha256=dataset_sha256))
+            failures = [r for r in existing if r.failure and r.result is None
+                        and prior[r.key.as_tuple()] < self.config.max_provider_resume_attempts]
+            if failures:
+                # Preserve the original evidence before atomically replacing the
+                # active file. A crash then resumes only the still-missing keys.
+                with audit.open("a", encoding="utf-8", newline="\n") as fh:
+                    for record in failures:
+                        fh.write(record.model_dump_json() + "\n")
+                existing = [r for r in existing if r not in failures]
+                replacement = path.with_suffix(".resume.tmp")
+                replacement.write_text("".join(r.model_dump_json() + "\n" for r in existing),
+                                       encoding="utf-8", newline="\n")
+                replacement.replace(path)
         done = {r.key.as_tuple() for r in existing}
 
         records: List[TrialRecord] = list(existing)
@@ -268,7 +299,22 @@ class Runner:
                 )
                 try:
                     result = self.generate_once(plan.request)
-                    record = TrialRecord(**base, result=result)
+                    execution = None
+                    if self.sandbox and plan.execution_files is not None:
+                        from .code_agent_grader import parse_code_agent_response
+                        from .correction_classifier import parse_code_response_v2
+                        parse = parse_code_response_v2 if self.code_protocol == "v2" else parse_code_agent_response
+                        parsed = parse(result.raw_text)
+                        if parsed.ok:
+                            import subprocess
+                            try:
+                                execution = self.sandbox.run(parsed.response.code, plan.execution_files,
+                                                             self.execution_timeout)
+                            except (OSError, subprocess.SubprocessError) as exc:
+                                # Keep the completion even if the execution infrastructure fails.
+                                execution = ExecutionResult(executed=False,
+                                    skipped_reason=f"sandbox infrastructure error: {exc}")
+                    record = TrialRecord(**base, result=result, execution=execution)
                     completed += 1
                 except (TransportError, ProviderError) as exc:
                     record = TrialRecord(

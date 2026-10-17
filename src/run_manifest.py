@@ -116,7 +116,7 @@ class RunManifest(BaseModel):
     config_path: str
     config_sha256: str
 
-    temperature: float
+    temperature: Optional[float]
     max_tokens: int
     seed: Optional[int]
     structured_output: bool
@@ -165,7 +165,7 @@ def build_manifest(
     model: str,
     dataset_path: str | Path,
     config_path: str | Path,
-    temperature: float,
+    temperature: Optional[float],
     max_tokens: int,
     seed: Optional[int],
     structured_output: bool,

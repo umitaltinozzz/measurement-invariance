@@ -24,4 +24,6 @@ data/results/colab_t4/*
 # configs/pilot.yaml + master_seed, and the pre-registered pilot must run on a
 # frozen dataset. Uncomment only if the file becomes too large to version.
 # data/generated/*.jsonl
+# Run-3 datasets regenerate from config; their frozen hashes are in docs/.
+/data/generated/run3/
 .task-prompt.md

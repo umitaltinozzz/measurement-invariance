@@ -4,6 +4,21 @@
 
 Pilot benchmark infrastructure. Full research design lives in [proje.md](proje.md).
 
+**Run 3 is prepared, with no model collection performed:** see the
+[OSF-ready preregistration](docs/preregistration_run3.md),
+[open config](configs/run3_open.yaml) and
+[frontier-candidate config](configs/run3_frontier.yaml). It adds a controlled
+cell-2 minus cell-1 rule, explicit reasoning settings, sustained-change wording,
+and an executed code arm. Old configs still select the frozen `rule_v1`.
+
+```bash
+python -m src.estimate_run3 --config configs/run3_frontier.yaml
+python -m src.prepare_run3 --config configs/run3_open.yaml
+```
+
+Both commands are offline. The preregistration contains collection, sandbox and
+analysis instructions; it must be externally registered before collection.
+
 ## The pilot in plain words
 
 The questions below are the ones a non-specialist actually asks when they first see this project. The answers use exploratory run 2; every number links back to [PILOT_RESULTS.md](PILOT_RESULTS.md).
@@ -514,6 +529,7 @@ preserves the exact CRLF bytes recorded by run-2 manifests (SHA-256
 `cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125`); the
 committed source config has LF bytes and SHA-256
 `02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b`.
-Open scientific decisions remain: redesigning the continuation rule, preregistering
-model selection and reruns, redesigning the code arm, and matching reasoning
-conditions across models.
+The [run-3 protocol](docs/preregistration_run3.md) now specifies the revised rule,
+model selection, reruns, executed code arm and reasoning conditions. External
+registration and model collection remain future work. The pilot descriptions
+above refer to rule_v1 and are retained for historical comparability.

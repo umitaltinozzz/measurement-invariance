@@ -114,6 +114,20 @@ def build_code_agent_task(case: BenchmarkCase, cfg: CodeAgentConfig) -> CodeAgen
     under ``CSV_FILENAME`` if execution is ever enabled.
     """
     csv_text = render_csv(case, cfg)
+    if cfg.protocol_version == "v2":
+        from .prompts import SUSTAINED_TASK, SYSTEM_PROMPT as DIRECT_SYSTEM, _LOG_INTRO
+        user = (
+            _LOG_INTRO + "\n\n" + SUSTAINED_TASK
+            + f"\n\nReading log (CSV file `{CSV_FILENAME}`):\n\n" + csv_text
+            + '\nWrite Python using the standard library (csv, json, statistics, math). '
+            + 'Read readings.csv and print exactly one JSON object with the key '
+            + '"answer" and value increase, decrease, stable, or uncertain. '
+            + 'Use print(json.dumps({"answer": answer})).\n'
+            + 'Respond with exactly one JSON object with keys "code_lines" '
+            + '(an array of Python source lines), "answer" (your declared conclusion), '
+            + 'and "reason" (at most three sentences).'
+        )
+        return CodeAgentTask(case, csv_text, DIRECT_SYSTEM, user)
     columns = "\n".join(f"- {name}" for name in csv_columns(cfg))
     user = _TASK.format(
         filename=CSV_FILENAME,

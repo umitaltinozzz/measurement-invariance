@@ -1,21 +1,21 @@
 """Execution interface for model-written analysis code.
 
-**This is not a security boundary.** ``SubprocessSandbox`` gives you a separate
+The legacy ``SubprocessSandbox`` is not a security boundary. It gives you a separate
 process, a scratch working directory, a wall-clock timeout, a trimmed
 environment and capped output. It does not stop the code from reading your
 filesystem, opening sockets, or spawning children. Python has no in-process
 mechanism that does, and pretending otherwise would be worse than saying so.
 
-For a real pilot run, execute inside a container or VM with no network and a
-read-only mount, and point ``execution_enabled`` at that. The protocol below
-exists so that swapping in such a backend is a constructor change and nothing
-else.
+``DockerSandbox`` is the run-3 execution backend: a network-disabled Linux
+container invoked by subprocess with a read-only temporary input directory,
+bounded CPU, memory, processes, output and wall time. It never falls back to
+host execution. See docs/preregistration_run3.md for the output protocol.
 
 Execution is **off by default** (``code_agent.execution_enabled: false``). The
 provenance analysis in ``code_agent_grader.py`` is static, so the whole
 code-agent arm can be graded without ever running a line of generated code;
-execution only adds ``stdout``/``stderr`` and a cross-check on the declared
-answer.
+run 3 can instead select the strictly parsed stdout answer as the primary grade,
+while retaining both declared and executed grades.
 """
 
 from __future__ import annotations
@@ -44,10 +44,13 @@ class ExecutionResult(BaseModel):
     duration_ms: Optional[float] = None
     #: Why execution did not happen, when ``executed`` is False.
     skipped_reason: Optional[str] = None
+    sandbox_name: Optional[str] = None
+    image_id: Optional[str] = None
+    output_limit_exceeded: bool = False
 
     @property
     def ok(self) -> bool:
-        return self.executed and self.exit_code == 0 and not self.timed_out
+        return self.executed and self.exit_code == 0 and not self.timed_out and not self.output_limit_exceeded
 
 
 @runtime_checkable
@@ -170,3 +173,109 @@ class SubprocessSandbox:
                 stderr=proc.stderr[:MAX_CAPTURED_CHARS],
                 duration_ms=(time.perf_counter() - started) * 1000,
             )
+
+
+class DockerSandbox:
+    """Network-disabled Linux container, invoked as a bounded subprocess.
+
+    Never falls back to host execution or pulls an image implicitly. Only the
+    generated program and case CSV are mounted, read-only; /tmp is a size-limited
+    tmpfs. The immutable image ID is recorded with every execution.
+    """
+
+    name = "docker-no-network"
+
+    def __init__(self, image="mi-run3-sandbox:1", *, memory_mb=512, cpu_seconds=10, pids_limit=32):
+        if min(memory_mb, cpu_seconds, pids_limit) <= 0:
+            raise ValueError("resource limits must be positive")
+        result = subprocess.run(["docker", "image", "inspect", "--format", "{{.Id}}", image],
+                                capture_output=True, text=True, timeout=15, check=False)
+        if result.returncode or not result.stdout.strip().startswith("sha256:"):
+            raise RuntimeError("sandbox image unavailable; build it before execution")
+        self.image_id = result.stdout.strip()
+        self.memory_mb, self.cpu_seconds, self.pids_limit = memory_mb, cpu_seconds, pids_limit
+
+    def command(self, root, name):
+        return [
+            "docker", "run", "--rm", "--pull=never", "--name", name,
+            "--network=none", "--read-only", "--cap-drop=ALL",
+            "--security-opt=no-new-privileges", "--user=65534:65534",
+            f"--memory={self.memory_mb}m", f"--memory-swap={self.memory_mb}m",
+            "--cpus=1", f"--pids-limit={self.pids_limit}",
+            "--ulimit", f"cpu={self.cpu_seconds}:{self.cpu_seconds}",
+            "--ulimit", "nofile=64:64", "--ulimit", "fsize=1048576:1048576",
+            "--tmpfs", "/tmp:rw,noexec,nosuid,size=16m,mode=1777",
+            "--mount", f"type=bind,source={root},target=/input,readonly",
+            "--workdir=/input", "--env=PYTHONDONTWRITEBYTECODE=1",
+            "--env=OPENBLAS_NUM_THREADS=1", "--log-driver=none",
+            self.image_id, "python", "-I", "-B", "/input/analysis.py",
+        ]
+
+    def run(self, code, files, timeout):
+        import threading
+        import time
+        import uuid
+
+        if timeout <= 0:
+            raise ValueError("timeout must be positive")
+        with tempfile.TemporaryDirectory(prefix="mi-run3-") as workdir:
+            root = Path(workdir).resolve()
+            root.chmod(0o755)
+            for name, content in {**files, "analysis.py": code}.items():
+                if name != Path(name).name or name in (".", ".."):
+                    raise ValueError("sandbox accepts plain filenames only")
+                target = root / name
+                target.write_text(content, encoding="utf-8", newline="\n")
+                target.chmod(0o644)
+            container = "mi-run3-" + uuid.uuid4().hex
+            started = time.perf_counter()
+            output = {"stdout": bytearray(), "stderr": bytearray()}
+            over = threading.Event()
+            proc = subprocess.Popen(self.command(root, container), stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE, stdin=subprocess.DEVNULL)
+
+            def drain(stream, destination):
+                while data := stream.read(1024):
+                    remaining = MAX_CAPTURED_CHARS - len(destination)
+                    destination.extend(data[:max(0, remaining)])
+                    if len(data) > remaining:
+                        over.set()
+                stream.close()
+
+            threads = [threading.Thread(target=drain, args=(getattr(proc, k), output[k]), daemon=True)
+                       for k in output]
+            for thread in threads:
+                thread.start()
+            timed_out = False
+            try:
+                while proc.poll() is None and not over.is_set():
+                    if time.perf_counter() - started >= timeout:
+                        timed_out = True
+                        break
+                    over.wait(0.02)
+            finally:
+                # Kill the container too: killing only the Docker client leaves
+                # a compute process alive in the daemon after a timeout.
+                if proc.poll() is None:
+                    try:
+                        subprocess.run(["docker", "rm", "-f", container], capture_output=True,
+                                       timeout=10, check=False)
+                    finally:
+                        proc.kill()
+                proc.wait(timeout=10)
+                for thread in threads:
+                    thread.join(timeout=5)
+            return ExecutionResult(
+                executed=True, exit_code=proc.returncode, timed_out=timed_out,
+                stdout=output["stdout"].decode("utf-8", errors="replace"),
+                stderr=output["stderr"].decode("utf-8", errors="replace"),
+                output_limit_exceeded=over.is_set(), sandbox_name=self.name,
+                image_id=self.image_id, duration_ms=(time.perf_counter() - started) * 1000,
+            )
+
+
+def sandbox_from_config(cfg):
+    if not cfg.execution_enabled:
+        return DisabledSandbox()
+    return DockerSandbox(cfg.sandbox_image, memory_mb=cfg.memory_mb,
+                         cpu_seconds=cfg.cpu_seconds, pids_limit=cfg.pids_limit)

@@ -55,6 +55,16 @@ CODE_AGENT_RESPONSE_SCHEMA = {
     "additionalProperties": False,
 }
 
+CODE_AGENT_RESPONSE_SCHEMA_V2 = {
+    "type": "object",
+    "properties": {
+        "code_lines": {"type": "array", "items": {"type": "string"}},
+        "answer": _TREND, "reason": _REASON,
+    },
+    "required": ["code_lines", "answer", "reason"],
+    "additionalProperties": False,
+}
+
 
 def direct_response_schema(variant: PromptVariant | str) -> dict:
     return (

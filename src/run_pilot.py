@@ -36,6 +36,7 @@ from .runner import Arm, Runner, TrialPlan, new_run_id, result_path_for
 from .schemas import BenchmarkCase
 from .structured_schemas import (
     CODE_AGENT_RESPONSE_SCHEMA,
+    CODE_AGENT_RESPONSE_SCHEMA_V2,
     competence_response_schema,
     direct_response_schema,
 )
@@ -87,15 +88,23 @@ def _request(
     max_tokens: int | None = None,
     response_schema: Optional[Dict] = None,
 ) -> GenerationRequest:
+    settings = cfg.models.get(model)
+    code = max_tokens is not None
+    if cfg.continuation_criteria.rule_version == "rule_v2" and settings is None:
+        raise ValueError(f"run 3 requires explicit settings for {model}")
     return GenerationRequest(
         model=model,
         system=system,
         user=user,
-        temperature=cfg.runner.temperature,
-        max_tokens=max_tokens or cfg.runner.max_tokens,
-        seed=cfg.runner.seed,
+        temperature=settings.temperature if settings else cfg.runner.temperature,
+        max_tokens=(settings.max_tokens_code_agent if code else settings.max_tokens)
+        if settings else (max_tokens or cfg.runner.max_tokens),
+        seed=cfg.runner.seed if settings is None or settings.send_seed else None,
         structured_output=cfg.runner.structured_output,
         response_schema=response_schema,
+        think=settings.think if settings else None,
+        reasoning=settings.reasoning if settings else None,
+        context_length=settings.context_length if settings else None,
     )
 
 
@@ -136,9 +145,11 @@ def build_code_plans(
                 request=_request(
                     task.system, task.user, cfg, model,
                     max_tokens=cfg.runner.max_tokens_code_agent,
-                    response_schema=CODE_AGENT_RESPONSE_SCHEMA,
+                    response_schema=CODE_AGENT_RESPONSE_SCHEMA_V2
+                    if cfg.code_agent.protocol_version == "v2" else CODE_AGENT_RESPONSE_SCHEMA,
                 ),
                 prompt_variant=None,
+                execution_files={"readings.csv": task.csv_text},
             )
         )
     return plans
@@ -241,10 +252,39 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="JSON file with runtime hardware metadata to record in the manifest",
     )
     parser.add_argument("--only", default=None, help="pin an upstream provider slug")
+    parser.add_argument("--repeat", type=int, default=0)
+    parser.add_argument("--cap-stage", type=int, choices=[0, 1], default=0)
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
+    if not 0 <= args.repeat < cfg.repeats:
+        parser.error("repeat is outside the configured range")
+    registered_cfg = cfg
+    if args.repeat or args.cap_stage:
+        from .prepare_run3 import inference_config
+        cfg = inference_config(cfg, args.repeat, args.cap_stage)
+    if cfg.continuation_criteria.rule_version == "rule_v2":
+        if args.only_case_ids or args.limit:
+            parser.error("run 3 requires whole slices; use a separate exploratory config for subsets")
+        if args.model not in cfg.models:
+            parser.error("model is not in the preregistered roster")
+        if args.provider != cfg.models[args.model].provider:
+            parser.error("provider differs from the preregistered model settings")
+        upstream = cfg.models[args.model].provider_only
+        if args.only and args.only != upstream:
+            parser.error("upstream differs from the preregistered model settings")
+        args.only = upstream
+        if args.arm == Arm.DIRECT and args.variant is None:
+            args.variant = "natural_sustained"
+        if args.dataset_path is None:
+            args.dataset_path = str(Path("data/generated/run3") / f"repeat-{args.repeat}" /
+                                    Path(DATASETS[args.dataset]).name)
+        args.results_dir = str(Path(args.results_dir) / f"repeat-{args.repeat}" /
+                               f"stage-{args.cap_stage}" / (args.variant or args.arm))
     cases, dataset_path = load_dataset(args.dataset, args.dataset_path)
+    if cfg.continuation_criteria.rule_version == "rule_v2":
+        from .prepare_run3 import validate_dataset
+        validate_dataset(registered_cfg, args.repeat, args.dataset, cases)
     if args.limit is not None and args.only_case_ids:
         parser.error("--limit cannot be combined with --only-case-ids")
     selected_case_ids = None
@@ -278,14 +318,22 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         load_dotenv()
         provider = OpenRouterProvider(
+            timeout=cfg.models[args.model].request_timeout_seconds if cfg.models else 180.0,
             provider_only=[args.only] if args.only else None,
             allow_fallbacks=False,
             require_parameters=cfg.runner.structured_output,
         )
     else:
-        provider = create_provider(args.provider)
+        provider = create_provider(args.provider, **(
+            {"timeout": cfg.models[args.model].request_timeout_seconds} if cfg.models else {}))
 
     plans = build_plans(args.dataset, cases, cfg, args.model, args.arm, args.variant)
+    constraints = dict(getattr(provider, "routing_constraints", {}))
+    if cfg.models:
+        constraints.update({"model_settings": cfg.models[args.model].model_dump(mode="json"),
+                            "repeat": args.repeat, "cap_stage": args.cap_stage,
+                            "rule_version": cfg.continuation_criteria.rule_version,
+                            "code_execution": cfg.code_agent.model_dump(mode="json")})
     dataset_sha256 = sha256_file(dataset_path)
     manifest = build_manifest(
         run_id=_run_id_for_resume(
@@ -300,27 +348,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         provider=getattr(provider, "name", args.provider),
         model=args.model,
         dataset_path=dataset_path,
-        competence_dataset_path=DATASETS["competence"]
-        if Path(DATASETS["competence"]).exists()
-        else None,
+        competence_dataset_path=(Path(dataset_path).parent / "competence_cases.jsonl")
+        if (Path(dataset_path).parent / "competence_cases.jsonl").exists() else None,
         config_path=args.config,
-        temperature=cfg.runner.temperature,
+        temperature=plans[0].request.temperature,
         # The manifest must record the ceiling this arm actually used, not the
         # default -- the code arm runs at a different one.
-        max_tokens=(
-            cfg.runner.max_tokens_code_agent
-            if args.arm == Arm.CODE_AGENT
-            else cfg.runner.max_tokens
-        ),
-        seed=cfg.runner.seed,
+        max_tokens=plans[0].request.max_tokens,
+        seed=plans[0].request.seed,
         structured_output=cfg.runner.structured_output,
         max_transport_retries=cfg.runner.max_transport_retries,
-        provider_constraints=getattr(provider, "routing_constraints", {}),
+        provider_constraints=constraints,
         hardware=hardware,
         selected_case_ids=selected_case_ids,
         repo_root=Path(__file__).resolve().parents[1],
     )
-    runner = Runner(provider, cfg.runner)
+    from .sandbox import sandbox_from_config
+    sandbox = sandbox_from_config(cfg.code_agent) if args.arm == Arm.CODE_AGENT else None
+    from time import sleep
+    runner = Runner(provider, cfg.runner, sleep=sleep, sandbox=sandbox,
+                    execution_timeout=cfg.code_agent.execution_timeout_seconds,
+                    code_protocol=cfg.code_agent.protocol_version)
     _, summary = runner.run(
         plans,
         model=args.model,

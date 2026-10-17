@@ -95,6 +95,10 @@ class OpenAICompatibleProvider:
         }
         if request.seed is not None:
             payload["seed"] = request.seed
+        if request.temperature is None:
+            payload.pop("temperature", None)
+        if request.reasoning is not None:
+            payload["reasoning"] = request.reasoning
         if request.structured_output and request.response_schema:
             payload["response_format"] = {
                 "type": "json_schema",
@@ -206,6 +210,8 @@ class OpenAICompatibleProvider:
             # The only field that identifies the weights behind a result.
             resolved_model_id=payload.get("model") or request.model,
             raw_text=raw_text,
+            thinking=message.get("reasoning") or message.get("thinking"),
+            reasoning_details=message.get("reasoning_details"),
             structured_output_used=bool(
                 request.structured_output and request.response_schema
             ),

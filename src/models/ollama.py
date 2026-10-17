@@ -34,7 +34,7 @@ class OllamaProvider(OpenAICompatibleProvider):
                 {"role": "user", "content": request.user},
             ],
             "stream": False,
-            "think": False,
+            "think": request.think if request.think is not None else False,
             "options": {
                 "temperature": request.temperature,
                 "num_predict": request.max_tokens,
@@ -42,6 +42,8 @@ class OllamaProvider(OpenAICompatibleProvider):
         }
         if request.seed is not None:
             payload["options"]["seed"] = request.seed
+        if request.context_length is not None:
+            payload["options"]["num_ctx"] = request.context_length
         if request.structured_output and request.response_schema:
             payload["format"] = request.response_schema
         return payload
@@ -81,6 +83,7 @@ class OllamaProvider(OpenAICompatibleProvider):
             requested_model_id=request.model,
             resolved_model_id=payload.get("model") or request.model,
             raw_text=message.get("content") or "",
+            thinking=message.get("thinking"),
             structured_output_used=bool(request.structured_output and request.response_schema),
             input_tokens=usage_tokens,
             output_tokens=output_tokens,

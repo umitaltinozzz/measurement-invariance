@@ -745,6 +745,8 @@ def analyze_results(
     results_dir = Path(results_dir).resolve()
     output_dir = Path(output_dir).resolve()
     cfg = load_config(config_path)
+    if cfg.continuation_criteria.rule_version == "rule_v2":
+        raise ValueError("use python -m src.analyze_run3 for rule_v2 (one repeat at a time)")
     if preloaded_runs is None:
         runs, verification = _load_verified_runs(results_dir, project_root, config_path)
     else:
