@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 from .code_agent import csv_columns
 from .code_agent_grader import CodeAgentRecord, grade_code_agent_response
@@ -74,16 +74,28 @@ def _fmt_dual(dual: Dict[str, Any], basis: str = "valid_only") -> str:
 
 
 def _load_verified_runs(
-    results_dir: Path, project_root: Path, config_path: Optional[Path]
+    results_dir: Path,
+    project_root: Path,
+    config_path: Optional[Path],
+    *,
+    config_sources: Optional[Mapping[str, str | Path]] = None,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     expected_config_sha = sha256_file(config_path) if config_path is not None else None
+    config_sources = config_sources or {}
     runs: List[Dict[str, Any]] = []
     verification: List[Dict[str, Any]] = []
     for manifest_path in sorted(results_dir.rglob("*.manifest.json")):
         manifest = read_manifest(manifest_path)
         result_path = _result_path_for_manifest(manifest_path)
         dataset_path = project_root / Path(manifest.dataset_path)
-        manifested_config_path = project_root / Path(manifest.config_path)
+        manifested_config_path = Path(
+            config_sources.get(
+                manifest.config_path,
+                project_root / Path(manifest.config_path),
+            )
+        )
+        if not manifested_config_path.is_absolute():
+            manifested_config_path = project_root / manifested_config_path
         if not dataset_path.is_file():
             raise FileNotFoundError(
                 f"manifest {manifest_path} points to missing dataset {dataset_path}"
@@ -105,7 +117,8 @@ def _load_verified_runs(
             raise ValueError(
                 f"config SHA mismatch for {manifest_path}: "
                 f"manifest={manifest.config_sha256}, actual={config_sha}, "
-                f"expected={expected_config_sha or 'manifested config'}"
+                f"expected={expected_config_sha or 'manifested config'} "
+                f"(source={manifested_config_path})"
             )
         if not result_path.exists():
             raise FileNotFoundError(f"manifest has no adjacent result file: {result_path}")

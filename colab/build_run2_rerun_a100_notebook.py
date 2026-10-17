@@ -98,11 +98,12 @@ cells = [
         RUN2_ROOT = PROJECT_ROOT / 'data/results/colab_t4/run2'
         RUN2_ENV_PATH = RUN2_ROOT / 'run_environment.json'
         RUN2_CONFIG_PATH = PROJECT_ROOT / 'configs/pilot_colab_t4_run2.yaml'
+        RUN2_ANALYSIS_CONFIG_PATH = RUN2_ROOT / 'configs/pilot_colab_t4.yaml'
         RERUN_CONFIG_PATH = PROJECT_ROOT / 'configs/pilot_colab_t4_run2_rerun.yaml'
         TARGETS_PATH = PROJECT_ROOT / 'configs/run2_rerun_targets.json'
         BASE_RESULTS_ROOT = RUN2_ROOT / 'data/results/colab_t4/results'
         MERGED_ANALYSIS_ROOT = RUN2_ROOT / 'analysis_with_reruns'
-        for required_path in (RUN2_ENV_PATH, RUN2_CONFIG_PATH, RERUN_CONFIG_PATH, TARGETS_PATH, BASE_RESULTS_ROOT):
+        for required_path in (RUN2_ENV_PATH, RUN2_CONFIG_PATH, RUN2_ANALYSIS_CONFIG_PATH, RERUN_CONFIG_PATH, TARGETS_PATH, BASE_RESULTS_ROOT):
             assert required_path.exists(), f'Required run-2 project file is missing: {required_path}'
 
         RUN2_ENV = json.loads(RUN2_ENV_PATH.read_text(encoding='utf-8'))
@@ -122,7 +123,7 @@ cells = [
         r"""
         ## Install the run-2 Ollama version and verify the A100
 
-        This pins Ollama to the recorded 0.40.5 release and sets the run-2 context length and loaded-model limit. Hardware details are saved into each result manifest.
+        This pins Ollama to the recorded 0.40.5 release, waits for the server API, then records the version returned by `GET /api/version`. It also sets the run-2 context length and loaded-model limit.
         """
     ),
     code(
@@ -130,6 +131,7 @@ cells = [
         assert all(name in globals() for name in (
             'PROJECT_ROOT', 'RUN2_ENV', 'RERUN_ROOT', 'OLLAMA_MODELS_DIR'
         )), 'Run the Drive and repository setup cells first.'
+        import json
         import os
         import subprocess
         import time
@@ -149,13 +151,6 @@ cells = [
                 raise RuntimeError(f'Ollama {OLLAMA_VERSION_PIN} installer exited with {install.returncode}')
         else:
             print('Reusing the Ollama server started by this notebook.', flush=True)
-        OLLAMA_VERSION = subprocess.run(
-            ['ollama', '--version'], capture_output=True, text=True, check=True
-        ).stdout.strip()
-        if not OLLAMA_VERSION.endswith(OLLAMA_VERSION_PIN):
-            raise RuntimeError(f'Expected Ollama {OLLAMA_VERSION_PIN}, got {OLLAMA_VERSION}')
-        os.environ['OLLAMA_SERVER_VERSION'] = OLLAMA_VERSION
-
         gpu = subprocess.run(
             ['nvidia-smi', '--query-gpu=name,memory.total,compute_cap', '--format=csv,noheader'],
             capture_output=True, text=True, check=True,
@@ -164,7 +159,6 @@ cells = [
         print('GPU:', GPU_INFO)
         if 'A100' not in GPU_INFO.upper():
             raise RuntimeError(f'This notebook requires a Colab A100 GPU; detected: {GPU_INFO}')
-        print('Ollama:', OLLAMA_VERSION)
 
         OLLAMA_ENV = dict(os.environ)
         OLLAMA_ENV.update({
@@ -199,10 +193,29 @@ cells = [
         else:
             raise TimeoutError('Ollama server did not become ready on localhost:11434')
 
+        try:
+            with urllib.request.urlopen('http://localhost:11434/api/version', timeout=10) as response:
+                OLLAMA_API_VERSION = json.load(response).get('version')
+        except Exception as exc:
+            raise RuntimeError(
+                'Ollama became ready but GET /api/version failed; the server version cannot be verified.'
+            ) from exc
+        if OLLAMA_API_VERSION != OLLAMA_VERSION_PIN:
+            raise RuntimeError(
+                f'Expected running Ollama server {OLLAMA_VERSION_PIN}, got {OLLAMA_API_VERSION!r}'
+            )
+        OLLAMA_VERSION = f'ollama version is {OLLAMA_API_VERSION}'
+        OLLAMA_VERSION_SOURCE = 'GET /api/version after server readiness'
+        os.environ['OLLAMA_SERVER_VERSION'] = OLLAMA_VERSION
+        os.environ['OLLAMA_SERVER_VERSION_SOURCE'] = OLLAMA_VERSION_SOURCE
+        print('Ollama server:', OLLAMA_VERSION, '(GET /api/version)')
+
         HARDWARE_METADATA = {
             'gpu_nvidia_smi': GPU_INFO,
             'colab_accelerator': 'A100',
             'ollama_version': OLLAMA_VERSION,
+            'ollama_api_version': OLLAMA_API_VERSION,
+            'ollama_version_source': OLLAMA_VERSION_SOURCE,
             'ollama_context_length': 8192,
             'ollama_max_loaded_models': 1,
             'ollama_models_directory': str(OLLAMA_MODELS_DIR),
@@ -260,7 +273,7 @@ cells = [
             'model_digests': {name: tags_by_name[name] for name in MODELS_TO_RERUN},
             'digest_comparison_with_run2': DIGEST_COMPARISON,
             'run2_environment_path': str(RUN2_ENV_PATH),
-            'run2_config_sha256': sha256_file(RUN2_CONFIG_PATH),
+            'run2_config_sha256': RUN2_ENV['config_sha256'],
             'rerun_config_sha256': sha256_file(RERUN_CONFIG_PATH),
             'targets_path': str(TARGETS_PATH),
             'results_directory': str(RESULTS_ROOT),
@@ -397,7 +410,7 @@ cells = [
         r"""
         assert all(name in globals() for name in (
             'RUN_STATUS', 'RUN_ENV_PATH', 'PROJECT_ROOT', 'BASE_RESULTS_ROOT', 'MERGED_ANALYSIS_ROOT',
-            'RUN2_CONFIG_PATH', 'TARGETS_PATH', 'RUN2_ENV_PATH', 'RESULTS_ROOT'
+            'RUN2_CONFIG_PATH', 'RUN2_ANALYSIS_CONFIG_PATH', 'TARGETS_PATH', 'RUN2_ENV_PATH', 'RESULTS_ROOT'
         )), 'Run the preceding setup cells first.'
         assert len(RUN_STATUS['runs']) == 5, 'Complete all five rerun targets first.'
         assert RUN_ENV_PATH.exists(), 'Save the rerun environment first.'
@@ -411,7 +424,7 @@ cells = [
             '--base-results-dir', str(BASE_RESULTS_ROOT),
             '--rerun-results-dir', str(RESULTS_ROOT),
             '--output-dir', str(MERGED_ANALYSIS_ROOT),
-            '--base-config', str(RUN2_CONFIG_PATH),
+            '--base-config', str(RUN2_ANALYSIS_CONFIG_PATH),
             '--targets', str(TARGETS_PATH),
             '--base-environment', str(RUN2_ENV_PATH),
             '--rerun-environment', str(RUN_ENV_PATH),
@@ -435,7 +448,7 @@ cells = [
         assert all(name in globals() for name in (
             'DRIVE_ANALYSIS_ROOT', 'RUN_STATUS', 'RESULTS_ROOT', 'CASE_ID_ROOT', 'RUN_ENV_PATH',
             'RUN_STATUS_PATH', 'HARDWARE_PATH', 'RUN2_CONFIG_PATH', 'RERUN_CONFIG_PATH',
-            'TARGETS_PATH', 'MERGED_ANALYSIS_ROOT', 'RERUN_ROOT'
+            'RUN2_ANALYSIS_CONFIG_PATH', 'TARGETS_PATH', 'MERGED_ANALYSIS_ROOT', 'RERUN_ROOT'
         )), 'Run the rerun and analysis cells first.'
         assert DRIVE_ANALYSIS_ROOT.exists(), 'Build the merged analysis first.'
         assert len(RUN_STATUS['runs']) == 5, 'All five rerun targets must be complete before downloading.'
@@ -455,6 +468,7 @@ cells = [
                 (RUN_STATUS_PATH, 'run2_rerun_a100/run_status.json'),
                 (HARDWARE_PATH, 'run2_rerun_a100/hardware.json'),
                 (RUN2_CONFIG_PATH, 'configs/pilot_colab_t4_run2.yaml'),
+                (RUN2_ANALYSIS_CONFIG_PATH, 'run2/configs/pilot_colab_t4.yaml'),
                 (RERUN_CONFIG_PATH, 'configs/pilot_colab_t4_run2_rerun.yaml'),
                 (TARGETS_PATH, 'configs/run2_rerun_targets.json'),
             ):

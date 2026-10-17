@@ -1,0 +1,52 @@
+{
+  "arm": "code-agent",
+  "competence_dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+  "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+  "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+  "created_at": "2026-10-17T02:33:35.776878+00:00",
+  "dataset_path": "data/generated/paired_agent_cases.jsonl",
+  "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+  "git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+  "git_dirty": false,
+  "hardware": {
+    "colab_accelerator": "A100",
+    "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+    "ollama_context_length": 8192,
+    "ollama_max_loaded_models": 1,
+    "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+    "ollama_version": "ollama version is 0.40.5"
+  },
+  "max_tokens": 16000,
+  "max_transport_retries": 4,
+  "model": "gpt-oss:20b",
+  "package_versions": {
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "pydantic": "2.13.5",
+    "pytest": "8.4.2",
+    "python": "3.13.15",
+    "yaml": "6.0.3"
+  },
+  "prompt_variant": null,
+  "provider": "ollama",
+  "provider_constraints": {
+    "authentication": "none",
+    "base_url": "http://localhost:11434",
+    "context_length": 8192,
+    "max_loaded_models": 1,
+    "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+    "server_version": "ollama version is 0.40.5"
+  },
+  "requested_model_id": "gpt-oss:20b",
+  "run_id": "8fdda5952847459b",
+  "seed": 20260824,
+  "selected_case_ids": [
+    "paired-c2-L1-009",
+    "paired-c2-L1-010",
+    "paired-c2-L1-018",
+    "paired-c3-L1-015",
+    "paired-c3-L1-016"
+  ],
+  "structured_output": true,
+  "temperature": 0.0,
+  "ollama_version": "ollama version is 0.40.5"
+}

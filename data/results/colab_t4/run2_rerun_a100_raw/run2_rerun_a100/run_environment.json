@@ -1,0 +1,86 @@
+{
+  "code_execution_enabled": false,
+  "colab_accelerator": "A100",
+  "digest_comparison_with_run2": {
+    "gemma4:12b": {
+      "matches_run2": true,
+      "rerun_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+      "run2_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b"
+    },
+    "gpt-oss:20b": {
+      "matches_run2": true,
+      "rerun_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+      "run2_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe"
+    }
+  },
+  "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+  "model_digests": {
+    "gemma4:12b": {
+      "capabilities": [
+        "completion",
+        "vision",
+        "audio",
+        "tools",
+        "thinking"
+      ],
+      "details": {
+        "context_length": 262144,
+        "embedding_length": 3840,
+        "families": [
+          "gemma4"
+        ],
+        "family": "gemma4",
+        "format": "gguf",
+        "parameter_size": "11.9B",
+        "parent_model": "imatrix-20260927-12b/model-q4_K_M.gguf",
+        "quantization_level": "Q4_K_M",
+        "runner": "llamacpp"
+      },
+      "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+      "model": "gemma4:12b",
+      "modified_at": "2026-10-16T16:10:19Z",
+      "name": "gemma4:12b",
+      "size": 8021618941
+    },
+    "gpt-oss:20b": {
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ],
+      "details": {
+        "context_length": 131072,
+        "embedding_length": 2880,
+        "families": [
+          "gpt-oss"
+        ],
+        "family": "gpt-oss",
+        "format": "gguf",
+        "parameter_size": "20.9B",
+        "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+        "quantization_level": "MXFP4",
+        "runner": "llamacpp"
+      },
+      "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+      "model": "gpt-oss:20b",
+      "modified_at": "2026-10-16T16:25:08Z",
+      "name": "gpt-oss:20b",
+      "size": 13793441566
+    }
+  },
+  "model_tags": [
+    "gemma4:12b",
+    "gpt-oss:20b"
+  ],
+  "ollama_context_length": 8192,
+  "ollama_host": "http://localhost:11434",
+  "ollama_max_loaded_models": 1,
+  "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+  "ollama_version": "ollama version is 0.40.5",
+  "rerun_config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+  "results_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2_rerun_a100/results",
+  "run2_config_sha256": "02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b",
+  "run2_environment_path": "/content/measurement-invariance/data/results/colab_t4/run2/run_environment.json",
+  "started_at_utc": "2026-10-17T02:18:04.992951+00:00",
+  "targets_path": "/content/measurement-invariance/configs/run2_rerun_targets.json"
+}

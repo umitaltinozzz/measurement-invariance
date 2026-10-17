@@ -5,11 +5,21 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, List, Mapping, Sequence
 
 from .analyze_results import _load_verified_runs, analyze_results
 from .generate_cases import load_config
 from .runner import TrialRecord
+
+
+COLAB_REWRITTEN_VERSION_NOTE = (
+    "server version not captured; client 0.40.5; field rewritten by Colab assistant"
+)
+
+
+def _project_path(project_root: Path, path: str | Path) -> Path:
+    resolved = Path(path)
+    return resolved if resolved.is_absolute() else project_root / resolved
 
 
 def _read_json(path: str | Path) -> Dict[str, Any]:
@@ -88,8 +98,12 @@ def _validate_rerun_config(project_root: Path, base_config: Path, rerun_config: 
         }
     )
     if rerun != expected:
+        try:
+            display_path = rerun_config.relative_to(project_root)
+        except ValueError:
+            display_path = rerun_config
         raise ValueError(
-            f"{rerun_config.relative_to(project_root)} must match run-2 config "
+            f"{display_path} must match run-2 config "
             "except max_tokens=4096 and max_tokens_code_agent=16000"
         )
 
@@ -99,6 +113,7 @@ def merge_run2_rows(
     base_runs: List[Dict[str, Any]],
     rerun_runs: List[Dict[str, Any]],
     targets: List[Dict[str, Any]],
+    accept_colab_rewritten_server_version: bool = False,
 ) -> tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Validate replacements and return run-2-shaped records plus an audit."""
     if len(rerun_runs) != len(targets):
@@ -133,6 +148,18 @@ def merge_run2_rows(
         for setting in ("server_version", "context_length", "max_loaded_models"):
             if not original_constraints.get(setting):
                 raise ValueError(f"run-2 manifest does not record Ollama {setting}")
+            if setting == "server_version" and accept_colab_rewritten_server_version:
+                continue
+            if (
+                setting == "server_version"
+                and rerun_constraints.get("server_version_source")
+                != "GET /api/version after server readiness"
+            ):
+                raise ValueError(
+                    "rerun server_version lacks trusted GET /api/version provenance; "
+                    "pass --accept-colab-rewritten-server-version only when the metadata "
+                    "was rewritten and its uncertainty is recorded"
+                )
             if rerun_constraints.get(setting) != original_constraints[setting]:
                 raise ValueError(
                     f"rerun Ollama {setting} differs from run 2 for {target['model']}: "
@@ -206,7 +233,27 @@ def merge_run2_rows(
                 "config_sha256": manifest.config_sha256,
                 "hardware": hardware_name,
                 "model_digest": rerun_constraints["model_digest"],
-                "ollama_server_version": rerun_constraints["server_version"],
+                "ollama_server_version": (
+                    None
+                    if accept_colab_rewritten_server_version
+                    else rerun_constraints["server_version"]
+                ),
+                "ollama_server_version_status": (
+                    "not_captured"
+                    if accept_colab_rewritten_server_version
+                    else "verified_against_run2"
+                ),
+                "ollama_server_version_accepted_by_explicit_flag": (
+                    accept_colab_rewritten_server_version
+                ),
+                "ollama_client_version": (
+                    "0.40.5" if accept_colab_rewritten_server_version else None
+                ),
+                "ollama_server_version_note": (
+                    COLAB_REWRITTEN_VERSION_NOTE
+                    if accept_colab_rewritten_server_version
+                    else None
+                ),
                 "ollama_context_length": rerun_constraints["context_length"],
                 "ollama_max_loaded_models": rerun_constraints["max_loaded_models"],
                 "run2_max_tokens": old_cap,
@@ -228,6 +275,19 @@ def merge_run2_rows(
             "direct_max_tokens": {"run2": 1024, "rerun": 4096},
             "code_agent_max_tokens": {"run2": 4000, "rerun": 16000},
         },
+        "rerun_server_version": (
+            {
+                "status": "not_captured",
+                "accepted_by_explicit_flag": True,
+                "client_version": "0.40.5",
+                "note": COLAB_REWRITTEN_VERSION_NOTE,
+            }
+            if accept_colab_rewritten_server_version
+            else {
+                "status": "verified_against_run2",
+                "accepted_by_explicit_flag": False,
+            }
+        ),
         "diagnosis_discrepancy": (
             "ID validation found two additional gpt-oss direct-guided token-capped rows beyond "
             "the original 19-row diagnosis, including industrial_sensor-c3-L2-023; both are "
@@ -249,31 +309,78 @@ def analyze_with_reruns(
     base_environment_path: str | Path,
     rerun_environment_path: str | Path,
     base_status_path: str | Path | None = None,
+    rerun_config_sources: Mapping[str, str | Path] | None = None,
+    accept_colab_rewritten_server_version: bool = False,
 ) -> Dict[str, Any]:
     project_root = Path(project_root).resolve()
-    base_config = Path(base_config_path)
-    if not base_config.is_absolute():
-        base_config = project_root / base_config
     base_results_dir = Path(base_results_dir).resolve()
     rerun_results_dir = Path(rerun_results_dir).resolve()
-    base_runs, base_verification = _load_verified_runs(base_results_dir, project_root, base_config)
-    rerun_runs, rerun_verification = _load_verified_runs(rerun_results_dir, project_root, None)
+    base_runs, base_verification = _load_verified_runs(base_results_dir, project_root, None)
+    if not base_runs:
+        raise ValueError(f"no run-2 manifests found in {base_results_dir}")
+    base_config_identities = {
+        (run["manifest"].config_path, run["manifest"].config_sha256) for run in base_runs
+    }
+    if len(base_config_identities) != 1:
+        raise ValueError(
+            "run-2 manifests do not share one recorded config path and SHA: "
+            f"{sorted(base_config_identities)}"
+        )
+    recorded_config_path, recorded_config_sha = next(iter(base_config_identities))
+    recorded_base_config = _project_path(project_root, recorded_config_path)
+
+    # The manifests are verified byte-for-byte against their recorded config
+    # path above. The analysis config may be the archived run-2 snapshot, whose
+    # comments or newline style can differ; require an identical parsed config
+    # so scoring still uses the exact recorded settings.
+    base_config = _project_path(project_root, base_config_path)
+    if load_config(base_config) != load_config(recorded_base_config):
+        raise ValueError(
+            f"analysis config {base_config} does not match the settings recorded by "
+            f"run-2 manifests at {recorded_base_config}"
+        )
+
+    rerun_config_sources = dict(rerun_config_sources or {})
+    rerun_runs, rerun_verification = _load_verified_runs(
+        rerun_results_dir,
+        project_root,
+        None,
+        config_sources=rerun_config_sources,
+    )
+    if accept_colab_rewritten_server_version:
+        for item in rerun_verification:
+            constraints = dict(item.get("provider_constraints") or {})
+            constraints["server_version"] = None
+            constraints["server_version_status"] = "not_captured"
+            constraints["client_version"] = "0.40.5"
+            constraints["server_version_note"] = COLAB_REWRITTEN_VERSION_NOTE
+            item["provider_constraints"] = constraints
     targets = _load_targets(targets_path)
 
     allowed_rerun_configs = {target["config_path"] for target in targets}
     if any(item["config_path"] not in allowed_rerun_configs for item in rerun_verification):
         raise ValueError("rerun results include a config that is not listed in the target plan")
-    rerun_config_path = project_root / "configs/pilot_colab_t4_run2_rerun.yaml"
+    rerun_config_path = _project_path(
+        project_root,
+        rerun_config_sources.get(
+            "configs/pilot_colab_t4_run2_rerun.yaml",
+            "configs/pilot_colab_t4_run2_rerun.yaml",
+        ),
+    )
     _validate_rerun_config(project_root, base_config, rerun_config_path)
     for target in targets:
-        target_config = project_root / target["config_path"]
-        if target_config != base_config:
+        target_config = _project_path(
+            project_root,
+            rerun_config_sources.get(target["config_path"], target["config_path"]),
+        )
+        if load_config(target_config) != load_config(base_config):
             _validate_rerun_config(project_root, base_config, target_config)
 
     merged_runs, audit = merge_run2_rows(
         base_runs=base_runs,
         rerun_runs=rerun_runs,
         targets=targets,
+        accept_colab_rewritten_server_version=accept_colab_rewritten_server_version,
     )
     verification = base_verification + rerun_verification
     base_environment = _read_json(base_environment_path)
@@ -287,8 +394,20 @@ def analyze_with_reruns(
         rerun_digest = rerun_environment.get("model_digests", {}).get(model, {}).get("digest")
         if not run2_digest or item["model_digest"] != run2_digest or rerun_digest != run2_digest:
             raise ValueError(f"model digest does not match run 2 for {model}")
+    environment_config_sha = base_environment.get("config_sha256")
+    if environment_config_sha != recorded_config_sha:
+        raise ValueError(
+            "run-2 environment config_sha256 does not match the SHA recorded by its manifests: "
+            f"{environment_config_sha!r} != {recorded_config_sha!r}"
+        )
     audit["original_hardware"] = original_gpu
-    environment = {"run2": base_environment, "rerun": rerun_environment}
+    rerun_environment_for_report = dict(rerun_environment)
+    if accept_colab_rewritten_server_version:
+        rerun_environment_for_report["ollama_version"] = None
+        rerun_environment_for_report["ollama_version_status"] = "not_captured"
+        rerun_environment_for_report["ollama_client_version"] = "0.40.5"
+        rerun_environment_for_report["ollama_version_note"] = COLAB_REWRITTEN_VERSION_NOTE
+    environment = {"run2": base_environment, "rerun": rerun_environment_for_report}
     report = analyze_results(
         config_path=base_config,
         results_dir=base_results_dir,
@@ -325,7 +444,35 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--rerun-environment", required=True)
     parser.add_argument("--base-status", default="data/results/colab_t4/run2/run_status.json")
+    parser.add_argument(
+        "--rerun-config-source",
+        action="append",
+        default=[],
+        metavar="MANIFEST_CONFIG_PATH=FILE",
+        help=(
+            "Exact config snapshot bytes used to verify a rerun manifest. Repeat for each "
+            "manifest config path when the local checkout has different newline bytes."
+        ),
+    )
+    parser.add_argument(
+        "--accept-colab-rewritten-server-version",
+        action="store_true",
+        help=(
+            "Explicitly accept that rerun server-version fields were rewritten by Colab's "
+            "assistant. The audit records the server version as not captured and client 0.40.5."
+        ),
+    )
     args = parser.parse_args(argv)
+    config_sources = {}
+    for item in args.rerun_config_source:
+        manifest_path, separator, source_path = item.partition("=")
+        if not separator or not manifest_path or not source_path:
+            parser.error(
+                "--rerun-config-source must be MANIFEST_CONFIG_PATH=FILE"
+            )
+        if manifest_path in config_sources:
+            parser.error(f"duplicate --rerun-config-source for {manifest_path}")
+        config_sources[manifest_path] = source_path
     report = analyze_with_reruns(
         base_results_dir=args.base_results_dir,
         rerun_results_dir=args.rerun_results_dir,
@@ -336,6 +483,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         base_environment_path=args.base_environment,
         rerun_environment_path=args.rerun_environment,
         base_status_path=args.base_status,
+        rerun_config_sources=config_sources,
+        accept_colab_rewritten_server_version=args.accept_colab_rewritten_server_version,
     )
     audit = report["rerun_merge"]
     for item in audit["replaced_rows"]:

@@ -1,0 +1,2 @@
+# Keep downloaded rerun evidence byte-for-byte intact across Windows checkouts.
+data/results/colab_t4/run2_rerun_a100_raw/** -text

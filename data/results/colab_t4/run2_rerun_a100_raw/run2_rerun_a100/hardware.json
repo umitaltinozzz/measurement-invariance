@@ -1,0 +1,8 @@
+{
+  "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+  "colab_accelerator": "A100",
+  "ollama_version": "Warning: could not connect to a running Ollama instance\nWarning: client version is 0.40.5",
+  "ollama_context_length": 8192,
+  "ollama_max_loaded_models": 1,
+  "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models"
+}

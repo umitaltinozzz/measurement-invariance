@@ -1,0 +1,3440 @@
+{
+  "code_agent": [
+    {
+      "anti_patterns": {
+        "raw_summary_comparison": 1
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 2,
+        "value": 0.05
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma4:12b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 2,
+      "provenance_levels": {
+        "0": 22,
+        "2": 18
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 18,
+          "value": 0.45
+        }
+      }
+    },
+    {
+      "anti_patterns": {},
+      "code_syntax_error_rate": {
+        "denominator": 39,
+        "numerator": 21,
+        "value": 0.5384615384615384
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 8,
+          "value": 0.2
+        },
+        "valid_only": {
+          "denominator": 39,
+          "numerator": 8,
+          "value": 0.20512820512820512
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 1,
+        "value": 0.025
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 40,
+      "n_valid": 39,
+      "needs_human_review": 21,
+      "provenance_levels": {
+        "0": 31,
+        "2": 8
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 8,
+          "value": 0.2
+        },
+        "valid_only": {
+          "denominator": 39,
+          "numerator": 8,
+          "value": 0.20512820512820512
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 1,
+        "raw_summary_comparison": 1
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 1,
+      "provenance_levels": {
+        "0": 20,
+        "2": 20
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 20,
+          "value": 0.5
+        }
+      }
+    },
+    {
+      "anti_patterns": {
+        "raw_diff_on_reading": 1,
+        "raw_summary_comparison": 18
+      },
+      "code_syntax_error_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 40,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen3:14b",
+      "n_responses": 40,
+      "n_valid": 40,
+      "needs_human_review": 1,
+      "provenance_levels": {
+        "0": 21,
+        "2": 19
+      },
+      "provenance_retention_rate": {
+        "all_trials": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        },
+        "valid_only": {
+          "denominator": 40,
+          "numerator": 19,
+          "value": 0.475
+        }
+      }
+    }
+  ],
+  "competence": [
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 10,
+          "value": 0.6666666666666666
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 10,
+          "value": 0.6666666666666666
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gemma4:12b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 25,
+          "value": 0.8333333333333334
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 25,
+          "value": 0.8333333333333334
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.833 < 0.9",
+        "affine_inversion_accuracy=0.667 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 30,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 30,
+          "value": 1.0
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [],
+      "qualification_warnings": [],
+      "qualified": true,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 7,
+          "value": 0.4666666666666667
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 7,
+          "value": 0.4666666666666667
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 22,
+          "value": 0.7333333333333333
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 22,
+          "value": 0.7333333333333333
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.733 < 0.9",
+        "affine_inversion_accuracy=0.467 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "affine_inversion_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 11,
+          "value": 0.7333333333333333
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 11,
+          "value": 0.7333333333333333
+        }
+      },
+      "invalid_response_rate": {
+        "denominator": 30,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "model": "qwen3:14b",
+      "n_responses": 30,
+      "n_valid": 30,
+      "overall_competence_accuracy": {
+        "all_trials": {
+          "denominator": 30,
+          "numerator": 26,
+          "value": 0.8666666666666667
+        },
+        "valid_only": {
+          "denominator": 30,
+          "numerator": 26,
+          "value": 0.8666666666666667
+        }
+      },
+      "qualification_basis": "valid_only",
+      "qualification_failures": [
+        "overall_competence_accuracy=0.867 < 0.9",
+        "affine_inversion_accuracy=0.733 < 0.85"
+      ],
+      "qualification_warnings": [],
+      "qualified": false,
+      "reference_range_accuracy": {
+        "all_trials": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 15,
+          "numerator": 15,
+          "value": 1.0
+        }
+      }
+    }
+  ],
+  "config_path": "data\\results\\colab_t4\\run2\\configs\\pilot_colab_t4.yaml",
+  "config_sha256": "5ff7c990155cf9e06212c90c595584b78c4d663db2443246f4ca250317b8d6f6",
+  "continuation": {
+    "basis": "valid_only",
+    "criteria": {
+      "competence_overall_min": 0.9,
+      "competence_per_skill_min": 0.85,
+      "max_invalid_response_rate": 0.05,
+      "provenance_retention_trigger": 0.6,
+      "spurious_trend_rate_trigger": 0.25
+    },
+    "per_model": {
+      "gemma4:12b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.833 < 0.9",
+          "affine_inversion_accuracy=0.667 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "gemma4:12b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.45,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 1.0
+      },
+      "gpt-oss:20b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.025,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": true,
+        "competence_failures": [],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": true,
+        "eligible": true,
+        "model": "gpt-oss:20b",
+        "notes": [],
+        "provenance_retention_n": 39,
+        "provenance_retention_rate": 0.20512820512820512,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.6666666666666666
+      },
+      "mistral-small3.2:24b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.733 < 0.9",
+          "affine_inversion_accuracy=0.467 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "mistral-small3.2:24b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.5,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.8
+      },
+      "qwen3:14b": {
+        "basis": "valid_only",
+        "code_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 40,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "code_trigger": false,
+        "competence_failures": [
+          "overall_competence_accuracy=0.867 < 0.9",
+          "affine_inversion_accuracy=0.733 < 0.85"
+        ],
+        "direct_slice": {
+          "eligible": true,
+          "invalid_response_rate": 0.0,
+          "max_invalid_response_rate": 0.05,
+          "n_responses": 15,
+          "needs_structured_output_rerun": false,
+          "reason": null
+        },
+        "direct_trigger": false,
+        "eligible": false,
+        "model": "qwen3:14b",
+        "notes": [],
+        "provenance_retention_n": 40,
+        "provenance_retention_rate": 0.475,
+        "spurious_trend_n": 15,
+        "spurious_trend_rate": 0.0
+      }
+    },
+    "project_continue": true
+  },
+  "direct_cell_metrics": [
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 3,
+          "value": 0.12
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 25,
+          "value": 1.0
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      },
+      "model": "gemma4:12b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 4,
+          "value": 0.16
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 17,
+          "value": 0.68
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 19,
+          "value": 0.76
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "gpt-oss:20b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 1,
+        "value": 0.04
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 24,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 24,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 22,
+          "value": 0.88
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 2,
+          "value": 0.08
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 21,
+          "value": 0.84
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "mistral-small3.2:24b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 1,
+          "value": 0.04
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "guided",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 1,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 2,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "cell": 3,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    },
+    {
+      "cell": 4,
+      "invalid_response_rate": {
+        "denominator": 25,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "miss_rate": {
+        "all_trials": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "valid_only": {
+          "denominator": 25,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
+      "model": "qwen3:14b",
+      "n_responses": 25,
+      "n_valid": 25,
+      "prompt_variant": "natural",
+      "spurious_trend_rate": {
+        "all_trials": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "valid_only": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        }
+      }
+    }
+  ],
+  "environment": {
+    "rerun": {
+      "code_execution_enabled": false,
+      "colab_accelerator": "A100",
+      "digest_comparison_with_run2": {
+        "gemma4:12b": {
+          "matches_run2": true,
+          "rerun_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+          "run2_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b"
+        },
+        "gpt-oss:20b": {
+          "matches_run2": true,
+          "rerun_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+          "run2_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe"
+        }
+      },
+      "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+      "model_digests": {
+        "gemma4:12b": {
+          "capabilities": [
+            "completion",
+            "vision",
+            "audio",
+            "tools",
+            "thinking"
+          ],
+          "details": {
+            "context_length": 262144,
+            "embedding_length": 3840,
+            "families": [
+              "gemma4"
+            ],
+            "family": "gemma4",
+            "format": "gguf",
+            "parameter_size": "11.9B",
+            "parent_model": "imatrix-20260927-12b/model-q4_K_M.gguf",
+            "quantization_level": "Q4_K_M",
+            "runner": "llamacpp"
+          },
+          "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+          "model": "gemma4:12b",
+          "modified_at": "2026-10-16T16:10:19Z",
+          "name": "gemma4:12b",
+          "size": 8021618941
+        },
+        "gpt-oss:20b": {
+          "capabilities": [
+            "completion",
+            "tools",
+            "thinking"
+          ],
+          "details": {
+            "context_length": 131072,
+            "embedding_length": 2880,
+            "families": [
+              "gpt-oss"
+            ],
+            "family": "gpt-oss",
+            "format": "gguf",
+            "parameter_size": "20.9B",
+            "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+            "quantization_level": "MXFP4",
+            "runner": "llamacpp"
+          },
+          "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+          "model": "gpt-oss:20b",
+          "modified_at": "2026-10-16T16:25:08Z",
+          "name": "gpt-oss:20b",
+          "size": 13793441566
+        }
+      },
+      "model_tags": [
+        "gemma4:12b",
+        "gpt-oss:20b"
+      ],
+      "ollama_client_version": "0.40.5",
+      "ollama_context_length": 8192,
+      "ollama_host": "http://localhost:11434",
+      "ollama_max_loaded_models": 1,
+      "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+      "ollama_version": null,
+      "ollama_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+      "ollama_version_status": "not_captured",
+      "rerun_config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+      "results_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2_rerun_a100/results",
+      "run2_config_sha256": "02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b",
+      "run2_environment_path": "/content/measurement-invariance/data/results/colab_t4/run2/run_environment.json",
+      "started_at_utc": "2026-10-17T02:18:04.992951+00:00",
+      "targets_path": "/content/measurement-invariance/configs/run2_rerun_targets.json"
+    },
+    "run2": {
+      "code_execution_enabled": false,
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "gpu_nvidia_smi": "Tesla T4, 15360 MiB, 7.5",
+      "model_digests": {
+        "gemma4:12b": {
+          "capabilities": [
+            "completion",
+            "vision",
+            "audio",
+            "tools",
+            "thinking"
+          ],
+          "details": {
+            "context_length": 262144,
+            "embedding_length": 3840,
+            "families": [
+              "gemma4"
+            ],
+            "family": "gemma4",
+            "format": "gguf",
+            "parameter_size": "11.9B",
+            "parent_model": "imatrix-20260927-12b/model-q4_K_M.gguf",
+            "quantization_level": "Q4_K_M",
+            "runner": "llamacpp"
+          },
+          "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+          "model": "gemma4:12b",
+          "modified_at": "2026-10-16T16:10:19Z",
+          "name": "gemma4:12b",
+          "size": 8021618941
+        },
+        "gpt-oss:20b": {
+          "capabilities": [
+            "completion",
+            "tools",
+            "thinking"
+          ],
+          "details": {
+            "context_length": 131072,
+            "embedding_length": 2880,
+            "families": [
+              "gpt-oss"
+            ],
+            "family": "gpt-oss",
+            "format": "gguf",
+            "parameter_size": "20.9B",
+            "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+            "quantization_level": "MXFP4",
+            "runner": "llamacpp"
+          },
+          "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+          "model": "gpt-oss:20b",
+          "modified_at": "2026-10-16T16:25:08Z",
+          "name": "gpt-oss:20b",
+          "size": 13793441566
+        },
+        "mistral-small3.2:24b": {
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools"
+          ],
+          "details": {
+            "context_length": 131072,
+            "embedding_length": 5120,
+            "families": [
+              "mistral3"
+            ],
+            "family": "mistral3",
+            "format": "gguf",
+            "parameter_size": "24.0B",
+            "parent_model": "",
+            "quantization_level": "Q4_K_M",
+            "runner": "ggml"
+          },
+          "digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+          "model": "mistral-small3.2:24b",
+          "modified_at": "2026-10-16T16:17:22Z",
+          "name": "mistral-small3.2:24b",
+          "size": 15177384862
+        },
+        "qwen3:14b": {
+          "capabilities": [
+            "completion",
+            "tools",
+            "thinking"
+          ],
+          "details": {
+            "context_length": 40960,
+            "embedding_length": 5120,
+            "families": [
+              "qwen3"
+            ],
+            "family": "qwen3",
+            "format": "gguf",
+            "parameter_size": "14.8B",
+            "parent_model": "",
+            "quantization_level": "Q4_K_M",
+            "runner": "ggml"
+          },
+          "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+          "model": "qwen3:14b",
+          "modified_at": "2026-10-16T16:05:55Z",
+          "name": "qwen3:14b",
+          "size": 9276198565
+        }
+      },
+      "model_tags": [
+        "qwen3:14b",
+        "gemma4:12b",
+        "mistral-small3.2:24b",
+        "gpt-oss:20b"
+      ],
+      "ollama_context_length": 8192,
+      "ollama_max_loaded_models": 1,
+      "ollama_version": "ollama version is 0.40.5",
+      "project_package_sha256": "ae5855ca5127a0d6c759b5ad7df0cd355500b6ced43bb4be23b3f742d9edd14a",
+      "results_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results",
+      "started_at_utc": "2026-10-16T20:56:24.514206+00:00"
+    }
+  },
+  "manifest_verification": [
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:11:26.886061+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "686dc85e1be250e94a61331b9eafe449387334861b0c8a9bc399f3ac143fed78",
+      "hardware": null,
+      "manifest": "code_agent\\gemma4-12b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent\\gemma4-12b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-17T01:06:28.611924+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "38eeb721c28ef8627a3a73159cfabfe583a0f1eea9fdc2eaf4b388fb3d524135",
+      "hardware": null,
+      "manifest": "code_agent\\gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent\\gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:44:12.224889+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "3a5fb48b1da037fc76901ee8ac003f69c5da404864cf89d6adb480383fc243bd",
+      "hardware": null,
+      "manifest": "code_agent\\mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent\\mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:55:25.524555+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "49106ea470eefb3944c3920d3c446f156999345d1935409e0a7d9101cdf46c58",
+      "hardware": null,
+      "manifest": "code_agent\\qwen3-14b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 40,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "code_agent\\qwen3-14b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:31:09.624952+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "b3786f65c1f3d0aceb0fae8c12a5b2029812ca4ad56384191ae5b9c72c05dbad",
+      "hardware": null,
+      "manifest": "competence\\gemma4-12b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence\\gemma4-12b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:54:13.978991+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "be97aaa67f3a7f7c5f111cf9f7ce46c13ced865a97858e9acec5c4694624f829",
+      "hardware": null,
+      "manifest": "competence\\gpt-oss-20b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence\\gpt-oss-20b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:36:10.001959+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "a56f2331c5a26649cb43053a34707839c5756998a8c25083b76d26cd47c9c5bb",
+      "hardware": null,
+      "manifest": "competence\\mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence\\mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "competence",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T16:25:09.754803+00:00",
+      "dataset_path": "data/generated/competence_cases.jsonl",
+      "dataset_sha256": "7fdd5dcd2f8ebea11077ef2ede6816c66d4f4846f32ed14dc494445280157584",
+      "failed_rows": 0,
+      "fingerprint": "05748ad2f3baffd0e9ddf05dd53e014cb859e2d729afd4e1285f7bc1896f72e7",
+      "hardware": null,
+      "manifest": "competence\\qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 30,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "competence\\qwen3-14b__competence__7fdd5dcd2f8ebea1.jsonl",
+      "rows": 30,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T19:06:54.077335+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "d3fa39d6f9d148e1eb6bdac7e70b2a662f11ed7c91b0336ec459ae433fc95f2d",
+      "hardware": null,
+      "manifest": "direct_guided\\gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided\\gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:18:40.182104+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "9b8e9611bbe0a4aa4c7537e773427ffa2b3ff2d0dcf25f4e8b117631716d3efc",
+      "hardware": null,
+      "manifest": "direct_guided\\gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided\\gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T20:15:41.846172+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 1,
+      "fingerprint": "94213fbd116fb6fccbf7595727a3cb23137864031b97481f6ca086fda861449a",
+      "hardware": null,
+      "manifest": "direct_guided\\mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided\\mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:21:00.355602+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "e22c918b3e67c4ca2ab5256e30281905adaf584a6fcaa8168bf57624cc85700e",
+      "hardware": null,
+      "manifest": "direct_guided\\qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 100,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_guided\\qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:32:30.198678+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 28,
+      "fingerprint": "f83c018239496b1547fba6850b089d5c7e7bf19a21660d1a4d13cc42993a022f",
+      "hardware": null,
+      "manifest": "direct_natural\\gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural\\gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T21:55:10.113688+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "2eb3d81b3c1c4e9320022f48cd1a9bb803cc3ec5d4a51351494a8d33280d6428",
+      "hardware": null,
+      "manifest": "direct_natural\\gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural\\gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T19:20:40.802274+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "3ed6a09f87ac4b9901e4ab4e7e6e5a72d4ab10ad9dce503f35abf5a4706ae57c",
+      "hardware": null,
+      "manifest": "direct_natural\\mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural\\mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T17:08:29.837638+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "3dcec3fbc0db545a1ee0a385fe9074c79c57f46299cae57964c1fdd68aca9e11",
+      "hardware": null,
+      "manifest": "direct_natural\\qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 100,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "direct_natural\\qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 100,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:04:25.744004+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "4a87677bc96bee1b5e26f8a403f733548f2ba6de2b4d709add8626821d2b9632",
+      "hardware": null,
+      "manifest": "paired_direct_natural\\gemma4-12b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gemma4:12b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural\\gemma4-12b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-17T00:54:28.674162+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "3f4e722c58c9a1e19518a9eb4230108de0d9c697a87fb032488e9dabc38ebe9b",
+      "hardware": null,
+      "manifest": "paired_direct_natural\\gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "gpt-oss:20b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural\\gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T23:20:11.178827+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "57c0972adeba9db8eba324769890df7fc7753281df5cf3fe382f8fd197b82f76",
+      "hardware": null,
+      "manifest": "paired_direct_natural\\mistral-small3.2-24b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "mistral-small3.2:24b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "5a408ab55df5c1b5cf46533c368813b30bf9e4d8fc39263bf2a3338cfa3b895b",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural\\mistral-small3.2-24b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125",
+      "created_at": "2026-10-16T22:49:25.813396+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "373e56b82a68f7c624e99e7ee534f9d3faca1818241fb0f75a33c3ebf9922340",
+      "hardware": null,
+      "manifest": "paired_direct_natural\\qwen3-14b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": null,
+      "model": "qwen3:14b",
+      "planned": 40,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "server_version": "ollama version is 0.40.5"
+      },
+      "results": "paired_direct_natural\\qwen3-14b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 40,
+      "selected_case_ids": null
+    },
+    {
+      "arm": "code-agent",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+      "created_at": "2026-10-17T02:33:35.776878+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "67e2140a591b121a308cf2a8fbb71200ff5bdf5eb00ff973d9084d545ec56e7b",
+      "hardware": {
+        "colab_accelerator": "A100",
+        "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+        "ollama_version": "ollama version is 0.40.5"
+      },
+      "manifest": "code_agent\\gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+      "model": "gpt-oss:20b",
+      "planned": 5,
+      "prompt_variant": null,
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "client_version": "0.40.5",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": null,
+        "server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "server_version_status": "not_captured"
+      },
+      "results": "code_agent\\gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+      "rows": 5,
+      "selected_case_ids": [
+        "paired-c2-L1-009",
+        "paired-c2-L1-010",
+        "paired-c2-L1-018",
+        "paired-c3-L1-015",
+        "paired-c3-L1-016"
+      ]
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+      "created_at": "2026-10-17T02:25:41.500823+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "4c69b68c23e237dc5bd99f4ba5b7757b20b097c01d41ecd07a1f9d3359614506",
+      "hardware": {
+        "colab_accelerator": "A100",
+        "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+        "ollama_version": "ollama version is 0.40.5"
+      },
+      "manifest": "direct_guided\\gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+      "model": "gpt-oss:20b",
+      "planned": 21,
+      "prompt_variant": "guided",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "client_version": "0.40.5",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": null,
+        "server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "server_version_status": "not_captured"
+      },
+      "results": "direct_guided\\gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 21,
+      "selected_case_ids": [
+        "industrial_sensor-c2-L1-001",
+        "industrial_sensor-c2-L2-003",
+        "industrial_sensor-c2-L1-004",
+        "industrial_sensor-c2-L1-009",
+        "industrial_sensor-c2-L2-010",
+        "industrial_sensor-c2-L1-011",
+        "industrial_sensor-c2-L2-012",
+        "industrial_sensor-c2-L1-014",
+        "industrial_sensor-c2-L1-017",
+        "industrial_sensor-c2-L1-021",
+        "industrial_sensor-c2-L1-024",
+        "industrial_sensor-c3-L2-023",
+        "industrial_sensor-c4-L1-006",
+        "industrial_sensor-c4-L1-007",
+        "industrial_sensor-c4-L1-010",
+        "industrial_sensor-c4-L2-011",
+        "industrial_sensor-c4-L1-012",
+        "industrial_sensor-c4-L1-016",
+        "industrial_sensor-c4-L2-017",
+        "industrial_sensor-c4-L2-018",
+        "industrial_sensor-c4-L1-023"
+      ]
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2.yaml",
+      "config_sha256": "02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b",
+      "created_at": "2026-10-17T02:18:05.587636+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "eec2e966dcd046a517e4d78c0c3d8a59e981544d0453e19c25df0144243f8adb",
+      "hardware": {
+        "colab_accelerator": "A100",
+        "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+        "ollama_version": "ollama version is 0.40.5"
+      },
+      "manifest": "direct_natural\\gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+      "model": "gemma4:12b",
+      "planned": 28,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "client_version": "0.40.5",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "server_version": null,
+        "server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "server_version_status": "not_captured"
+      },
+      "results": "direct_natural\\gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 28,
+      "selected_case_ids": [
+        "industrial_sensor-c3-L2-022",
+        "industrial_sensor-c3-L2-023",
+        "industrial_sensor-c3-L1-024",
+        "industrial_sensor-c4-L1-000",
+        "industrial_sensor-c4-L2-001",
+        "industrial_sensor-c4-L2-002",
+        "industrial_sensor-c4-L1-003",
+        "industrial_sensor-c4-L1-004",
+        "industrial_sensor-c4-L1-005",
+        "industrial_sensor-c4-L1-006",
+        "industrial_sensor-c4-L1-007",
+        "industrial_sensor-c4-L1-008",
+        "industrial_sensor-c4-L1-009",
+        "industrial_sensor-c4-L1-010",
+        "industrial_sensor-c4-L2-011",
+        "industrial_sensor-c4-L1-012",
+        "industrial_sensor-c4-L2-013",
+        "industrial_sensor-c4-L2-014",
+        "industrial_sensor-c4-L2-015",
+        "industrial_sensor-c4-L1-016",
+        "industrial_sensor-c4-L2-017",
+        "industrial_sensor-c4-L2-018",
+        "industrial_sensor-c4-L1-019",
+        "industrial_sensor-c4-L2-020",
+        "industrial_sensor-c4-L1-021",
+        "industrial_sensor-c4-L1-022",
+        "industrial_sensor-c4-L1-023",
+        "industrial_sensor-c4-L2-024"
+      ]
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+      "created_at": "2026-10-17T02:35:29.936879+00:00",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "dataset_sha256": "9dcc74b88d04a0d9473bdc93fe7867113dc9ff94d21878bb77e8f86e9b2470a9",
+      "failed_rows": 0,
+      "fingerprint": "5b66b639939d4417b061467e69416183d09906511b668d1df002398922f9fdee",
+      "hardware": {
+        "colab_accelerator": "A100",
+        "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+        "ollama_version": "ollama version is 0.40.5"
+      },
+      "manifest": "direct_natural\\gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+      "manifest_git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+      "model": "gpt-oss:20b",
+      "planned": 4,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "client_version": "0.40.5",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": null,
+        "server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "server_version_status": "not_captured"
+      },
+      "results": "direct_natural\\gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+      "rows": 4,
+      "selected_case_ids": [
+        "industrial_sensor-c4-L1-006",
+        "industrial_sensor-c4-L1-007",
+        "industrial_sensor-c4-L1-016",
+        "industrial_sensor-c4-L1-023"
+      ]
+    },
+    {
+      "arm": "direct",
+      "complete": true,
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+      "created_at": "2026-10-17T02:35:53.965606+00:00",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "dataset_sha256": "7ca1c7468b5690f4841c36d6276b3dd2576a25abf57425dca7fcff05c2b51f52",
+      "failed_rows": 0,
+      "fingerprint": "58028952f20073e5a32c9c062d602c54d906594dd137cdcea5984553db1720ab",
+      "hardware": {
+        "colab_accelerator": "A100",
+        "gpu_nvidia_smi": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_models_directory": "/content/drive/MyDrive/measurement_invariance_colab_t4/ollama_models",
+        "ollama_version": "ollama version is 0.40.5"
+      },
+      "manifest": "paired_direct_natural\\gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+      "manifest_git_commit": "8c703f8715241a54f22aa87caf360673e90595c4",
+      "model": "gpt-oss:20b",
+      "planned": 1,
+      "prompt_variant": "natural",
+      "provider": "ollama",
+      "provider_constraints": {
+        "authentication": "none",
+        "base_url": "http://localhost:11434",
+        "client_version": "0.40.5",
+        "context_length": 8192,
+        "max_loaded_models": 1,
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "server_version": null,
+        "server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "server_version_status": "not_captured"
+      },
+      "results": "paired_direct_natural\\gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+      "rows": 1,
+      "selected_case_ids": [
+        "paired-c2-L1-016"
+      ]
+    }
+  ],
+  "paired_metrics": [
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 28,
+        "value": 0.7
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 28,
+        "numerator": 8,
+        "value": 0.2857142857142857
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 20,
+        "value": 0.5
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 18,
+        "value": 0.45
+      },
+      "model": "gemma4:12b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 20,
+        "both_wrong": 12,
+        "code_only_correct": 8
+      },
+      "provenance_deployment_gap": {
+        "denominator": 20,
+        "numerator": 20,
+        "value": 1.0
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 2,
+        "value": 0.1
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 8,
+        "value": 0.4
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 33,
+        "value": 0.825
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 33,
+        "numerator": 9,
+        "value": 0.2727272727272727
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 26,
+        "value": 0.65
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 26,
+        "numerator": 2,
+        "value": 0.07692307692307693
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 8,
+        "value": 0.2
+      },
+      "model": "gpt-oss:20b",
+      "n_code_invalid": 1,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 24,
+        "both_wrong": 5,
+        "code_only_correct": 9,
+        "direct_only_correct": 2
+      },
+      "provenance_deployment_gap": {
+        "denominator": 26,
+        "numerator": 23,
+        "value": 0.8846153846153846
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 2,
+        "value": 0.1
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 4,
+        "value": 0.2
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 24,
+        "value": 0.6
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 24,
+        "numerator": 4,
+        "value": 0.16666666666666666
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 23,
+        "value": 0.575
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 23,
+        "numerator": 3,
+        "value": 0.13043478260869565
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 20,
+        "value": 0.5
+      },
+      "model": "mistral-small3.2:24b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 20,
+        "both_wrong": 13,
+        "code_only_correct": 4,
+        "direct_only_correct": 3
+      },
+      "provenance_deployment_gap": {
+        "denominator": 23,
+        "numerator": 20,
+        "value": 0.8695652173913043
+      }
+    },
+    {
+      "cell2_direct_correct_code_spurious": {
+        "denominator": 20,
+        "numerator": 20,
+        "value": 1.0
+      },
+      "cell2_direct_spurious_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "cell3_direct_correct_code_miss": {
+        "denominator": 20,
+        "numerator": 1,
+        "value": 0.05
+      },
+      "cell3_direct_miss_code_correct": {
+        "denominator": 20,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "code_accuracy": {
+        "denominator": 40,
+        "numerator": 6,
+        "value": 0.15
+      },
+      "code_to_direct_failure_rate": {
+        "denominator": 6,
+        "numerator": 3,
+        "value": 0.5
+      },
+      "direct_accuracy": {
+        "denominator": 40,
+        "numerator": 30,
+        "value": 0.75
+      },
+      "direct_to_code_failure_rate": {
+        "denominator": 30,
+        "numerator": 27,
+        "value": 0.9
+      },
+      "effective_provenance_use_rate": {
+        "denominator": 40,
+        "numerator": 19,
+        "value": 0.475
+      },
+      "model": "qwen3:14b",
+      "n_code_invalid": 0,
+      "n_direct_invalid": 0,
+      "n_pairs": 40,
+      "n_unpaired_code": 0,
+      "n_unpaired_direct": 0,
+      "outcome_counts": {
+        "both_correct": 3,
+        "both_wrong": 7,
+        "code_only_correct": 3,
+        "direct_only_correct": 27
+      },
+      "provenance_deployment_gap": {
+        "denominator": 30,
+        "numerator": 11,
+        "value": 0.36666666666666664
+      }
+    }
+  ],
+  "rerun_merge": {
+    "changed_caps": {
+      "code_agent_max_tokens": {
+        "rerun": 16000,
+        "run2": 4000
+      },
+      "direct_max_tokens": {
+        "rerun": 4096,
+        "run2": 1024
+      }
+    },
+    "diagnosis_discrepancy": "ID validation found two additional gpt-oss direct-guided token-capped rows beyond the original 19-row diagnosis, including industrial_sensor-c3-L2-023; both are included in the 21-row replacement plan.",
+    "method": "replace_exact_case_ids",
+    "metric_definitions_changed": false,
+    "original_hardware": "Tesla T4, 15360 MiB, 7.5",
+    "replaced_rows": [
+      {
+        "arm": "direct",
+        "case_ids": [
+          "industrial_sensor-c3-L2-022",
+          "industrial_sensor-c3-L2-023",
+          "industrial_sensor-c3-L1-024",
+          "industrial_sensor-c4-L1-000",
+          "industrial_sensor-c4-L1-003",
+          "industrial_sensor-c4-L1-004",
+          "industrial_sensor-c4-L1-005",
+          "industrial_sensor-c4-L1-006",
+          "industrial_sensor-c4-L1-007",
+          "industrial_sensor-c4-L1-008",
+          "industrial_sensor-c4-L1-009",
+          "industrial_sensor-c4-L1-010",
+          "industrial_sensor-c4-L1-012",
+          "industrial_sensor-c4-L1-016",
+          "industrial_sensor-c4-L1-019",
+          "industrial_sensor-c4-L1-021",
+          "industrial_sensor-c4-L1-022",
+          "industrial_sensor-c4-L1-023",
+          "industrial_sensor-c4-L2-001",
+          "industrial_sensor-c4-L2-002",
+          "industrial_sensor-c4-L2-011",
+          "industrial_sensor-c4-L2-013",
+          "industrial_sensor-c4-L2-014",
+          "industrial_sensor-c4-L2-015",
+          "industrial_sensor-c4-L2-017",
+          "industrial_sensor-c4-L2-018",
+          "industrial_sensor-c4-L2-020",
+          "industrial_sensor-c4-L2-024"
+        ],
+        "config_path": "configs/pilot_colab_t4_run2.yaml",
+        "config_sha256": "02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b",
+        "count": 28,
+        "dataset": "pilot",
+        "hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "model": "gemma4:12b",
+        "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+        "ollama_client_version": "0.40.5",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_server_version": null,
+        "ollama_server_version_accepted_by_explicit_flag": true,
+        "ollama_server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "ollama_server_version_status": "not_captured",
+        "reason": "Run 2 Ollama HTTP 404 provider failures; unchanged settings",
+        "rerun_max_tokens": 1024,
+        "rerun_run_id": "34b950e0f4324681",
+        "run2_max_tokens": 1024,
+        "run2_run_id": "3b8895d2cca04d79",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "case_ids": [
+          "industrial_sensor-c2-L1-001",
+          "industrial_sensor-c2-L2-003",
+          "industrial_sensor-c2-L1-004",
+          "industrial_sensor-c2-L1-009",
+          "industrial_sensor-c2-L2-010",
+          "industrial_sensor-c2-L1-011",
+          "industrial_sensor-c2-L2-012",
+          "industrial_sensor-c2-L1-014",
+          "industrial_sensor-c2-L1-017",
+          "industrial_sensor-c2-L1-021",
+          "industrial_sensor-c2-L1-024",
+          "industrial_sensor-c3-L2-023",
+          "industrial_sensor-c4-L1-006",
+          "industrial_sensor-c4-L1-007",
+          "industrial_sensor-c4-L1-010",
+          "industrial_sensor-c4-L2-011",
+          "industrial_sensor-c4-L1-012",
+          "industrial_sensor-c4-L1-016",
+          "industrial_sensor-c4-L2-017",
+          "industrial_sensor-c4-L2-018",
+          "industrial_sensor-c4-L1-023"
+        ],
+        "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+        "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+        "count": 21,
+        "dataset": "pilot",
+        "hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "model": "gpt-oss:20b",
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "ollama_client_version": "0.40.5",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_server_version": null,
+        "ollama_server_version_accepted_by_explicit_flag": true,
+        "ollama_server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "ollama_server_version_status": "not_captured",
+        "reason": "Run 2 direct-guided completions reached the 1024-token cap",
+        "rerun_max_tokens": 4096,
+        "rerun_run_id": "dc362a401d0742c3",
+        "run2_max_tokens": 1024,
+        "run2_run_id": "41c22eb2a80d4a48",
+        "variant": "guided"
+      },
+      {
+        "arm": "code-agent",
+        "case_ids": [
+          "paired-c2-L1-009",
+          "paired-c2-L1-010",
+          "paired-c2-L1-018",
+          "paired-c3-L1-015",
+          "paired-c3-L1-016"
+        ],
+        "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+        "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+        "count": 5,
+        "dataset": "paired",
+        "hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "model": "gpt-oss:20b",
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "ollama_client_version": "0.40.5",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_server_version": null,
+        "ollama_server_version_accepted_by_explicit_flag": true,
+        "ollama_server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "ollama_server_version_status": "not_captured",
+        "reason": "Run 2 code-agent completions reached the 4000-token cap",
+        "rerun_max_tokens": 16000,
+        "rerun_run_id": "8fdda5952847459b",
+        "run2_max_tokens": 4000,
+        "run2_run_id": "5a08d7d1d9404349",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "case_ids": [
+          "industrial_sensor-c4-L1-006",
+          "industrial_sensor-c4-L1-007",
+          "industrial_sensor-c4-L1-016",
+          "industrial_sensor-c4-L1-023"
+        ],
+        "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+        "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+        "count": 4,
+        "dataset": "pilot",
+        "hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "model": "gpt-oss:20b",
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "ollama_client_version": "0.40.5",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_server_version": null,
+        "ollama_server_version_accepted_by_explicit_flag": true,
+        "ollama_server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "ollama_server_version_status": "not_captured",
+        "reason": "Run 2 direct-natural completions reached the 1024-token cap",
+        "rerun_max_tokens": 4096,
+        "rerun_run_id": "63425d921d854391",
+        "run2_max_tokens": 1024,
+        "run2_run_id": "0b9c2c837d374db2",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "case_ids": [
+          "paired-c2-L1-016"
+        ],
+        "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+        "config_sha256": "2ed178191002c0aae1e0ea1c31e9a0b246432c18dd0bcdd355efdb0010bd6dd6",
+        "count": 1,
+        "dataset": "paired",
+        "hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+        "model": "gpt-oss:20b",
+        "model_digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe",
+        "ollama_client_version": "0.40.5",
+        "ollama_context_length": 8192,
+        "ollama_max_loaded_models": 1,
+        "ollama_server_version": null,
+        "ollama_server_version_accepted_by_explicit_flag": true,
+        "ollama_server_version_note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+        "ollama_server_version_status": "not_captured",
+        "reason": "Run 2 paired direct-natural completion reached the 1024-token cap",
+        "rerun_max_tokens": 4096,
+        "rerun_run_id": "ff9a18e29d3743b0",
+        "run2_max_tokens": 1024,
+        "run2_run_id": "61e7f01cf84b44b8",
+        "variant": "natural"
+      }
+    ],
+    "rerun_hardware": "NVIDIA A100-SXM4-40GB, 40960 MiB, 8.0",
+    "rerun_server_version": {
+      "accepted_by_explicit_flag": true,
+      "client_version": "0.40.5",
+      "note": "server version not captured; client 0.40.5; field rewritten by Colab assistant",
+      "status": "not_captured"
+    },
+    "thresholds_or_gates_changed": false,
+    "unmodified_run2_rows": "Every run-2 row outside the listed case IDs is retained unchanged."
+  },
+  "results_dir": "C:\\Users\\Umit Altinoz\\Desktop\\makale\\measurement-invariance\\data\\results\\colab_t4\\run2\\data\\results\\colab_t4\\results",
+  "run_status": {
+    "code_agent_arm": {
+      "reason": "execution_enabled is false; generated code was not executed",
+      "status": "ran_static_only"
+    },
+    "runs": [
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/qwen3-14b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gemma4-12b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/mistral-small3.2-24b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "competence",
+        "dataset": "competence",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 30,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/competence/gpt-oss-20b__competence__7fdd5dcd2f8ebea1.jsonl",
+        "result_rows": 30,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/qwen3-14b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gemma4-12b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/mistral-small3.2-24b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_natural/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "direct",
+        "dataset": "pilot",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 100,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/direct_guided/gpt-oss-20b__direct__9dcc74b88d04a0d9.jsonl",
+        "result_rows": 100,
+        "status": "complete",
+        "variant": "guided"
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/qwen3-14b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "qwen3:14b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/qwen3-14b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gemma4-12b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "gemma4:12b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gemma4-12b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/mistral-small3.2-24b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "mistral-small3.2:24b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/mistral-small3.2-24b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      },
+      {
+        "arm": "direct",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/paired_direct_natural/gpt-oss-20b__direct__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": "natural"
+      },
+      {
+        "arm": "code-agent",
+        "dataset": "paired",
+        "manifest_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.manifest.json",
+        "model": "gpt-oss:20b",
+        "planned": 40,
+        "result_path": "/content/drive/MyDrive/measurement_invariance_colab_t4/run2/results/code_agent/gpt-oss-20b__code-agent__7ca1c7468b5690f4.jsonl",
+        "result_rows": 40,
+        "status": "complete",
+        "variant": null
+      }
+    ]
+  }
+}

@@ -124,6 +124,7 @@ class OllamaProvider(OpenAICompatibleProvider):
             constraints["max_loaded_models"] = int(max_loaded_models)
         for env_name, field_name in (
             ("OLLAMA_SERVER_VERSION", "server_version"),
+            ("OLLAMA_SERVER_VERSION_SOURCE", "server_version_source"),
             ("OLLAMA_MODEL_DIGEST", "model_digest"),
         ):
             value = os.environ.get(env_name)

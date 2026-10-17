@@ -1,0 +1,4 @@
+industrial_sensor-c4-L1-006
+industrial_sensor-c4-L1-007
+industrial_sensor-c4-L1-016
+industrial_sensor-c4-L1-023

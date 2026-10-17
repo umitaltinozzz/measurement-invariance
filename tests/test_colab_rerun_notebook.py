@@ -27,7 +27,23 @@ def test_a100_notebook_runs_exact_targets_and_keeps_outputs_isolated():
     assert "--only-case-ids" in text
     assert "--hardware-json" in text
     assert "OLLAMA_VERSION_PIN = '0.40.5'" in text
+    assert "http://localhost:11434/api/version" in text
+    assert "OLLAMA_VERSION = subprocess.run" not in text
+    assert "ollama', '--version'" not in text
+    assert "ollama_version_source" in text
     assert "matches_run2" in text
     assert "analysis_with_reruns" in text
     assert "--rerun-results-dir" in text
     assert "Runtime → Change runtime type → A100 GPU" in text
+
+
+def test_rerun_notebook_reads_server_version_only_after_readiness_check():
+    notebook = json.loads(Path("colab/run2_rerun_a100.ipynb").read_text(encoding="utf-8"))
+    text = "\n".join("".join(cell["source"]) for cell in notebook["cells"])
+    ready = text.index("http://localhost:11434/api/tags")
+    version = text.index("http://localhost:11434/api/version")
+    source_marker = text.index("OLLAMA_VERSION_SOURCE = 'GET /api/version after server readiness'")
+    save_metadata = text.index("'ollama_version_source': OLLAMA_VERSION_SOURCE")
+    assert ready < version < source_marker < save_metadata
+    assert "if OLLAMA_API_VERSION != OLLAMA_VERSION_PIN" in text
+    assert "the server version cannot be verified" in text

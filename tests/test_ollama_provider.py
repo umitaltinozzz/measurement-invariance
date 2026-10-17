@@ -29,6 +29,7 @@ def test_inference_settings_are_exposed_for_the_manifest(monkeypatch):
     monkeypatch.setenv("OLLAMA_CONTEXT_LENGTH", "8192")
     monkeypatch.setenv("OLLAMA_MAX_LOADED_MODELS", "1")
     monkeypatch.setenv("OLLAMA_SERVER_VERSION", "ollama-local")
+    monkeypatch.setenv("OLLAMA_SERVER_VERSION_SOURCE", "GET /api/version after server readiness")
     monkeypatch.setenv("OLLAMA_MODEL_DIGEST", "sha256:abc")
     provider = OllamaProvider()
     assert provider.routing_constraints == {
@@ -37,6 +38,7 @@ def test_inference_settings_are_exposed_for_the_manifest(monkeypatch):
         "context_length": 8192,
         "max_loaded_models": 1,
         "server_version": "ollama-local",
+        "server_version_source": "GET /api/version after server readiness",
         "model_digest": "sha256:abc",
     }
 
