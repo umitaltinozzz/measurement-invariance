@@ -357,6 +357,16 @@ class TestManifest:
             assert getattr(m, field) is not None
         assert "python" in m.package_versions
 
+    def test_manifest_records_hardware_and_exact_case_selection(self, tmp_path, cfg):
+        m = manifest_for(
+            tmp_path,
+            cfg,
+            hardware={"gpu_nvidia_smi": "NVIDIA A100 40GB"},
+            selected_case_ids=["case-a", "case-b"],
+        )
+        assert m.hardware == {"gpu_nvidia_smi": "NVIDIA A100 40GB"}
+        assert m.selected_case_ids == ["case-a", "case-b"]
+
     def test_git_commit_is_none_rather_than_a_placeholder_outside_a_repo(self, tmp_path, cfg):
         m = manifest_for(tmp_path, cfg, repo_root=tmp_path)
         assert m.git_commit is None or len(m.git_commit) == 40

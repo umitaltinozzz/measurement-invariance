@@ -21,7 +21,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -124,6 +124,9 @@ class RunManifest(BaseModel):
 
     #: Provider-specific pins such as a local model digest or gateway route.
     provider_constraints: Dict[str, Any] = Field(default_factory=dict)
+    #: Runtime hardware and explicit subset selection, when applicable.
+    hardware: Optional[Dict[str, Any]] = None
+    selected_case_ids: Optional[List[str]] = None
 
     git_commit: Optional[str] = None
     git_dirty: Optional[bool] = None
@@ -170,6 +173,8 @@ def build_manifest(
     competence_dataset_path: str | Path | None = None,
     requested_model_id: Optional[str] = None,
     provider_constraints: Optional[Dict[str, Any]] = None,
+    hardware: Optional[Dict[str, Any]] = None,
+    selected_case_ids: Optional[List[str]] = None,
     repo_root: str | Path | None = None,
     now: Optional[datetime] = None,
 ) -> RunManifest:
@@ -193,6 +198,8 @@ def build_manifest(
         structured_output=structured_output,
         max_transport_retries=max_transport_retries,
         provider_constraints=dict(provider_constraints or {}),
+        hardware=dict(hardware) if hardware is not None else None,
+        selected_case_ids=list(selected_case_ids) if selected_case_ids is not None else None,
         git_commit=git_commit_hash(repo_root),
         git_dirty=git_is_dirty(repo_root),
         package_versions=package_versions(),

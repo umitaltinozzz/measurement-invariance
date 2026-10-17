@@ -1,0 +1,146 @@
+# Run 2 model tags (all Ollama library defaults): qwen3:14b, gemma4:12b,
+# mistral-small3.2:24b, gpt-oss:20b (Alibaba, Google, Mistral, OpenAI).
+# Qwen3.8:27b omitted: every Ollama tag quantization is >=18GB (15GB T4 VRAM).
+# Mistral Small 3.2 is listed at 15GB and may partially offload to CPU; accepted.
+# OLLAMA_MAX_LOADED_MODELS=1 ensures models are loaded sequentially.
+# Colab T4 pilot; mirrors pilot.yaml with Ollama JSON-schema decoding enabled.
+# Pilot configuration for #108b -- Measurement-Function Invariance.
+# Same file + same master_seed => byte-identical dataset.
+
+master_seed: 20260824
+domain: industrial_sensor
+
+# 4 cells x 25 = 100 cases (proje.md section 9).
+n_per_cell: 25
+
+# "Hard" variant per proje.md section 9: 30 timesteps, ~5% noise, mid-series switch.
+n_timesteps: 30
+noise_level: 0.05
+switch_min_frac: 0.30
+switch_max_frac: 0.70
+
+# L1 is the primary experimental level; L2 is the embedded-provenance probe.
+# L0 and L3 are deliberately not generated in the pilot.
+# Must sum to n_per_cell.
+salience_weights:
+  L1: 15
+  L2: 10
+
+# Latent temperature level, in physical units.
+latent_base_range: [40.0, 60.0]
+
+# Relative size of a *real* latent change (cells 3 and 4).
+# Lower bound must exceed noise_level or cell 3/4 would be unanswerable.
+latent_rel_delta_range: [0.15, 0.40]
+
+# Measurement-function catalogue. Direction is applied by using g or 1/g, so all
+# entries are > 1. The full-benchmark magnitude sweep in proje.md section 13 also
+# lists 1.05 and 10.0; both are excluded from the pilot on purpose:
+#   1.05 -- the induced shift sits at the noise floor, so a "miss" would be
+#           unidentifiable from noise rather than from a reasoning failure;
+#   10.0 -- physically absurd for this domain, so it is solvable by plausibility
+#           alone and measures something other than provenance use.
+# Re-introduce both at the full-benchmark stage, as a separate magnitude arm.
+measurement_gains: [1.2, 2.0]
+
+# Offsets are deliberately small relative to the gain effect. Every point of the
+# direction x gain x offset grid must clear min_observed_shift_ratio at every
+# latent level in latent_base_range, in the right direction -- see
+# PilotConfig._measurement_grid_is_feasible_everywhere. That feasibility is what
+# lets the generator assign the grid round-robin instead of sampling-and-
+# rejecting, which is what previously correlated offset with direction.
+# (+-5.0 is NOT feasible here: a downward gain of 1/1.2 with a +5 offset only
+# shifts the readings by -9.2% at x=40, under the 10% floor.)
+measurement_offsets: [-2.0, 0.0, 2.0]
+
+# The measurement intervention must be visible well above the noise floor,
+# otherwise cell 2 is unfalsifiable rather than hard.
+min_observed_shift_ratio: 0.10
+
+# Pre-registered pilot kill/continue thresholds (proje.md section 10). Kept as
+# data, never as hardcoded numbers: fixed before the pilot runs. Do not edit
+# after the pilot has started.
+#
+#   eligible model = competence qualified
+#
+#   direct trigger = eligible
+#                    AND invalid_response_rate <= max_invalid_response_rate
+#                    AND L1 cell-2 natural-prompt VALID-ONLY Spurious Trend Rate
+#                        >= spurious_trend_rate_trigger
+#
+#   code trigger   = eligible
+#                    AND code-agent Provenance Retention Rate
+#                        <= provenance_retention_trigger
+#
+#   project_continue = direct_trigger OR code_trigger
+#
+# The behavioural metrics are read on the VALID-ONLY basis: they describe what
+# the model does when it answers. all_trials is still computed and reported, but
+# a slice whose invalid_response_rate exceeds max_invalid_response_rate is not
+# eligible for the decision at all -- it is re-run once with structured output
+# instead of being scored through a diluted denominator.
+continuation_criteria:
+  competence_overall_min: 0.90
+  competence_per_skill_min: 0.85
+  max_invalid_response_rate: 0.05
+  spurious_trend_rate_trigger: 0.25
+  provenance_retention_trigger: 0.60
+
+# Mandatory competence pre-test (proje.md section 7). A model that fails this is
+# not "competence-qualified", and its L1 invariance results cannot be read as a
+# measurement-invariance failure -- they may be a plain capability failure.
+#
+# per_skill_min is 0.85, not 0.80. At 0.80 the per-skill floor could never bind:
+# with a 15/15 split, overall >= 0.90 allows at most 3 errors, and 3 errors
+# concentrated in one skill give exactly 12/15 = 0.80, which passes. 0.85 rejects
+# that concentration while still allowing 3 errors spread across both skills.
+#
+# Both values must equal their continuation_criteria counterparts; the config
+# validator enforces that so they cannot drift apart.
+#
+# max_invalid_response_rate is part of the qualification rule, not a warning.
+# Accuracies are read on the valid-only basis, so without it a model that
+# answered three questions perfectly and garbled the rest would clear a gate it
+# had barely been measured against. At 30 trials: 0 invalid = 0%, 1 invalid =
+# 3.33% (both pass); 2 invalid = 6.67% and fails on that ground alone.
+competence:
+  overall_min: 0.90
+  per_skill_min: 0.85
+  max_invalid_response_rate: 0.05
+  cases_per_model: 30
+
+# The PAIRED dataset: the same 40 cases answered by BOTH the direct-natural arm
+# and the code-agent arm, under the same case_id and with identical numbers and
+# provenance. Only the presentation differs (records in a prompt vs a CSV).
+#
+# proje.md section 8's prose-vs-code dissociation is a within-case claim. Run on
+# two different case sets it is confounded with whatever differs between them,
+# so the two arms must share cases and be joined per case_id.
+paired:
+  cells: [2, 3]
+  salience_level: L1
+  cases_per_cell: 20
+  case_id_prefix: paired
+
+# Code-agent arm settings. Its cases come from `paired` above.
+code_agent:
+  provenance_columns: [sensor_version, calibration_version, reference_range]
+  # Executing model-written code is off unless explicitly enabled; see
+  # src/sandbox.py for why the local sandbox is not a security boundary.
+  execution_enabled: false
+  execution_timeout_seconds: 20
+
+# Model runner defaults. Recorded in every run manifest, because results are not
+# interpretable without them.
+runner:
+  temperature: 0.0
+  # Selected gpt-oss direct-guided reruns use this larger output cap.
+  max_tokens: 4096
+  # Selected gpt-oss code-agent reruns use this larger output cap.
+  max_tokens_code_agent: 16000
+  seed: 20260824
+  structured_output: true
+  max_transport_retries: 4
+  backoff_initial_seconds: 1.0
+  backoff_multiplier: 2.0
+  backoff_max_seconds: 30.0

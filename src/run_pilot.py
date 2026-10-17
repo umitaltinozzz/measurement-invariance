@@ -19,8 +19,9 @@ backend is a registration in ``src/models/registry.py`` and changes nothing here
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, List, Optional, Sequence, TypeVar
 
 from .code_agent import build_code_agent_task
 from .competence_prompts import build_competence_prompt
@@ -44,6 +45,30 @@ DATASETS = {
     "paired": PAIRED_PATH,
     "competence": "data/generated/competence_cases.jsonl",
 }
+
+CaseT = TypeVar("CaseT", bound=BenchmarkCase)
+
+
+def read_case_ids(path: str | Path) -> List[str]:
+    """Read a non-empty, unique, one-case-id-per-line selection file."""
+    ids = [line.strip() for line in Path(path).read_text(encoding="utf-8").splitlines()]
+    ids = [case_id for case_id in ids if case_id]
+    if not ids:
+        raise ValueError(f"case selection file is empty: {path}")
+    duplicates = sorted({case_id for case_id in ids if ids.count(case_id) > 1})
+    if duplicates:
+        raise ValueError(f"duplicate case ids in {path}: {duplicates}")
+    return ids
+
+
+def filter_cases_by_id(cases: Sequence[CaseT], selected_ids: Sequence[str]) -> List[CaseT]:
+    """Select exactly the requested cases in frozen dataset order."""
+    wanted = set(selected_ids)
+    available = {case.case_id for case in cases}
+    missing = sorted(wanted - available)
+    if missing:
+        raise ValueError(f"case ids are not present in the dataset: {missing}")
+    return [case for case in cases if case.case_id in wanted]
 
 #: Which arms may be run against which dataset.
 ARMS_BY_DATASET = {
@@ -205,13 +230,42 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--results-dir", default="data/results")
     parser.add_argument("--no-resume", action="store_true")
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument(
+        "--only-case-ids",
+        default=None,
+        help="UTF-8 text file containing one case id per line; runs only those cases",
+    )
+    parser.add_argument(
+        "--hardware-json",
+        default=None,
+        help="JSON file with runtime hardware metadata to record in the manifest",
+    )
     parser.add_argument("--only", default=None, help="pin an upstream provider slug")
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
     cases, dataset_path = load_dataset(args.dataset, args.dataset_path)
-    if args.limit:
+    if args.limit is not None and args.only_case_ids:
+        parser.error("--limit cannot be combined with --only-case-ids")
+    selected_case_ids = None
+    if args.only_case_ids:
+        selected_case_ids = read_case_ids(args.only_case_ids)
+        cases = filter_cases_by_id(cases, selected_case_ids)
+        # Persist the order actually sent to the runner (dataset order).
+        selected_case_ids = [case.case_id for case in cases]
+    if args.limit is not None:
+        if args.limit < 1:
+            parser.error("--limit must be positive")
         cases = cases[: args.limit]
+
+    hardware = None
+    if args.hardware_json:
+        try:
+            hardware = json.loads(Path(args.hardware_json).read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            parser.error(f"could not read --hardware-json {args.hardware_json}: {exc}")
+        if not isinstance(hardware, dict):
+            parser.error("--hardware-json must contain a JSON object")
 
     if args.provider == "replay":
         if not args.recordings:
@@ -262,6 +316,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         structured_output=cfg.runner.structured_output,
         max_transport_retries=cfg.runner.max_transport_retries,
         provider_constraints=getattr(provider, "routing_constraints", {}),
+        hardware=hardware,
+        selected_case_ids=selected_case_ids,
     )
     runner = Runner(provider, cfg.runner)
     _, summary = runner.run(
