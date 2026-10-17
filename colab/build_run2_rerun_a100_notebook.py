@@ -30,7 +30,7 @@ cells = [
         r"""
         # Run-2 repairs on a Colab A100
 
-        This notebook re-runs only the 52 cases listed in `configs/run2_rerun_targets.json`: 28 `gemma4:12b` direct-natural provider failures, 19 `gpt-oss:20b` direct-guided token-capped cases, and 5 `gpt-oss:20b` code-agent token-capped cases. Gemma uses the exact run-2 config. The two gpt-oss arms use the run-2 config with only `max_tokens=4096` and `max_tokens_code_agent=16000`.
+        This notebook re-runs only the 59 cases listed in `configs/run2_rerun_targets.json`: 28 `gemma4:12b` direct-natural provider failures, 21 `gpt-oss:20b` direct-guided token-capped cases, 4 `gpt-oss:20b` direct-natural token-capped cases, 1 `gpt-oss:20b` paired direct-natural token-capped case, and 5 `gpt-oss:20b` code-agent token-capped cases. Gemma uses the exact run-2 config. The two gpt-oss arms use the run-2 config with only `max_tokens=4096` and `max_tokens_code_agent=16000`.
 
         Select **Runtime → Change runtime type → A100 GPU**, then **Run all**. The notebook clones the public GitHub `main` branch and installs requirements from PyPI; GitHub and PyPI are reachable from Colab. Google Drive must mount successfully before any work starts. Ollama 0.40.5 uses context length 8192 and one loaded model, and its model cache is stored at `MyDrive/measurement_invariance_colab_t4/ollama_models`.
 
@@ -107,14 +107,15 @@ cells = [
 
         RUN2_ENV = json.loads(RUN2_ENV_PATH.read_text(encoding='utf-8'))
         TARGETS = json.loads(TARGETS_PATH.read_text(encoding='utf-8'))['targets']
-        assert [len(item['case_ids']) for item in TARGETS] == [28, 19, 5]
-        assert sum(len(item['case_ids']) for item in TARGETS) == 52
+        TARGET_COUNTS = [len(item['case_ids']) for item in TARGETS]
+        assert TARGET_COUNTS == [28, 21, 5, 4, 1]
+        assert sum(TARGET_COUNTS) == 59
         assert RUN2_ENV['ollama_version'].endswith('0.40.5'), RUN2_ENV['ollama_version']
         print('Repository:', subprocess.run(
             ['git', '-C', str(PROJECT_ROOT), 'rev-parse', '--short', 'HEAD'],
             capture_output=True, text=True, check=True,
         ).stdout.strip())
-        print('Run-2 rows scheduled for rerun: 28 + 19 + 5 = 52')
+        print('Run-2 rows scheduled for rerun: 28 + 21 + 5 + 4 + 1 = 59')
         """
     ),
     markdown(
@@ -278,7 +279,7 @@ cells = [
         r"""
         ## Run only the diagnosed cases
 
-        Each target gets its own results directory and one-case-ID-per-line selection file. Runner output and row counts are streamed as the trials are written to Drive. Re-running this cell resumes the same three isolated files.
+        Each target gets its own results directory and one-case-ID-per-line selection file. Runner output and row counts are streamed as the trials are written to Drive. Re-running this cell resumes the same five isolated files.
         """
     ),
     code(
@@ -381,8 +382,8 @@ cells = [
             RUN_STATUS_PATH.write_text(
                 json.dumps(RUN_STATUS, indent=2, sort_keys=True) + '\n', encoding='utf-8'
             )
-        assert [item['result_rows'] for item in RUN_STATUS['runs']] == [28, 19, 5]
-        print('Rerun rows complete: Gemma direct-natural 28; gpt-oss direct-guided 19; gpt-oss code-agent 5.')
+        assert [item['result_rows'] for item in RUN_STATUS['runs']] == [28, 21, 5, 4, 1]
+        print('Rerun rows complete: Gemma direct-natural 28; gpt-oss direct-guided 21; code-agent 5; direct-natural 4; paired direct-natural 1.')
         """
     ),
     markdown(
@@ -398,7 +399,7 @@ cells = [
             'RUN_STATUS', 'RUN_ENV_PATH', 'PROJECT_ROOT', 'BASE_RESULTS_ROOT', 'MERGED_ANALYSIS_ROOT',
             'RUN2_CONFIG_PATH', 'TARGETS_PATH', 'RUN2_ENV_PATH', 'RESULTS_ROOT'
         )), 'Run the preceding setup cells first.'
-        assert len(RUN_STATUS['runs']) == 3, 'Complete all three rerun targets first.'
+        assert len(RUN_STATUS['runs']) == 5, 'Complete all five rerun targets first.'
         assert RUN_ENV_PATH.exists(), 'Save the rerun environment first.'
         import shutil
         import subprocess
@@ -426,7 +427,7 @@ cells = [
         r"""
         ## Zip and download the rerun results
 
-        The archive contains the three new JSONL result files and manifests, selected case-ID files, run status and environment records, the unchanged and rerun configs, and the merged analysis in its requested repository path.
+        The archive contains the five new JSONL result files and manifests, selected case-ID files, run status and environment records, the unchanged and rerun configs, and the merged analysis in its requested repository path.
         """
     ),
     code(
@@ -437,7 +438,7 @@ cells = [
             'TARGETS_PATH', 'MERGED_ANALYSIS_ROOT', 'RERUN_ROOT'
         )), 'Run the rerun and analysis cells first.'
         assert DRIVE_ANALYSIS_ROOT.exists(), 'Build the merged analysis first.'
-        assert len(RUN_STATUS['runs']) == 3, 'All three rerun targets must be complete before downloading.'
+        assert len(RUN_STATUS['runs']) == 5, 'All five rerun targets must be complete before downloading.'
         from zipfile import ZIP_DEFLATED, ZipFile
 
         FINAL_ZIP = RERUN_ROOT / 'measurement-invariance-run2-rerun-a100.zip'

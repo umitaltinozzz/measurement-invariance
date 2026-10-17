@@ -229,10 +229,9 @@ def merge_run2_rows(
             "code_agent_max_tokens": {"run2": 4000, "rerun": 16000},
         },
         "diagnosis_discrepancy": (
-            "The run-2 gpt-oss direct-guided JSONL and saved analysis also contain one invalid, "
-            "length-capped row (industrial_sensor-c3-L2-023) absent from DIAGNOSIS.md's listed "
-            "19 IDs. It is intentionally left unchanged because the rerun set follows the exact "
-            "19 IDs listed in the diagnosis."
+            "ID validation found two additional gpt-oss direct-guided token-capped rows beyond "
+            "the original 19-row diagnosis, including industrial_sensor-c3-L2-023; both are "
+            "included in the 21-row replacement plan."
         ),
         "replaced_rows": audit_rows,
         "unmodified_run2_rows": "Every run-2 row outside the listed case IDs is retained unchanged.",

@@ -11,7 +11,9 @@
       "config_path": "configs/pilot_colab_t4_run2.yaml",
       "results_subdir": "direct_natural",
       "reason": "Run 2 Ollama HTTP 404 provider failures; unchanged settings",
-      "baseline_issue": {"kind": "provider_404"},
+      "baseline_issue": {
+        "kind": "provider_404"
+      },
       "case_ids": [
         "industrial_sensor-c3-L2-022",
         "industrial_sensor-c3-L2-023",
@@ -52,7 +54,10 @@
       "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
       "results_subdir": "direct_guided",
       "reason": "Run 2 direct-guided completions reached the 1024-token cap",
-      "baseline_issue": {"kind": "token_cap", "output_tokens": 1024},
+      "baseline_issue": {
+        "kind": "token_cap",
+        "output_tokens": 1024
+      },
       "case_ids": [
         "industrial_sensor-c2-L1-001",
         "industrial_sensor-c2-L2-003",
@@ -62,8 +67,10 @@
         "industrial_sensor-c2-L1-011",
         "industrial_sensor-c2-L2-012",
         "industrial_sensor-c2-L1-014",
+        "industrial_sensor-c2-L1-017",
         "industrial_sensor-c2-L1-021",
         "industrial_sensor-c2-L1-024",
+        "industrial_sensor-c3-L2-023",
         "industrial_sensor-c4-L1-006",
         "industrial_sensor-c4-L1-007",
         "industrial_sensor-c4-L1-010",
@@ -84,13 +91,53 @@
       "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
       "results_subdir": "code_agent",
       "reason": "Run 2 code-agent completions reached the 4000-token cap",
-      "baseline_issue": {"kind": "token_cap", "output_tokens": 4000},
+      "baseline_issue": {
+        "kind": "token_cap",
+        "output_tokens": 4000
+      },
       "case_ids": [
         "paired-c2-L1-009",
         "paired-c2-L1-010",
         "paired-c2-L1-018",
         "paired-c3-L1-015",
         "paired-c3-L1-016"
+      ]
+    },
+    {
+      "model": "gpt-oss:20b",
+      "dataset": "pilot",
+      "dataset_path": "data/generated/pilot_cases.jsonl",
+      "arm": "direct",
+      "variant": "natural",
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "results_subdir": "direct_natural",
+      "reason": "Run 2 direct-natural completions reached the 1024-token cap",
+      "baseline_issue": {
+        "kind": "token_cap",
+        "output_tokens": 1024
+      },
+      "case_ids": [
+        "industrial_sensor-c4-L1-006",
+        "industrial_sensor-c4-L1-007",
+        "industrial_sensor-c4-L1-016",
+        "industrial_sensor-c4-L1-023"
+      ]
+    },
+    {
+      "model": "gpt-oss:20b",
+      "dataset": "paired",
+      "dataset_path": "data/generated/paired_agent_cases.jsonl",
+      "arm": "direct",
+      "variant": "natural",
+      "config_path": "configs/pilot_colab_t4_run2_rerun.yaml",
+      "results_subdir": "paired_direct_natural",
+      "reason": "Run 2 paired direct-natural completion reached the 1024-token cap",
+      "baseline_issue": {
+        "kind": "token_cap",
+        "output_tokens": 1024
+      },
+      "case_ids": [
+        "paired-c2-L1-016"
       ]
     }
   ]

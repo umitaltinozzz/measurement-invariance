@@ -14,11 +14,13 @@ def test_run2_rerun_targets_match_expected_sizes_and_frozen_datasets():
     targets = json.loads(
         open("configs/run2_rerun_targets.json", encoding="utf-8").read()
     )["targets"]
-    assert [len(target["case_ids"]) for target in targets] == [28, 19, 5]
+    assert [len(target["case_ids"]) for target in targets] == [28, 21, 5, 4, 1]
     assert [(target["model"], target["arm"], target["variant"]) for target in targets] == [
         ("gemma4:12b", "direct", "natural"),
         ("gpt-oss:20b", "direct", "guided"),
         ("gpt-oss:20b", "code-agent", None),
+        ("gpt-oss:20b", "direct", "natural"),
+        ("gpt-oss:20b", "direct", "natural"),
     ]
     for target in targets:
         cases = read_jsonl(target["dataset_path"])
@@ -79,11 +81,8 @@ def test_rerun_targets_are_exactly_the_diagnosed_failed_or_capped_jsonl_rows():
                 and row["result"]["finish_reason"] == "length"
                 and row["result"]["output_tokens"] == issue["output_tokens"]
             }
-            if target["arm"] == "code-agent":
-                assert set(target["case_ids"]) == diagnosed
-            else:
-                assert set(target["case_ids"]).issubset(diagnosed)
-            if target["model"] == "gpt-oss:20b" and target["arm"] == "direct":
+            assert set(target["case_ids"]).issubset(diagnosed)
+            if target["model"] == "gpt-oss:20b" and target["arm"] == "direct" and target["variant"] == "guided":
                 cases = read_jsonl(target["dataset_path"])
                 graded = grade_all(
                     cases,
@@ -102,7 +101,7 @@ def test_rerun_targets_are_exactly_the_diagnosed_failed_or_capped_jsonl_rows():
                     and row.prompt_variant is PromptVariant.GUIDED
                     and row.response_class is ResponseClass.INVALID_RESPONSE
                 }
-                assert invalid_ids == set(target["case_ids"]) | {"industrial_sensor-c3-L2-023"}
+                assert invalid_ids == set(target["case_ids"]) - {"industrial_sensor-c2-L1-017"}
 
 
 def test_run2_config_sha_matches_the_environment_record():

@@ -50,7 +50,7 @@ The 28 rows are operational failures in the stored run. They must not be describ
 
 **Classification: B — completions were cut off at the configured 1,024-token limit.**
 
-All 19 invalid rows have no runner failure and show `finish_reason=length`, `output_tokens=1024`. Seventeen saved `raw_text` values are empty; two contain an unfinished JSON object. The captured content therefore cannot be completed by offline parsing.
+The original diagnosis listed 19 invalid rows with no runner failure and `finish_reason=length`, `output_tokens=1024`. During case-ID validation, two more capped rows were found in the JSONL, bringing the complete capped set to 21. Eighteen saved `raw_text` values are empty; three contain partial JSON. The additional cell-2 partial response remains parseable, so there are 20 invalid responses among the 21 token-capped rows. The captured content therefore cannot be completed by offline parsing.
 
 Raw excerpts:
 
@@ -58,15 +58,24 @@ Raw excerpts:
 
 > `industrial_sensor-c4-L1-016: {"trend":"increase","measurement_change_detected":true,"reason":"The sensor and calibration changed at t=20, so the reading scale changed. Comparing relative positions within each sensor's reference range, the readings after the`
 
-The affected cell 2 rows are `industrial_sensor-c2-L1-001`, `industrial_sensor-c2-L2-003`, `industrial_sensor-c2-L1-004`, `industrial_sensor-c2-L1-009`, `industrial_sensor-c2-L2-010`, `industrial_sensor-c2-L1-011`, `industrial_sensor-c2-L2-012`, `industrial_sensor-c2-L1-014`, `industrial_sensor-c2-L1-021`, and `industrial_sensor-c2-L1-024`. The affected cell 4 rows are `industrial_sensor-c4-L1-006`, `industrial_sensor-c4-L1-007`, `industrial_sensor-c4-L1-010`, `industrial_sensor-c4-L2-011`, `industrial_sensor-c4-L1-012`, `industrial_sensor-c4-L1-016`, `industrial_sensor-c4-L2-017`, `industrial_sensor-c4-L2-018`, and `industrial_sensor-c4-L1-023`.
+The originally listed affected cell 2 rows were `industrial_sensor-c2-L1-001`, `industrial_sensor-c2-L2-003`, `industrial_sensor-c2-L1-004`, `industrial_sensor-c2-L1-009`, `industrial_sensor-c2-L2-010`, `industrial_sensor-c2-L1-011`, `industrial_sensor-c2-L2-012`, `industrial_sensor-c2-L1-014`, `industrial_sensor-c2-L1-021`, and `industrial_sensor-c2-L1-024`. ID validation found the additional capped row `industrial_sensor-c2-L1-017`; its partial raw response begins `{"trend":"stable","measurement_change_detected":true,"reason":"The readings before t=11 (S1) cluster around 58 AU, while after t=11 (S2) cluster around 46 AU, suggesting a sensor offset rather than a true temperature change. The sensor, calibration, and reference range all changed at t=11, indicatin` (1024 output tokens). The affected cell 4 rows are `industrial_sensor-c4-L1-006`, `industrial_sensor-c4-L1-007`, `industrial_sensor-c4-L1-010`, `industrial_sensor-c4-L2-011`, `industrial_sensor-c4-L1-012`, `industrial_sensor-c4-L1-016`, `industrial_sensor-c4-L2-017`, `industrial_sensor-c4-L2-018`, and `industrial_sensor-c4-L1-023`. The requested 20th row, `industrial_sensor-c3-L2-023`, was also found during ID validation; its raw response is empty (`raw_text=""`, `finish_reason=length`, `output_tokens=1024`).
 
-**What changed:** no code or analysis changed. The recorded cell 2 invalid rate remains 40% (10/25), with valid-only STR 13.3% (2/15) and all-trial STR 8.0% (2/25). Cell 4 invalid remains 36% (9/25); its valid-only miss rate is 25% (4/16).
+**What changed:** no code or analysis changed. The cell 2 invalid rate is 40% (10/25) among invalid responses originally tabulated; one additional partial response is parseable but still token-capped. The cell 2 token-cap count is 11/25, with valid-only STR 13.3% (2/15) and all-trial STR 8.0% (2/25). Cell 4 invalid remains 36% (9/25); its valid-only miss rate is 25% (4/16).
 
-**GPU re-run needed:** yes, for `gpt-oss:20b` / direct guided / exactly the 19 rows listed above. Each exhausted `max_tokens=1024`; the empty or partial completion cannot be recovered offline.
+**GPU re-run needed:** yes, for `gpt-oss:20b` / direct guided / exactly these 21 token-capped rows. Each exhausted `max_tokens=1024`; the empty or partial completion cannot be recovered offline.
+
+## Full run-2 failure sweep
+
+All run-2 result JSONL files were scanned for `finish_reason=length`, empty `raw_text`, and row/provider errors. The generated case JSONL files were excluded from response classification. Every finding that was a token-cap failure is included in the A100 target plan above; the additional capped rows are:
+
+- `gpt-oss:20b` / direct-natural: `industrial_sensor-c4-L1-006`, `industrial_sensor-c4-L1-007`, `industrial_sensor-c4-L1-016`, and `industrial_sensor-c4-L1-023` (4 rows; all `finish_reason=length`, `output_tokens=1024`). The first three raw responses are empty; the fourth is partial.
+- `gpt-oss:20b` / paired direct-natural: `paired-c2-L1-016` (1 row; empty `raw_text`, `finish_reason=length`, `output_tokens=1024`).
+
+One separate failure was found in `mistral-small3.2:24b` / direct-guided: `industrial_sensor-c1-L2-000` has `result=null`, `failure_kind=TransportError`, and `failure="gave up after 5 attempts: timed out after 180.0s"`. This is a transport timeout rather than either the diagnosed Gemma HTTP 404 provider failure or a token-cap failure, so it is documented but not added to this token-cap/provider-404 rerun plan. No other run-2 result rows had an empty response, a length finish reason, or a recorded provider/runner error.
 
 ## Before/after analysis metrics
 
-No scoring inputs or analysis files were changed, so the before and after values are identical. Rates are shown on the same basis as the existing analysis; cell 2 STR is valid-only, except where an all-trial cross-check is included.
+No scoring inputs or analysis files were changed, so the before and after values are identical. The rerun plan now contains 59 rows: 28 Gemma provider failures, 21 gpt-oss direct-guided token-capped rows, 5 gpt-oss code-agent token-capped rows, 4 gpt-oss direct-natural token-capped rows, and 1 gpt-oss paired direct-natural token-capped row. Rates are shown on the same basis as the existing analysis; cell 2 STR is valid-only, except where an all-trial cross-check is included.
 
 ### Competence
 

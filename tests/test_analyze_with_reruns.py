@@ -265,7 +265,7 @@ def test_run2_plus_reruns_analysis_replaces_rows_and_writes_a_separate_report(tm
         rerun_environment_path=rerun_environment,
     )
 
-    assert sum(row["count"] for row in report["rerun_merge"]["replaced_rows"]) == 52
+    assert sum(row["count"] for row in report["rerun_merge"]["replaced_rows"]) == 59
     assert report["rerun_merge"]["original_hardware"].startswith("Tesla T4")
     assert "NVIDIA A100" in report["rerun_merge"]["rerun_hardware"]
     assert (output / "analysis.md").exists()
@@ -275,6 +275,6 @@ def test_run2_plus_reruns_analysis_replaces_rows_and_writes_a_separate_report(tm
     assert "max_tokens` 1024 to 4096" in markdown
     assert "max_tokens_code_agent` 4000 to 16000" in markdown
     verified_reruns = [item for item in report["manifest_verification"] if item["selected_case_ids"]]
-    assert len(verified_reruns) == 3
+    assert len(verified_reruns) == 5
     assert all(item["rows"] == item["planned"] for item in verified_reruns)
     assert sha256_file(original_analysis) == original_analysis_sha
