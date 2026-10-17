@@ -105,7 +105,13 @@ def test_rerun_targets_are_exactly_the_diagnosed_failed_or_capped_jsonl_rows():
 
 
 def test_run2_config_sha_matches_the_environment_record():
-    run2_config = Path("configs/pilot_colab_t4_run2.yaml")
+    run2_config = Path("configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml")
+    assert sha256_file(run2_config) == (
+        "cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125"
+    )
+    assert sha256_file(Path("configs/pilot_colab_t4_run2.yaml")) == (
+        "02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b"
+    )
     rerun_environment = json.loads(
         Path("data/results/colab_t4/run2/run_environment.json").read_text(encoding="utf-8")
     )

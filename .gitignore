@@ -12,7 +12,8 @@ env/
 .idea/
 .vscode/
 
-# Model outputs and analysis products are regenerated, never hand-edited.
+# New model outputs and analyses are ignored by default. Historical run-1/run-2
+# evidence is tracked; ignore rules do not remove files already in the index.
 data/results/*
 !data/results/.gitkeep
 !data/results/colab_t4/

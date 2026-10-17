@@ -14,8 +14,10 @@
     project_continue  = direct_trigger OR code_trigger
 
 Every threshold comes from ``configs/pilot.yaml``; none is written here. The
-decision is evaluated per model and then OR-ed across models, because proje.md
-section 10 asks whether *at least one* frontier model shows the effect.
+decision is evaluated per supplied model and then OR-ed across those models.
+The current implementation does not filter the model list to frontier models,
+although proje.md section 10 describes that scope. Run-2 results are exploratory
+for this and other preregistration deviations.
 
 The invalid-rate gate is what makes the ``valid_only`` basis safe. A slice whose
 completions mostly failed to parse is not scored through a diluted denominator

@@ -40,19 +40,11 @@ def direct_str(analysis: dict, model: str, variant: str, cell: int) -> float:
     raise KeyError((model, variant, cell))
 
 
-def code_row(analysis: dict, model: str) -> dict:
-    return next(row for row in analysis["code_agent"] if row["model"] == model)
-
-
-def code_str(model: str) -> float:
-    """Code-agent Spurious Trend Rate, read from the generated code_agent_metrics.txt."""
-    current = None
-    for line in (ANALYSIS.parent / "code_agent_metrics.txt").read_text(encoding="utf-8").splitlines():
-        if line and not line.startswith(" "):
-            current = line.strip()
-        elif current == model and line.strip().startswith("spurious_trend_rate"):
-            return float(line.split(":")[1].split("%")[0])
-    raise KeyError(model)
+def paired_cell2_row(analysis: dict, model: str) -> dict:
+    row = next(
+        row for row in analysis["paired_direct_code_comparison"] if row["model"] == model
+    )
+    return row["cell2"]
 
 
 def label_bars(ax, bars) -> None:
@@ -86,23 +78,65 @@ def noise_vs_measurement(analysis: dict) -> Path:
 
 
 def direct_vs_code(analysis: dict) -> Path:
-    fig, ax = plt.subplots(figsize=(9, 4.6))
+    fig, ax = plt.subplots(figsize=(10, 5.2))
     x = range(len(MODELS))
-    direct = [direct_str(analysis, m, "natural", 2) for m in MODELS]
-    code = [code_str(m) for m in MODELS]
-    kept = [rate(code_row(analysis, m)["provenance_retention_rate"]) for m in MODELS]
-    b1 = ax.bar([i - 0.27 for i in x], direct, 0.27, color=MEASURE, label="Direct answer: spurious trend (cell 2)")
-    b2 = ax.bar(list(x), code, 0.27, color=CODE, label="Code agent: spurious trend")
-    b3 = ax.bar([i + 0.27 for i in x], kept, 0.27, color="#3bb273", label="Code agent: kept sensor provenance")
-    for bars in (b1, b2, b3):
-        label_bars(ax, bars)
+    comparisons = [paired_cell2_row(analysis, model) for model in MODELS]
+    categories = (
+        ("spurious", "False trend", MEASURE),
+        ("uncertain", "Uncertain", "#e0a458"),
+        ("other", "Other valid answer", "#5a9f83"),
+        ("invalid", "Invalid response", "#9aa5b1"),
+    )
+    width = 0.32
+    for arm, offset in (("direct", -0.18), ("code", 0.18)):
+        positions = [i + offset for i in x]
+        bottoms = [0.0] * len(MODELS)
+        for category, label, color in categories:
+            field = f"{arm}_{category}" if category in ("other", "invalid") else (
+                f"{arm}_spurious_trend" if category == "spurious" else f"{arm}_uncertain"
+            )
+            counts = []
+            values = []
+            for row in comparisons:
+                cell = row["n_pairs"]
+                if category == "invalid":
+                    count = row[f"{arm}_invalid_count"]
+                elif category == "other":
+                    count = row[f"{arm}_other_valid"]["numerator"]
+                else:
+                    count = row[field]["numerator"]
+                counts.append(count)
+                values.append(0.0 if cell == 0 else 100 * count / cell)
+            bars = ax.bar(
+                positions,
+                values,
+                width,
+                bottom=bottoms,
+                color=color,
+                edgecolor="white",
+                linewidth=0.6,
+                label=label if arm == "direct" else None,
+            )
+            for bar, count, row in zip(bars, counts, comparisons):
+                if count >= 3 and row["n_pairs"]:
+                    ax.text(
+                        bar.get_x() + bar.get_width() / 2,
+                        bar.get_y() + bar.get_height() / 2,
+                        f"{count}/{row['n_pairs']}",
+                        ha="center",
+                        va="center",
+                        fontsize=7,
+                    )
+            bottoms = [base + value for base, value in zip(bottoms, values)]
     ax.set_xticks(list(x), [LABELS[m] for m in MODELS], fontsize=8)
     ax.set_ylim(0, 112)
-    ax.set_ylabel("%")
+    ax.set_ylabel("Share of paired cell-2 cases (%)")
+    ax.grid(axis="y", alpha=0.2)
+    ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(fontsize=8, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.16), ncols=3)
-    ax.set_title("Same model, answering directly vs writing code (run 2)", fontsize=11)
-    fig.tight_layout()
+    ax.legend(fontsize=8, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncols=4)
+    ax.set_title("Paired dataset: cell 2 only; within each group left = direct, right = code", fontsize=11)
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
     path = OUT / "run2_direct_vs_code.png"
     fig.savefig(path, dpi=160)
     plt.close(fig)

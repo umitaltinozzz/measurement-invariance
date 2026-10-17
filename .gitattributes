@@ -1,2 +1,12 @@
-# Keep downloaded rerun evidence byte-for-byte intact across Windows checkouts.
-data/results/colab_t4/run2_rerun_a100_raw/** -text
+# SHA-256 values in manifests are over file bytes. Keep source configs and
+# generated datasets as LF on every OS; stored result evidence is LF when text.
+configs/*.yaml text eol=lf
+configs/**/*.yaml text eol=lf
+data/generated/**/*.jsonl text eol=lf
+data/results/** text=auto eol=lf
+
+# Historical run 2 was recorded from these exact CRLF config bytes.
+configs/snapshots/run2/*.yaml binary -eol
+
+# The downloaded A100 rerun bundle is archived byte-for-byte as received.
+data/results/colab_t4/run2_rerun_a100_raw/** binary -eol

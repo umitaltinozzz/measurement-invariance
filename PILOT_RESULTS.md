@@ -1,6 +1,6 @@
 # Colab pilot results
 
-Two pilot runs share the same generated datasets, gates and metrics. Run 2 (current-generation models) is the reference result; run 1 (older models) is kept below unchanged.
+Two pilot runs share the same generated datasets, gates and metric definitions. Run 1 met the pre-registered stop condition (`project_continue = False`). Run 2 is explicitly **exploratory**, not a confirmatory follow-up: its model list, A100 re-run and higher token caps were selected after results were seen, and the plan's “at least one frontier model” condition was not applied. The code-computed run-2 value `project_continue = True` is retained as a description of what the implementation returned, not as confirmatory evidence.
 
 ## Run 2: current-generation models (2026-10-16/17)
 
@@ -8,7 +8,9 @@ Two pilot runs share the same generated datasets, gates and metrics. Run 2 (curr
 
 Four Ollama models from four labs on a Colab Tesla T4: `qwen3:14b` (Alibaba), `gemma4:12b` (Google), `mistral-small3.2:24b` (Mistral), `gpt-oss:20b` (OpenAI). Config [`configs/pilot_colab_t4_run2.yaml`](configs/pilot_colab_t4_run2.yaml) (8,192-token context, direct cap 1,024 tokens, code-agent cap 4,000). Datasets are identical to run 1 (same SHA-256 values).
 
-59 of the 1,240 rows were re-run on a Colab A100 and replace the original rows in the reference analysis; every other row is the original T4 output. The replacements are listed in [`run2/analysis_with_reruns/replacement_audit.json`](data/results/colab_t4/run2/analysis_with_reruns/replacement_audit.json) and explained in [`RERUN_A100.md`](data/results/colab_t4/run2/RERUN_A100.md):
+This is not the pre-registered frontier-model evaluation: the plan's “at least one frontier model” condition was not enforced by the implementation.
+
+59 of the 1,240 rows were re-run on a Colab A100 and replace the original rows in the exploratory analysis; every other row is the original T4 output. The model list and this targeted re-run plan were chosen after results were seen. The replacements are listed in [`run2/analysis_with_reruns/replacement_audit.json`](data/results/colab_t4/run2/analysis_with_reruns/replacement_audit.json) and explained in [`RERUN_A100.md`](data/results/colab_t4/run2/RERUN_A100.md):
 
 - 28 `gemma4:12b` direct-natural rows that failed with an Ollama HTTP 404 (no model output), re-run with unchanged settings.
 - 31 `gpt-oss:20b` rows that hit the token cap (21 direct-guided, 4 direct-natural, 1 paired direct-natural, 5 code-agent), re-run with higher caps (direct 4,096; code-agent 16,000). **These rows therefore used a different cap and different hardware than the rest of run 2.**
@@ -40,6 +42,10 @@ Spurious Trend Rate (STR), valid-only, 25 trials per cell. Cell 1 is the noise c
 | mistral-small3.2:24b | Natural | 8.0% (2/25) | 84.0% (21/25) |
 | mistral-small3.2:24b | Guided | 0.0% (0/24) | 88.0% (22/25) |
 
+The strongest measurement-specific contrasts are Gemma 4 and Mistral Small 3.2, but both failed the competence gate and are descriptive. Two-sided Fisher tests comparing cell 1 with cell 2 are p=3.8×10⁻¹⁰ and 2.6×10⁻⁶ for Gemma (natural and guided), and p=7.1×10⁻⁸ and 5.2×10⁻¹¹ for Mistral (natural and guided). The run-2 analysis reports Wilson 95% intervals alongside STR/MR point estimates.
+
+For gpt-oss natural, cell 1 is 17/25 (68%) and cell 2 is 19/25 (76%); Fisher p≈0.75. The direct trigger therefore does not isolate a measurement-change effect from its noise control.
+
 ### Code-agent arm (static only, code not executed)
 
 | Model | Provenance retention | STR | MR | Syntax errors | Invalid |
@@ -51,18 +57,21 @@ Spurious Trend Rate (STR), valid-only, 25 trials per cell. Cell 1 is the noise c
 
 gpt-oss's syntax errors are genuine: the decoded code contains literal `\n` text (see `DIAGNOSIS.md`), so its code-arm values rest on the 18 rows that parse.
 
+The code trigger's Provenance Retention Rate pools cells 2 and 3. Cell-3 PRR is 0/20 for every model; including those zero-retention control cases makes the ≤60% threshold easy to meet and weakens its interpretation as a measurement-change-specific signal.
+
 ### Continuation verdict
 
-`project_continue = True`, triggered by `gpt-oss:20b`, the only competence-qualified model: direct trigger (L1 cell-2 STR 66.7%, n=15, threshold >= 25%) and code trigger (PRR 20.5%, n=39, threshold <= 60%; invalid 2.5% <= 5%). Before the A100 re-run the code trigger was blocked by a 12.5% invalid rate; the direct trigger and the overall verdict did not change.
+The implementation computes `project_continue = True`, triggered by `gpt-oss:20b`, the only competence-qualified model: direct trigger (L1 cell-2 STR 66.7%, n=15, threshold >= 25%) and code trigger (PRR 20.5%, n=39, threshold <= 60%; invalid 2.5% <= 5%). Before the A100 re-run the code trigger was blocked by a 12.5% invalid rate; the direct trigger and computed value did not change. This value is **not confirmatory evidence**: run 1 already met its pre-registered stop condition (`project_continue = False`), run 2's model list and A100 re-run/caps were chosen after seeing results, and the frontier-model condition was not applied.
 
 ### What run 2 does and does not show
 
-- The continuation rule is met, so the project proceeds under its pre-registered criterion.
-- **The cell-1 control weakens the gpt-oss direct result.** With the natural prompt, gpt-oss reports a trend in 68% of pure-noise trials and 76% of measurement-change trials, so most of its cell-2 rate is noise read as signal rather than a measurement-specific failure. With the guided prompt both rates fall to 4-8%.
-- The clearest measurement-change effects come from models that **failed** competence: Gemma 4 (16% -> 100% natural) and Mistral Small 3.2 (8% -> 84% natural). Under the pre-registered rule these are descriptive only.
-- Qwen 3 is robust in the direct arms (0-4%) but reports a spurious trend in 100% of applicable code-agent trials, a sharp direct-vs-code divergence worth testing with execution enabled.
+- **The gpt-oss direct trigger is not specific.** Its cell-1 and cell-2 natural rates are 68% and 76% (Fisher p≈0.75), so the trigger does not distinguish measurement change from noise-only false trends. With the guided prompt both rates fall to 4-8%.
+- **Gemma 4 and Mistral Small 3.2 show the strongest, large cell-2 effects in both prompts**, with the Fisher p-values above. Both failed competence, so these results are descriptive.
+- Qwen 3 reports a false trend in 0-4% of direct trials, but it mostly abstains: 91/100 natural-prompt trials are `uncertain`.
+- On the same 40-case paired dataset, the cell-2 comparison (20 pairs) shows Qwen shifting from abstaining on all 20 direct answers to 20/20 false trends in code; Gemma improves from 20/20 to 12/20 false trends; gpt-oss from 13/20 to 6/20; Mistral is similar at 17/20 versus 15/20. Exact cell-2 McNemar p-values are 0.008, 0.065, 0.69 and <0.001, respectively; invalid outputs are counted and reported separately.
+- In the 8 cell-4 cases where the raw direction is misleading, Gemma, gpt-oss and Mistral report the wrong direction 7, 6 and 5 times, respectively.
 - Across models, generated code kept the measurement provenance in only 20-50% of trials.
-- These are four quantized open models on one generated benchmark; they do not establish a general claim about LLMs.
+- These are four quantized open models on one generated benchmark; run 2 is exploratory and does not establish a general claim about LLMs.
 
 ## Run 1: older models (2026-10-16)
 

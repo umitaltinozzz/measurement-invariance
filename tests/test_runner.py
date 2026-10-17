@@ -28,6 +28,7 @@ from src.run_manifest import (
     ManifestConflict,
     RunManifest,
     build_manifest,
+    git_commit_hash,
     manifest_path_for,
     read_manifest,
     sha256_file,
@@ -370,6 +371,12 @@ class TestManifest:
     def test_git_commit_is_none_rather_than_a_placeholder_outside_a_repo(self, tmp_path, cfg):
         m = manifest_for(tmp_path, cfg, repo_root=tmp_path)
         assert m.git_commit is None or len(m.git_commit) == 40
+
+    def test_manifest_records_the_current_repository_commit(self, tmp_path, cfg):
+        repo_root = Path(__file__).resolve().parents[1]
+        m = manifest_for(tmp_path, cfg, repo_root=repo_root)
+        assert m.git_commit == git_commit_hash(repo_root)
+        assert m.git_commit is not None and len(m.git_commit) == 40
 
     def test_competence_dataset_hash_is_recorded_when_given(self, tmp_path, cfg):
         comp = tmp_path / "competence.jsonl"

@@ -318,6 +318,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         provider_constraints=getattr(provider, "routing_constraints", {}),
         hardware=hardware,
         selected_case_ids=selected_case_ids,
+        repo_root=Path(__file__).resolve().parents[1],
     )
     runner = Runner(provider, cfg.runner)
     _, summary = runner.run(

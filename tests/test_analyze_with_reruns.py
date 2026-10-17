@@ -202,7 +202,16 @@ def test_run2_plus_reruns_analysis_replaces_rows_and_writes_a_separate_report(tm
     original_analysis_sha = sha256_file(original_analysis)
     base_results = root / "data/results/colab_t4/run2/data/results/colab_t4/results"
     base_config = root / "configs/pilot_colab_t4_run2.yaml"
-    base_runs, _ = _load_verified_runs(base_results, root, base_config)
+    base_runs, _ = _load_verified_runs(
+        base_results,
+        root,
+        None,
+        config_sources={
+            "configs/pilot_colab_t4_run2.yaml": (
+                root / "configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml"
+            )
+        },
+    )
     base_environment = json.loads(
         (root / "data/results/colab_t4/run2/run_environment.json").read_text(encoding="utf-8")
     )
@@ -329,6 +338,26 @@ def test_run2_plus_reruns_analysis_replaces_rows_and_writes_a_separate_report(tm
     assert "industrial_sensor-c3-L2-023" in markdown
     assert "max_tokens` 1024 to 4096" in markdown
     assert "max_tokens_code_agent` 4000 to 16000" in markdown
+    assert "## Abstention and cell-4 diagnostics" in markdown
+    assert "## Wilson 95% intervals" in markdown
+    assert "## Paired direct-vs-code comparison" in markdown
+    direct_diagnostics = {
+        (row["model"], row["prompt_variant"]): row
+        for row in report["direct_diagnostics"]
+    }
+    assert direct_diagnostics[("qwen3:14b", "natural")]["uncertain_rate"] == {
+        "numerator": 91, "denominator": 100, "value": 0.91
+    }
+    for model in ("gemma4:12b", "gpt-oss:20b", "mistral-small3.2:24b"):
+        split = direct_diagnostics[(model, "natural")]["cell4_raw_direction_split"]
+        assert split["raw_direction_misleading"]["n_valid"] == 8
+        assert 0 <= split["raw_direction_misleading"]["wrong_direction_count"] <= 8
+    paired = {row["model"]: row for row in report["paired_direct_code_comparison"]}
+    qwen_cell2 = paired["qwen3:14b"]["cell2"]
+    assert qwen_cell2["n_pairs"] == 20
+    assert qwen_cell2["direct_uncertain"]["numerator"] == 20
+    assert qwen_cell2["code_spurious_trend"]["numerator"] == 20
+    assert all(row["all_cells"]["n_pairs"] == 40 for row in paired.values())
     verified_reruns = [item for item in report["manifest_verification"] if item["selected_case_ids"]]
     assert len(verified_reruns) == 5
     assert all(item["rows"] == item["planned"] for item in verified_reruns)

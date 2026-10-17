@@ -309,13 +309,24 @@ def analyze_with_reruns(
     base_environment_path: str | Path,
     rerun_environment_path: str | Path,
     base_status_path: str | Path | None = None,
+    base_config_sources: Mapping[str, str | Path] | None = None,
     rerun_config_sources: Mapping[str, str | Path] | None = None,
     accept_colab_rewritten_server_version: bool = False,
 ) -> Dict[str, Any]:
     project_root = Path(project_root).resolve()
     base_results_dir = Path(base_results_dir).resolve()
     rerun_results_dir = Path(rerun_results_dir).resolve()
-    base_runs, base_verification = _load_verified_runs(base_results_dir, project_root, None)
+    base_config_sources = dict(base_config_sources or {})
+    base_config_sources.setdefault(
+        "configs/pilot_colab_t4_run2.yaml",
+        "configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml",
+    )
+    base_runs, base_verification = _load_verified_runs(
+        base_results_dir,
+        project_root,
+        None,
+        config_sources=base_config_sources,
+    )
     if not base_runs:
         raise ValueError(f"no run-2 manifests found in {base_results_dir}")
     base_config_identities = {
@@ -327,7 +338,9 @@ def analyze_with_reruns(
             f"{sorted(base_config_identities)}"
         )
     recorded_config_path, recorded_config_sha = next(iter(base_config_identities))
-    recorded_base_config = _project_path(project_root, recorded_config_path)
+    recorded_base_config = _project_path(
+        project_root, base_config_sources.get(recorded_config_path, recorded_config_path)
+    )
 
     # The manifests are verified byte-for-byte against their recorded config
     # path above. The analysis config may be the archived run-2 snapshot, whose
@@ -438,6 +451,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--output-dir", default="data/results/colab_t4/run2/analysis_with_reruns"
     )
     parser.add_argument("--base-config", default="configs/pilot_colab_t4_run2.yaml")
+    parser.add_argument(
+        "--base-config-source",
+        default="configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml",
+        help="Exact archived bytes used by the run-2 manifests for their config SHA-256.",
+    )
     parser.add_argument("--targets", default="configs/run2_rerun_targets.json")
     parser.add_argument(
         "--base-environment", default="data/results/colab_t4/run2/run_environment.json"
@@ -483,6 +501,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         base_environment_path=args.base_environment,
         rerun_environment_path=args.rerun_environment,
         base_status_path=args.base_status,
+        base_config_sources={
+            "configs/pilot_colab_t4_run2.yaml": args.base_config_source,
+        },
         rerun_config_sources=config_sources,
         accept_colab_rewritten_server_version=args.accept_colab_rewritten_server_version,
     )

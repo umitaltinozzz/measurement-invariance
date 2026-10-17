@@ -1,12 +1,12 @@
 # #108b — Measurement-Function Invariance in LLM Agents
 
-> **Pilot status:** Run 2 (four current open models, Colab T4 + 59 rows re-run on an A100) is complete. One model, `gpt-oss:20b`, passed the competence gate and the pre-registered continuation rule is met (`project_continue = True`). Run 1 (older models) passed nobody. Full tables: [PILOT_RESULTS.md](PILOT_RESULTS.md).
+> **Pilot status — exploratory:** Run 1 met the pre-registered stop condition (`project_continue = False`). Run 2's model list, A100 re-run and higher token caps were chosen after results were seen, and the plan's “at least one frontier model” condition was not applied. The code computes `project_continue = True` for run 2, but this is not confirmatory evidence. Full results: [PILOT_RESULTS.md](PILOT_RESULTS.md).
 
 Pilot benchmark infrastructure. Full research design lives in [proje.md](proje.md).
 
 ## The pilot in plain words
 
-The questions below are the ones a non-specialist actually asks when they first see this project. The answers use run 2 (the reference result); every number links back to [PILOT_RESULTS.md](PILOT_RESULTS.md).
+The questions below are the ones a non-specialist actually asks when they first see this project. The answers use exploratory run 2; every number links back to [PILOT_RESULTS.md](PILOT_RESULTS.md).
 
 ### If one reading says 8/10 and a later one says 4/5, did anything change?
 
@@ -23,22 +23,30 @@ flowchart LR
 
 ### Do the models fall for it?
 
-Mostly yes, and the noise-only control shows which falls are real. Each model sees cell 1 (nothing changed, only noise) and cell 2 (only the sensor changed). A model that is fooled *by the sensor change* jumps from low in cell 1 to high in cell 2.
+The pattern is mixed. Each model sees cell 1 (nothing changed, only noise) and cell 2 (only the sensor changed). A sensor-specific effect should raise the cell-2 rate above the cell-1 control.
 
 ![Cell 1 vs cell 2 spurious trend rate per model](docs/figures/run2_noise_vs_measurement.png)
 
-- **Gemma 4 12B** (16% → 100%) and **Mistral Small 3.2 24B** (8% → 84%) are clearly fooled by the sensor change, and a warning in the prompt does not help them (84% / 88% with the guided prompt).
-- **gpt-oss 20B** looks fooled at 76%, but it also reports a trend in 68% of pure-noise cases. Most of its error is reading noise as signal, not a sensor-specific failure. Warned about possible instrument changes, it drops to 4-8%.
-- **Qwen 3 14B** is not fooled when answering directly (0-4%).
-- When the change is real (cells 3 and 4), models almost never miss it (0-16%). The failure is seeing change that is not there, not missing change that is.
+- **Gemma 4 12B** (cell 2: 100% natural, 84% guided) and **Mistral Small 3.2 24B** (84% natural, 88% guided) show large cell-2 rates; both failed the competence gate, so these effects are descriptive.
+- **gpt-oss 20B** reports a trend in 76% of natural cell-2 cases, but also in 68% of cell-1 pure-noise cases (Fisher p≈0.75). The direct trigger is therefore not specific to the measurement change. With the guided prompt both rates fall to 4-8%.
+- **Qwen 3 14B** reports a false trend in 0-4% of direct trials, but it mostly abstains: it answered `uncertain` in 91 of 100 natural-prompt trials.
+- Cell 4 has a diagnostic failure hidden by the pooled miss rate. In the 8 cases where the raw direction is misleading, Gemma 4, gpt-oss and Mistral report the wrong direction 7, 6 and 5 times, respectively.
 
 ### Why does the same model behave differently when it writes code?
 
-Because the code it writes throws the sensor information away. In the code-agent arm the model writes a Python analysis instead of answering. Only 20-50% of the generated programs keep track of which sensor each reading came from.
+The paired dataset asks each model about the same 40 cases in both arms. On its 20 cell-2 pairs, Qwen moves from abstaining on all 20 direct answers to reporting a false trend in all 20 code answers. Gemma's cell-2 false-trend count falls from 20 to 12 in code; gpt-oss falls from 13 to 6; Mistral is similar at 17 versus 15. Exact cell-2 McNemar p-values are 0.008, 0.065, 0.69 and <0.001, respectively. These results describe the paired cases; the generated code was graded statically and not executed.
 
-![Direct answers vs code agent per model](docs/figures/run2_direct_vs_code.png)
+![Paired cell-2 direct and code outcomes, including uncertain and invalid shares](docs/figures/run2_direct_vs_code.png)
 
-Qwen 3 is the sharpest case: 0% spurious trend when answering directly, 100% when it writes code for the same kind of task. (The direct bar is cell 2 of the main dataset; the code bars come from the separate 40-case paired dataset.)
+The figure compares direct and code answers on the same paired dataset, cell 2 only, and shows each arm's uncertain share.
+
+### How strong is the direct cell-2 evidence?
+
+Gemma 4 and Mistral Small 3.2 show large cell-2 increases over cell 1 under both prompts. Two-sided Fisher tests for cell 1 versus cell 2 give p = 3.8×10⁻¹⁰ (Gemma natural), 2.6×10⁻⁶ (Gemma guided), 7.1×10⁻⁸ (Mistral natural), and 5.2×10⁻¹¹ (Mistral guided). Both models failed the competence gate, so these effects are descriptive and do not qualify as continuation evidence.
+
+The direct trigger is not specific for gpt-oss: with the natural prompt, its cell-1 rate is 68% and its cell-2 rate is 76% (Fisher p ≈ 0.75). The code trigger has a related denominator problem: PRR pools cells 2 and 3, and cell-3 PRR is 0/20 for every model, so the ≤60% threshold can be met almost automatically.
+
+Run 2 is exploratory. Run 1 had already met the pre-registered stop condition (`project_continue = False`); the run-2 model list, the A100 re-run and its higher token caps were chosen after seeing results. The plan's “at least one frontier model” condition was not applied. The computed run-2 `project_continue = True` is retained as the code output, but is not confirmatory evidence.
 
 ### Which industries does this matter for?
 
@@ -69,7 +77,9 @@ It covers four quantized open models on one generated benchmark. It does not say
 ### Kısa Türkçe özet
 
 - **Soru:** Sensör değişince okunan değer kayar ama gerçek değer değişmez (8/10 ile 4/5 gibi: ikisi de %80). Model bunu gerçek bir değişim sanıyor mu?
-- **Cevap:** Gemma 4 ve Mistral Small 3.2 büyük ölçüde sanıyor (%84-100) ve uyarı da işe yaramıyor. gpt-oss'un yüksek oranı çoğunlukla gürültüyü trend sanmasından geliyor; uyarınca %4-8'e iniyor. Qwen 3 doğrudan sorulunca kanmıyor ama kod yazınca her seferinde kanıyor.
+- **Cevap:** Gemma 4 ve Mistral Small 3.2'de hücre 2 oranı yüksek; ancak ikisi de yeterlilik kapısını geçmediği için bu bulgu betimleyici. gpt-oss doğal istemde hücre 1'de %68, hücre 2'de %76 yanlış trend veriyor (Fisher p≈0,75); doğrudan tetik ölçüm değişimine özgü değil. Qwen 3 doğal doğrudan denemelerin 91/100'ünde `uncertain` diyor. Eşli hücre-2 verisinde Qwen çekimserlikten karar vermeye geçiyor; kod kolu Gemma ve gpt-oss'ta daha az yanlış trend, Mistral'de yaklaşık aynı oran gösteriyor.
+- **Sınırlamalar:** Ham yönün yanıltıcı olduğu 8 hücre-4 vakasında Gemma/gpt-oss/Mistral 7/6/5 kez ters yön bildiriyor. Kod PRR'si hücre 2 ve 3'ü birleştiriyor; hücre 3 PRR'si tüm modellerde 0/20.
+- **Koşu durumu:** Run 1 ön kayıtlı durma koşulunu karşıladı (`project_continue = False`). Sonuç görüldükten sonra seçilen model listesi ve A100 yeniden koşusu nedeniyle run 2 keşif amaçlıdır; hesaplanan `project_continue = True` doğrulayıcı kanıt değildir.
 - **Neden önemli:** Fabrikada, hastanede, enerji şebekesinde sensörler değişir. Cihazın üstünde (ör. Jetson Orin Nano) ancak küçük modeller çalışır ve tuzağa en çok onlar düşüyor.
 - **Ne yapılmalı:** Her ölçümle birlikte sensör kimliğini taşı, modelden önce basit bir kural koy, cihaza konacak modeli bu benchmark ile test et.
 
@@ -355,7 +365,7 @@ code trigger     = eligible AND Provenance Retention Rate <= 0.60
 project_continue = direct_trigger OR code_trigger   (OR-ed across models)
 ```
 
-`src/continuation.py` applies it and hardcodes none of it.
+`src/continuation.py` applies the configured criteria. Its current implementation evaluates all supplied models; it does not enforce the plan's “at least one frontier model” scope. That mismatch is one reason run 2 is reported as exploratory.
 
 **Granularity warning.** The cell-2 / L1 / natural slice has 15 cases, so one
 unparseable completion is 6.7% and already exceeds the 0.05 gate. At this n the
@@ -389,8 +399,8 @@ exact confound it exists to close. A test asserts the absence of that vocabulary
 
 ```
 qualified = overall           >= competence.overall_min      (0.90)
-        AND reference_range   >= competence.per_skill_min    (0.80)
-        AND affine_inversion  >= competence.per_skill_min    (0.80)
+        AND reference_range   >= competence.per_skill_min    (0.85)
+        AND affine_inversion  >= competence.per_skill_min    (0.85)
 ```
 
 read on the `all_trials` basis, so a model cannot qualify by declining to answer.
@@ -398,16 +408,16 @@ A model that fails is not *competence-qualified*, and its L1 invariance results
 cannot be read as a measurement-invariance failure — they may be a plain
 capability failure.
 
-**Known non-binding threshold.** With a 15/15 split, `overall >= 0.90` allows at
-most 3 wrong answers, and 3 errors concentrated in one skill give exactly
-`12/15 = 0.80`, which passes `per_skill_min`. So at the configured values the
-per-skill floor can never reject anything the overall floor accepts. A
-`per_skill_min` anywhere in `(0.80, 0.90]` would make it bind.
-`test_per_skill_rule_cannot_bind_at_the_configured_floor` pins this fact.
+With a 15/15 split, `overall >= 0.90` allows at most 3 wrong answers. The
+configured `per_skill_min` is 0.85, which requires at least 13/15 on each skill;
+three errors concentrated in one skill yield 12/15 and fail that gate.
 
 The pre-registered kill/continue thresholds live in `configs/pilot.yaml` under
-`continuation_criteria`, as data. No decision function is implemented, so no code
-change can quietly move the threshold after the fact.
+`continuation_criteria`; `src/continuation.py` computes the decision from those
+values. Run 1 met its stop condition (`project_continue = False`). Run 2 used a
+new model list and post-result A100 reruns with higher token caps, and did not
+apply the plan's frontier-model condition. Its computed `project_continue = True`
+is therefore exploratory, not confirmatory evidence.
 
 ## Scope of the current pilot
 
@@ -419,7 +429,7 @@ change can quietly move the threshold after the fact.
 * measurement direction, gain and offset assigned as a **balanced factorial**, not
   sampled-and-filtered, so none of the three is predictable from another
 * gains `1.2` and `2.0` only; `1.05` and `10.0` are excluded (see `configs/pilot.yaml`)
-* direct prompting arms only — no LLM calls and no code-agent arm yet
+* direct and static code-agent arms were run in pilots 1 and 2; run 2 is exploratory
 
 ## Install
 
@@ -488,5 +498,22 @@ src/competence_grader.py    strict parsing + tolerance-based grading
 src/competence_metrics.py   per-skill accuracies + the qualification gate
 src/synthetic_responses.py  fake responses with known error rates, for testing
 data/generated/             generated datasets
-data/results/               model outputs (empty for now)
+data/results/               tracked run-1/run-2 outputs, manifests and analyses
 ```
+
+## External review
+
+The 2026-10-17 review by Barış Şavk is archived at
+[`docs/reviews/2026-10-17_review_baris_savk.md`](docs/reviews/2026-10-17_review_baris_savk.md).
+This revision fixes the cross-platform config hash check, adds abstention and
+uncertainty reporting, uses paired data for the direct/code comparison, corrects
+the run-2 claims, and records the runner's Git commit in future manifests.
+The historical config snapshot at
+[`configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml`](configs/snapshots/run2/pilot_colab_t4_run2_crlf.yaml)
+preserves the exact CRLF bytes recorded by run-2 manifests (SHA-256
+`cb39ccdd3c5b8082134b75d3053362825b978e5b143cfb659f1a212dc3e86125`); the
+committed source config has LF bytes and SHA-256
+`02bd25d82abc67d3b691ffe143cc5537bd3c7b8c4b118ad801d32d389fef241b`.
+Open scientific decisions remain: redesigning the continuation rule, preregistering
+model selection and reruns, redesigning the code arm, and matching reasoning
+conditions across models.

@@ -95,6 +95,80 @@ Rates below are valid-only; invalid responses are shown separately. All-trial ra
 | qwen3:14b | natural | 3 | n/a (0/0) | 0.0% (0/25) | 0.0% (0/25) | 25 |
 | qwen3:14b | natural | 4 | n/a (0/0) | 0.0% (0/25) | 0.0% (0/25) | 25 |
 
+## Abstention and cell-4 diagnostics
+
+Rates use valid responses. Cell-4 latent recovery is defined for L1 cases only; direction subsets compare the observed raw direction with the latent direction.
+
+| Model | Variant | Uncertain overall | Cell-1 blanket skepticism | Cell-3 over-abstention | Cell-4 latent recovery (L1) | Cell-4 raw direction correct: wrong direction | Cell-4 raw direction misleading: wrong direction |
+|---|---|---:|---:|---:|---:|---:|---:|
+| gemma4:12b | guided | 1.0% (1/100) | 0.0% (0/25) | 0.0% (0/25) | 60.0% (9/15) | 0/17 | 7/8 |
+| gemma4:12b | natural | 0.0% (0/100) | 0.0% (0/25) | 0.0% (0/25) | 73.3% (11/15) | 0/17 | 7/8 |
+| gpt-oss:20b | guided | 41.0% (41/100) | 20.0% (5/25) | 0.0% (0/25) | 20.0% (3/15) | 0/17 | 0/8 |
+| gpt-oss:20b | natural | 12.0% (12/100) | 4.0% (1/25) | 0.0% (0/25) | 66.7% (10/15) | 0/17 | 6/8 |
+| mistral-small3.2:24b | guided | 6.1% (6/99) | 4.2% (1/24) | 0.0% (0/25) | 66.7% (10/15) | 0/17 | 6/8 |
+| mistral-small3.2:24b | natural | 17.0% (17/100) | 40.0% (10/25) | 0.0% (0/25) | 80.0% (12/15) | 0/17 | 5/8 |
+| qwen3:14b | guided | 93.0% (93/100) | 100.0% (25/25) | 76.0% (19/25) | 0.0% (0/15) | 0/17 | 0/8 |
+| qwen3:14b | natural | 91.0% (91/100) | 100.0% (25/25) | 64.0% (16/25) | 0.0% (0/15) | 0/17 | 0/8 |
+
+## Wilson 95% intervals
+
+Direct-arm STR/MR intervals use the valid-only numerators and denominators.
+
+| Model | Variant | Cell | STR (95% Wilson CI) | MR (95% Wilson CI) |
+|---|---|---:|---:|---:|
+| gemma4:12b | guided | 1 | 16.0% (4/25) [6.4%, 34.7%] | n/a (0/0) |
+| gemma4:12b | guided | 2 | 84.0% (21/25) [65.3%, 93.6%] | n/a (0/0) |
+| gemma4:12b | guided | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| gemma4:12b | guided | 4 | n/a (0/0) | 12.0% (3/25) [4.2%, 30.0%] |
+| gemma4:12b | natural | 1 | 16.0% (4/25) [6.4%, 34.7%] | n/a (0/0) |
+| gemma4:12b | natural | 2 | 100.0% (25/25) [86.7%, 100.0%] | n/a (0/0) |
+| gemma4:12b | natural | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| gemma4:12b | natural | 4 | n/a (0/0) | 4.0% (1/25) [0.7%, 19.5%] |
+| gpt-oss:20b | guided | 1 | 4.0% (1/25) [0.7%, 19.5%] | n/a (0/0) |
+| gpt-oss:20b | guided | 2 | 8.0% (2/25) [2.2%, 25.0%] | n/a (0/0) |
+| gpt-oss:20b | guided | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| gpt-oss:20b | guided | 4 | n/a (0/0) | 16.0% (4/25) [6.4%, 34.7%] |
+| gpt-oss:20b | natural | 1 | 68.0% (17/25) [48.4%, 82.8%] | n/a (0/0) |
+| gpt-oss:20b | natural | 2 | 76.0% (19/25) [56.6%, 88.5%] | n/a (0/0) |
+| gpt-oss:20b | natural | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| gpt-oss:20b | natural | 4 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| mistral-small3.2:24b | guided | 1 | 0.0% (0/24) [0.0%, 13.8%] | n/a (0/0) |
+| mistral-small3.2:24b | guided | 2 | 88.0% (22/25) [70.0%, 95.8%] | n/a (0/0) |
+| mistral-small3.2:24b | guided | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| mistral-small3.2:24b | guided | 4 | n/a (0/0) | 4.0% (1/25) [0.7%, 19.5%] |
+| mistral-small3.2:24b | natural | 1 | 8.0% (2/25) [2.2%, 25.0%] | n/a (0/0) |
+| mistral-small3.2:24b | natural | 2 | 84.0% (21/25) [65.3%, 93.6%] | n/a (0/0) |
+| mistral-small3.2:24b | natural | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| mistral-small3.2:24b | natural | 4 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| qwen3:14b | guided | 1 | 0.0% (0/25) [0.0%, 13.3%] | n/a (0/0) |
+| qwen3:14b | guided | 2 | 4.0% (1/25) [0.7%, 19.5%] | n/a (0/0) |
+| qwen3:14b | guided | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| qwen3:14b | guided | 4 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| qwen3:14b | natural | 1 | 0.0% (0/25) [0.0%, 13.3%] | n/a (0/0) |
+| qwen3:14b | natural | 2 | 0.0% (0/25) [0.0%, 13.3%] | n/a (0/0) |
+| qwen3:14b | natural | 3 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+| qwen3:14b | natural | 4 | n/a (0/0) | 0.0% (0/25) [0.0%, 13.3%] |
+
+Code-agent valid-only intervals (STR/MR are pooled across the code-agent cases; PRR pools cells 2 and 3):
+
+| Model | PRR (95% Wilson CI) | STR (95% Wilson CI) | MR (95% Wilson CI) |
+|---|---:|---:|---:|
+| gemma4:12b | 45.0% (18/40) [30.7%, 60.2%] | 60.0% (12/20) [38.7%, 78.1%] | 0.0% (0/20) [0.0%, 16.1%] |
+| gpt-oss:20b | 20.5% (8/39) [10.8%, 35.5%] | 31.6% (6/19) [15.4%, 54.0%] | 0.0% (0/20) [0.0%, 16.1%] |
+| mistral-small3.2:24b | 50.0% (20/40) [35.2%, 64.8%] | 75.0% (15/20) [53.1%, 88.8%] | 5.0% (1/20) [0.9%, 23.6%] |
+| qwen3:14b | 47.5% (19/40) [32.9%, 62.5%] | 100.0% (20/20) [83.9%, 100.0%] | 5.0% (1/20) [0.9%, 23.6%] |
+
+## Paired direct-vs-code comparison
+
+Exact two-sided McNemar tests use all complete pairs. The cell-2 test compares whether each arm reported a spurious trend; invalid outputs count as no reported spurious trend and are shown separately. A valid-pairs-only cell-2 p-value is included as a sensitivity check.
+
+| Model | All-cell pairs | Direct-only correct | Code-only correct | All-cell exact p | Cell-2 pairs | Direct cell-2 spurious | Code cell-2 spurious | Direct uncertain | Code uncertain | Invalid D/C | Direct-only spurious | Code-only spurious | Cell-2 exact p | Valid-pairs p |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| gemma4:12b | 40 (40 valid) | 0 | 8 | 0.007812 | 20 (20 valid) | 100.0% (20/20) | 60.0% (12/20) | 0.0% (0/20) | 15.0% (3/20) | 0/0 | 8 | 0 | 0.007812 | 0.007812 |
+| gpt-oss:20b | 40 (39 valid) | 2 | 9 | 0.06543 | 20 (19 valid) | 65.0% (13/20) | 30.0% (6/20) | 35.0% (7/20) | 50.0% (10/20) | 0/1 | 9 | 2 | 0.06543 | 0.1094 |
+| mistral-small3.2:24b | 40 (40 valid) | 3 | 4 | 1 | 20 (20 valid) | 85.0% (17/20) | 75.0% (15/20) | 15.0% (3/20) | 20.0% (4/20) | 0/0 | 4 | 2 | 0.6875 | 0.6875 |
+| qwen3:14b | 40 (40 valid) | 27 | 3 | 8.43e-06 | 20 (20 valid) | 0.0% (0/20) | 100.0% (20/20) | 100.0% (20/20) | 0.0% (0/20) | 0/0 | 0 | 20 | 1.907e-06 | 1.907e-06 |
+
 ## Code-agent arm
 
 Status: **ran_static_only**. execution_enabled is false; generated code was not executed

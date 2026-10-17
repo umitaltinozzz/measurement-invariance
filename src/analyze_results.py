@@ -29,10 +29,11 @@ from .continuation import (
 )
 from .generate_cases import load_config, read_jsonl
 from .generate_competence import read_competence_jsonl
-from .grader import ModelResponseRecord, grade_all
-from .metrics import breakdown
-from .paired_metrics import compute_paired_breakdown
+from .grader import ModelResponseRecord, ResponseClass, grade_all
+from .metrics import Rate, breakdown
+from .paired_metrics import compute_paired_breakdown, pair_responses
 from .prompts import PromptVariant
+from .reporting_stats import exact_mcnemar_p, wilson_interval
 from .run_manifest import read_manifest, sha256_file
 from .runner import TrialRecord
 
@@ -56,6 +57,20 @@ def _rate(rate) -> Dict[str, Any]:
         "denominator": rate.denominator,
         "value": rate.value,
     }
+
+
+def _wilson_95(rate) -> Optional[Dict[str, float]]:
+    interval = wilson_interval(rate.numerator, rate.denominator)
+    if interval is None:
+        return None
+    return {"lower": interval[0], "upper": interval[1]}
+
+
+def _fmt_rate_wilson(rate: Dict[str, Any], interval: Optional[Dict[str, float]]) -> str:
+    rendered = _fmt_rate(rate)
+    if interval is None:
+        return rendered
+    return f"{rendered} [{interval['lower']:.1%}, {interval['upper']:.1%}]"
 
 
 def _dual_rate(dual) -> Dict[str, Any]:
@@ -221,9 +236,67 @@ def _direct_metric_rows(graded) -> List[Dict[str, Any]]:
                 "spurious_trend_rate": _dual_rate(metrics.spurious_trend_rate),
                 "miss_rate": _dual_rate(metrics.miss_rate),
                 "invalid_response_rate": _rate(metrics.invalid_response_rate),
+                "spurious_trend_rate_wilson_95": _wilson_95(
+                    metrics.spurious_trend_rate.valid_only
+                ),
+                "miss_rate_wilson_95": _wilson_95(metrics.miss_rate.valid_only),
             }
         )
     return rows
+
+
+def _direct_diagnostic_rows(graded, cases) -> List[Dict[str, Any]]:
+    """Supplementary abstention and cell-4 diagnostics by model and prompt."""
+    naive_matches = {case.case_id: case.naive_observed_trend() == case.expected_trend for case in cases}
+    grouped: Dict[Tuple[str, str], List[Any]] = {}
+    for row in graded:
+        grouped.setdefault((row.model, row.prompt_variant.value), []).append(row)
+
+    output = []
+    for (model, variant), rows in sorted(grouped.items()):
+        valid = [r for r in rows if r.response_class is not ResponseClass.INVALID_RESPONSE]
+        uncertain = [
+            r for r in valid
+            if r.response_class in (ResponseClass.CORRECT_ABSTENTION, ResponseClass.OVER_ABSTENTION)
+        ]
+        cell1 = [r for r in valid if r.cell == 1]
+        cell3 = [r for r in valid if r.cell == 3]
+        recoverable_cell4 = [r for r in valid if r.cell == 4 and r.latent_recovery_defined]
+        cell4 = [r for r in valid if r.cell == 4]
+
+        def rate_for(numerator: int, denominator: int) -> Dict[str, Any]:
+            return _rate(Rate.of(numerator, denominator))
+
+        direction_slices = {}
+        for key, is_match in (("raw_direction_correct", True), ("raw_direction_misleading", False)):
+            subset = [r for r in cell4 if naive_matches[r.case_id] is is_match]
+            wrong = sum(1 for r in subset if r.response_class is ResponseClass.WRONG_DIRECTION)
+            direction_slices[key] = {
+                "n_valid": len(subset),
+                "wrong_direction_count": wrong,
+                "wrong_direction_rate": rate_for(wrong, len(subset)),
+            }
+
+        recovered = sum(1 for r in recoverable_cell4 if r.latent_recovery_correct)
+        output.append(
+            {
+                "model": model,
+                "prompt_variant": variant,
+                "n_responses": len(rows),
+                "n_valid": len(valid),
+                "uncertain_rate": rate_for(len(uncertain), len(valid)),
+                "cell1_blanket_skepticism_rate": rate_for(
+                    sum(1 for r in cell1 if r.blanket_skepticism), len(cell1)
+                ),
+                "cell3_over_abstention_rate": rate_for(
+                    sum(1 for r in cell3 if r.response_class is ResponseClass.OVER_ABSTENTION),
+                    len(cell3),
+                ),
+                "cell4_latent_recovery_rate": rate_for(recovered, len(recoverable_cell4)),
+                "cell4_raw_direction_split": direction_slices,
+            }
+        )
+    return output
 
 
 def _competence_rows(graded, cfg) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
@@ -263,8 +336,17 @@ def _code_rows(graded) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
                 "n_valid": metrics.n_valid,
                 "provenance_retention_rate": _dual_rate(metrics.provenance_retention_rate),
                 "effective_provenance_use_rate": _dual_rate(metrics.effective_provenance_use_rate),
+                "spurious_trend_rate": _dual_rate(metrics.spurious_trend_rate),
+                "miss_rate": _dual_rate(metrics.miss_rate),
                 "invalid_response_rate": _rate(metrics.invalid_response_rate),
                 "code_syntax_error_rate": _rate(metrics.code_syntax_error_rate),
+                "provenance_retention_rate_wilson_95": _wilson_95(
+                    metrics.provenance_retention_rate.valid_only
+                ),
+                "spurious_trend_rate_wilson_95": _wilson_95(
+                    metrics.spurious_trend_rate.valid_only
+                ),
+                "miss_rate_wilson_95": _wilson_95(metrics.miss_rate.valid_only),
                 "provenance_levels": metrics.level_counts,
                 "anti_patterns": metrics.anti_pattern_counts,
                 "needs_human_review": metrics.needs_human_review,
@@ -282,6 +364,88 @@ def _paired_rows(direct_graded, code_graded) -> List[Dict[str, Any]]:
         }
         for model, metrics in sorted(result.items())
     ]
+
+
+def _paired_direct_code_rows(direct_graded, code_graded) -> List[Dict[str, Any]]:
+    """Exact paired McNemar comparisons for all cases and cell-2 false trends."""
+    models = sorted({r.model for r in direct_graded} | {r.model for r in code_graded})
+    output = []
+    for model in models:
+        pairing = pair_responses(direct_graded, code_graded, model=model)
+        complete = pairing.pairs
+        valid_pairs = [p for p in complete if not p.direct_invalid and not p.code_invalid]
+        direct_only_correct = sum(1 for p in complete if p.direct_correct and not p.code_correct)
+        code_only_correct = sum(1 for p in complete if p.code_correct and not p.direct_correct)
+
+        cell2_pairs = [p for p in complete if p.cell == 2]
+        valid_cell2 = [p for p in cell2_pairs if not p.direct_invalid and not p.code_invalid]
+        direct_spurious = sum(1 for p in cell2_pairs if p.direct_class is ResponseClass.SPURIOUS_TREND)
+        code_spurious = sum(1 for p in cell2_pairs if p.code_class is ResponseClass.SPURIOUS_TREND)
+        direct_only_spurious = sum(
+            1 for p in cell2_pairs
+            if p.direct_class is ResponseClass.SPURIOUS_TREND
+            and p.code_class is not ResponseClass.SPURIOUS_TREND
+        )
+        code_only_spurious = sum(
+            1 for p in cell2_pairs
+            if p.code_class is ResponseClass.SPURIOUS_TREND
+            and p.direct_class is not ResponseClass.SPURIOUS_TREND
+        )
+        direct_uncertain = sum(
+            1 for p in cell2_pairs if p.direct_class is ResponseClass.CORRECT_ABSTENTION
+        )
+        code_uncertain = sum(
+            1 for p in cell2_pairs if p.code_class is ResponseClass.CORRECT_ABSTENTION
+        )
+        direct_invalid = sum(1 for p in cell2_pairs if p.direct_invalid)
+        code_invalid = sum(1 for p in cell2_pairs if p.code_invalid)
+        direct_other = len(cell2_pairs) - direct_spurious - direct_uncertain - direct_invalid
+        code_other = len(cell2_pairs) - code_spurious - code_uncertain - code_invalid
+
+        valid_direct_only_spurious = sum(
+            1 for p in valid_cell2
+            if p.direct_class is ResponseClass.SPURIOUS_TREND
+            and p.code_class is not ResponseClass.SPURIOUS_TREND
+        )
+        valid_code_only_spurious = sum(
+            1 for p in valid_cell2
+            if p.code_class is ResponseClass.SPURIOUS_TREND
+            and p.direct_class is not ResponseClass.SPURIOUS_TREND
+        )
+
+        output.append(
+            {
+                "model": model,
+                "all_cells": {
+                    "n_pairs": len(complete),
+                    "n_valid_pairs": len(valid_pairs),
+                    "direct_only_correct": direct_only_correct,
+                    "code_only_correct": code_only_correct,
+                    "exact_mcnemar_p": exact_mcnemar_p(direct_only_correct, code_only_correct),
+                },
+                "cell2": {
+                    "n_pairs": len(cell2_pairs),
+                    "n_valid_pairs": len(valid_cell2),
+                    "direct_spurious_trend": _rate(Rate.of(direct_spurious, len(cell2_pairs))),
+                    "code_spurious_trend": _rate(Rate.of(code_spurious, len(cell2_pairs))),
+                    "direct_uncertain": _rate(Rate.of(direct_uncertain, len(cell2_pairs))),
+                    "code_uncertain": _rate(Rate.of(code_uncertain, len(cell2_pairs))),
+                    "direct_other_valid": _rate(Rate.of(direct_other, len(cell2_pairs))),
+                    "code_other_valid": _rate(Rate.of(code_other, len(cell2_pairs))),
+                    "direct_invalid_count": direct_invalid,
+                    "code_invalid_count": code_invalid,
+                    "direct_only_spurious": direct_only_spurious,
+                    "code_only_spurious": code_only_spurious,
+                    "exact_mcnemar_p": exact_mcnemar_p(direct_only_spurious, code_only_spurious),
+                    "valid_pairs_direct_only_spurious": valid_direct_only_spurious,
+                    "valid_pairs_code_only_spurious": valid_code_only_spurious,
+                    "valid_pairs_exact_mcnemar_p": exact_mcnemar_p(
+                        valid_direct_only_spurious, valid_code_only_spurious
+                    ),
+                },
+            }
+        )
+    return output
 
 
 def _write_chart(metric_rows: Sequence[Dict[str, Any]], output_path: Path) -> None:
@@ -363,7 +527,9 @@ def _write_analysis_markdown(
     verification: Sequence[Dict[str, Any]],
     competence_rows: Sequence[Dict[str, Any]],
     direct_rows: Sequence[Dict[str, Any]],
+    direct_diagnostics: Sequence[Dict[str, Any]],
     code_rows: Sequence[Dict[str, Any]],
+    paired_direct_code: Sequence[Dict[str, Any]],
     continuation_text: str,
     run_status: Optional[Dict[str, Any]],
     analysis_metadata: Optional[Dict[str, Any]] = None,
@@ -448,6 +614,88 @@ def _write_analysis_markdown(
             f"{_fmt_dual(item['spurious_trend_rate'])} | {_fmt_dual(item['miss_rate'])} | "
             f"{_fmt_rate(item['invalid_response_rate'])} | {item['n_responses']} |"
         )
+    lines.extend(
+        [
+            "",
+            "## Abstention and cell-4 diagnostics",
+            "",
+            "Rates use valid responses. Cell-4 latent recovery is defined for L1 cases only; direction subsets compare the observed raw direction with the latent direction.",
+            "",
+            "| Model | Variant | Uncertain overall | Cell-1 blanket skepticism | Cell-3 over-abstention | Cell-4 latent recovery (L1) | Cell-4 raw direction correct: wrong direction | Cell-4 raw direction misleading: wrong direction |",
+            "|---|---|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for item in direct_diagnostics:
+        correct = item["cell4_raw_direction_split"]["raw_direction_correct"]
+        misleading = item["cell4_raw_direction_split"]["raw_direction_misleading"]
+        lines.append(
+            f"| {item['model']} | {item['prompt_variant']} | {_fmt_rate(item['uncertain_rate'])} | "
+            f"{_fmt_rate(item['cell1_blanket_skepticism_rate'])} | "
+            f"{_fmt_rate(item['cell3_over_abstention_rate'])} | "
+            f"{_fmt_rate(item['cell4_latent_recovery_rate'])} | "
+            f"{correct['wrong_direction_count']}/{correct['n_valid']} | "
+            f"{misleading['wrong_direction_count']}/{misleading['n_valid']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Wilson 95% intervals",
+            "",
+            "Direct-arm STR/MR intervals use the valid-only numerators and denominators.",
+            "",
+            "| Model | Variant | Cell | STR (95% Wilson CI) | MR (95% Wilson CI) |",
+            "|---|---|---:|---:|---:|",
+        ]
+    )
+    for item in sorted(direct_rows, key=lambda row: (row["model"], row["prompt_variant"], row["cell"])):
+        str_rate = item["spurious_trend_rate"]["valid_only"]
+        mr_rate = item["miss_rate"]["valid_only"]
+        lines.append(
+            f"| {item['model']} | {item['prompt_variant']} | {item['cell']} | "
+            f"{_fmt_rate_wilson(str_rate, item['spurious_trend_rate_wilson_95'])} | "
+            f"{_fmt_rate_wilson(mr_rate, item['miss_rate_wilson_95'])} |"
+        )
+    if code_rows:
+        lines.extend(
+            [
+                "",
+                "Code-agent valid-only intervals (STR/MR are pooled across the code-agent cases; PRR pools cells 2 and 3):",
+                "",
+                "| Model | PRR (95% Wilson CI) | STR (95% Wilson CI) | MR (95% Wilson CI) |",
+                "|---|---:|---:|---:|",
+            ]
+        )
+        for item in code_rows:
+            lines.append(
+                f"| {item['model']} | "
+                f"{_fmt_rate_wilson(item['provenance_retention_rate']['valid_only'], item['provenance_retention_rate_wilson_95'])} | "
+                f"{_fmt_rate_wilson(item['spurious_trend_rate']['valid_only'], item['spurious_trend_rate_wilson_95'])} | "
+                f"{_fmt_rate_wilson(item['miss_rate']['valid_only'], item['miss_rate_wilson_95'])} |"
+            )
+    lines.extend(
+        [
+            "",
+            "## Paired direct-vs-code comparison",
+            "",
+            "Exact two-sided McNemar tests use all complete pairs. The cell-2 test compares whether each arm reported a spurious trend; invalid outputs count as no reported spurious trend and are shown separately. A valid-pairs-only cell-2 p-value is included as a sensitivity check.",
+            "",
+            "| Model | All-cell pairs | Direct-only correct | Code-only correct | All-cell exact p | Cell-2 pairs | Direct cell-2 spurious | Code cell-2 spurious | Direct uncertain | Code uncertain | Invalid D/C | Direct-only spurious | Code-only spurious | Cell-2 exact p | Valid-pairs p |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for item in paired_direct_code:
+        all_cells = item["all_cells"]
+        cell2 = item["cell2"]
+        lines.append(
+            f"| {item['model']} | {all_cells['n_pairs']} ({all_cells['n_valid_pairs']} valid) | "
+            f"{all_cells['direct_only_correct']} | {all_cells['code_only_correct']} | "
+            f"{all_cells['exact_mcnemar_p']:.4g} | {cell2['n_pairs']} ({cell2['n_valid_pairs']} valid) | "
+            f"{_fmt_rate(cell2['direct_spurious_trend'])} | {_fmt_rate(cell2['code_spurious_trend'])} | "
+            f"{_fmt_rate(cell2['direct_uncertain'])} | {_fmt_rate(cell2['code_uncertain'])} | "
+            f"{cell2['direct_invalid_count']}/{cell2['code_invalid_count']} | "
+            f"{cell2['direct_only_spurious']} | {cell2['code_only_spurious']} | "
+            f"{cell2['exact_mcnemar_p']:.4g} | {cell2['valid_pairs_exact_mcnemar_p']:.4g} |"
+        )
     lines.extend(["", "## Code-agent arm", ""])
     if run_status and run_status.get("code_agent_arm"):
         arm_status = run_status["code_agent_arm"]
@@ -523,6 +771,7 @@ def analyze_results(
         direct_records.extend(_main_direct_records(runs, "pilot_cases.jsonl", variant))
     graded_direct = grade_all(pilot_cases, direct_records)
     direct_rows = _direct_metric_rows(graded_direct)
+    direct_diagnostics = _direct_diagnostic_rows(graded_direct, pilot_cases)
     main_natural = [row for row in graded_direct if row.prompt_variant is PromptVariant.NATURAL]
 
     paired_cases_path = project_root / "data/generated/paired_agent_cases.jsonl"
@@ -548,6 +797,7 @@ def analyze_results(
     ]
     code_rows, code_metrics_by_model = _code_rows(graded_code)
     paired_rows = _paired_rows(paired_direct_graded, graded_code)
+    paired_direct_code = _paired_direct_code_rows(paired_direct_graded, graded_code)
 
     decision = evaluate_continuation(
         cfg.continuation_criteria,
@@ -583,8 +833,10 @@ def analyze_results(
         "rerun_merge": analysis_metadata,
         "competence": competence_rows,
         "direct_cell_metrics": direct_rows,
+        "direct_diagnostics": direct_diagnostics,
         "code_agent": code_rows,
         "paired_metrics": paired_rows,
+        "paired_direct_code_comparison": paired_direct_code,
         "continuation": decision.model_dump(mode="json"),
     }
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -606,7 +858,9 @@ def analyze_results(
         verification,
         competence_rows,
         direct_rows,
+        direct_diagnostics,
         code_rows,
+        paired_direct_code,
         continuation_text,
         run_status,
         analysis_metadata,
